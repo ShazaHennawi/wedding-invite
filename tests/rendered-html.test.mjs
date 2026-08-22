@@ -1,0 +1,54 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+
+async function render() {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+
+  return worker.fetch(
+    new Request("http://localhost/", { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+}
+
+test("server-renders the closed wedding invitation", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+
+  const html = await response.text();
+  assert.match(html, /<title>Isaac &amp; Shaza — Wedding Invitation<\/title>/i);
+  assert.match(html, /Isaac &amp; Shaza/);
+  assert.match(html, /Together with our families/);
+  assert.match(html, /aria-label="Open the wedding invitation"/);
+  assert.match(html, /Tap to open/);
+  assert.doesNotMatch(html, /Open in Maps/);
+  assert.doesNotMatch(html, /\[Venue Name\]/);
+  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+});
+
+test("keeps content editable and interaction requirements wired", async () => {
+  const [page, config, css, layout, packageJson] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/invitation-config.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../package.json", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(config, /export const invitationConfig/);
+  assert.match(config, /date: "17\.10\.2026"/);
+  assert.match(config, /mapUrl:/);
+  assert.match(page, /useReducedMotion/);
+  assert.match(page, /playsInline/);
+  assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
+  assert.match(page, /disabled=\{opening\}/);
+  assert.match(page, /setState\("details"\)/);
+  assert.match(css, /min-height:\s*46px/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(layout, /openGraph:/);
+  assert.match(packageJson, /"framer-motion"/);
+});
