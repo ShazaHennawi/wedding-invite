@@ -190,20 +190,19 @@ function CeremonyDetails() {
 
           <p className="arabic-invitation-line">{arabic.invitation}</p>
 
-          <span className="ceremony-cross" aria-hidden="true">
-            <Image
-              src="/ornate-cross.png"
-              alt=""
-              width={1024}
-              height={1536}
-              sizes="42px"
-              className="ceremony-cross-image"
-              draggable={false}
-            />
-          </span>
-
           <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
             <span>{arabic.groomName}</span>
+            <span className="names-cross" aria-hidden="true">
+              <Image
+                src="/ornate-cross.png"
+                alt=""
+                width={1024}
+                height={1536}
+                sizes="32px"
+                className="names-cross-image"
+                draggable={false}
+              />
+            </span>
             <span>{arabic.brideName}</span>
           </h1>
 
