@@ -10,7 +10,7 @@ export const invitationConfig = {
     venue: "كنيسة القديس جاورجيوس",
   },
   arabicCeremony: {
-    blessing: "«أيها الرب إلهنا بالمجد والكرامة كلّلهما»",
+    blessing: "أيُّـــها الربّ إلهُنا بالمجدِ والكرامَة كلّلهُما",
     groomFamily: "سامر وسوف وعائلته",
     brideFamily: "سامي حناوي وعائلته",
     invitation: "يتشرفان بدعوتكم لحضور إكليل ولديهما",
