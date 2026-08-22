@@ -68,6 +68,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /lang="ar"/);
   assert.match(page, /src="\/envelope-whole\.png"/);
   assert.match(css, /\.whole-envelope-image[\s\S]*object-fit:\s*contain/);
+  assert.match(css, /\.envelope[\s\S]*aspect-ratio:\s*1\.337 \/ 1[\s\S]*overflow:\s*hidden/);
+  assert.match(css, /\.whole-envelope-art[\s\S]*width:\s*132\.4%/);
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /embossed-invitation-background\.jpg/);
   assert.match(css, /--paper-texture:/);
