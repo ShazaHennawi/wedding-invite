@@ -211,18 +211,6 @@ function CeremonyDetails() {
           </section>
 
           <p className="arabic-closing">{arabic.closing}</p>
-          <blockquote className="personal-message">{invitation.wedding.message}</blockquote>
-
-          <a
-            className="maps-button"
-            href={invitation.wedding.mapUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="افتح موقع الإكليل على خرائط جوجل في نافذة جديدة"
-          >
-            افتح الموقع على الخريطة <span aria-hidden="true">↗</span>
-          </a>
-
           <p className="arabic-congratulations">{arabic.congratulations}</p>
         </div>
       </article>

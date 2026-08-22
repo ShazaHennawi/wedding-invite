@@ -8,8 +8,6 @@ export const invitationConfig = {
     date: "17.10.2026",
     time: "[موعد الإكليل]",
     venue: "القديس جاورجيوس",
-    message: "[رسالة شخصية]",
-    mapUrl: "https://maps.google.com/",
   },
   arabicCeremony: {
     blessing: "«أيها الرب إلهنا بالمجد والكرامة كلّلهما»",

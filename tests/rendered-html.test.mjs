@@ -41,7 +41,8 @@ test("keeps content editable and interaction requirements wired", async () => {
 
   assert.match(config, /export const invitationConfig/);
   assert.match(config, /date: "17\.10\.2026"/);
-  assert.match(config, /mapUrl:/);
+  assert.doesNotMatch(config, /mapUrl:/);
+  assert.doesNotMatch(config, /message:/);
   assert.match(config, /arabicCeremony:/);
   assert.match(config, /blessing: "«أيها الرب إلهنا بالمجد والكرامة كلّلهما»"/);
   assert.match(config, /groomFamily: "سامر وسوف وعائلته"/);
@@ -51,6 +52,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /venue: "القديس جاورجيوس"/);
   assert.doesNotMatch(page, /wedding\.address/);
   assert.doesNotMatch(page, /arabic-dress-code/);
+  assert.doesNotMatch(page, /personal-message/);
+  assert.doesNotMatch(page, /maps-button/);
   assert.match(page, /useReducedMotion/);
   assert.match(page, /playsInline/);
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
@@ -63,7 +66,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /embossed-invitation-background\.jpg/);
   assert.match(css, /background:[\s\S]*100% 100% no-repeat/);
-  assert.match(css, /min-height:\s*46px/);
+  assert.match(css, /min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);
   assert.match(packageJson, /"framer-motion"/);

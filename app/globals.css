@@ -154,8 +154,7 @@ button, a { font: inherit; }
 
 .envelope-button:disabled { cursor: default; }
 
-.envelope-button:focus-visible,
-.maps-button:focus-visible {
+.envelope-button:focus-visible {
   border-radius: 8px;
   outline: 2px solid var(--olive-dark);
   outline-offset: 4px;
@@ -313,41 +312,12 @@ button, a { font: inherit; }
 
 .ceremony-summary strong { font-weight: 700; }
 
-.maps-button {
-  display: inline-flex;
-  min-height: 46px;
-  align-items: center;
-  justify-content: center;
-  gap: .65rem;
-  margin-top: 1.15rem;
-  border: 1px solid rgba(117, 101, 72, .28);
-  border-radius: 999px;
-  padding: .72rem 1.15rem;
-  background: rgba(255, 253, 248, .8);
-  color: #66583f;
-  font-size: .95rem;
-  letter-spacing: 0;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color .2s ease, color .2s ease;
-}
-
-.maps-button:hover { background: #756548; color: #fffdf8; }
-
 .arabic-closing {
   max-width: 350px;
   margin: clamp(1.7rem, 5svh, 3rem) auto .4rem;
   font-size: clamp(1.2rem, 5vw, 1.5rem);
   font-weight: 600;
   line-height: 1.8;
-}
-
-.personal-message {
-  max-width: 320px;
-  margin: .3rem auto;
-  font-size: .95rem;
-  font-style: normal;
-  line-height: 1.65;
 }
 
 .arabic-congratulations {
