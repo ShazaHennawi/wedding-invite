@@ -40,8 +40,8 @@ function CoupleMedia() {
     <Image
       src={invitation.media.poster}
       alt={invitation.media.alt}
-      width={1024}
-      height={1536}
+      width={1890}
+      height={2363}
       priority
       sizes="(max-width: 480px) 100vw, 430px"
       className="landing-image"
