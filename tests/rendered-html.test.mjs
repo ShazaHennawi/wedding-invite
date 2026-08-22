@@ -70,7 +70,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.whole-envelope-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /embossed-invitation-background\.jpg/);
-  assert.match(css, /background:[\s\S]*100% 100% no-repeat/);
+  assert.match(css, /--paper-texture:/);
+  assert.match(css, /\.landing-image[\s\S]*mix-blend-mode:\s*multiply/);
+  assert.match(css, /background-size:\s*100% 100%/);
+  assert.match(css, /background-blend-mode:\s*multiply/);
   assert.match(css, /min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);
