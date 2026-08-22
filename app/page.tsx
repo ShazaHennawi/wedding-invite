@@ -192,7 +192,17 @@ function CeremonyDetails() {
 
           <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
             <span>{arabic.groomName}</span>
-            <i aria-hidden="true">&amp;</i>
+            <span className="names-cross" aria-hidden="true">
+              <Image
+                src="/ornate-cross.png"
+                alt=""
+                width={1024}
+                height={1536}
+                sizes="32px"
+                className="names-cross-image"
+                draggable={false}
+              />
+            </span>
             <span>{arabic.brideName}</span>
           </h1>
 

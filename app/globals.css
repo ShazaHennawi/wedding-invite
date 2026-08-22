@@ -245,7 +245,7 @@ button, a { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1.2rem, 6vw, 2.3rem);
+  gap: clamp(.9rem, 4.5vw, 1.7rem);
   margin: 0 auto clamp(1.8rem, 6svh, 3.8rem);
   color: #927946;
   font-size: clamp(2.25rem, 10.5vw, 3.2rem);
@@ -253,11 +253,19 @@ button, a { font: inherit; }
   line-height: 1.25;
 }
 
-.arabic-couple-names i {
-  font-family: Georgia, serif;
-  font-size: .9em;
-  font-style: normal;
-  font-weight: 400;
+.names-cross {
+  display: inline-flex;
+  width: clamp(1.4rem, 5.5vw, 1.9rem);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.names-cross-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
 }
 
 .arabic-couple-names:focus { outline: none; }
