@@ -245,7 +245,7 @@ button, a { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(.9rem, 4.5vw, 1.7rem);
+  gap: clamp(2.25rem, 10vw, 4rem);
   margin: 0 auto clamp(1.8rem, 6svh, 3.8rem);
   color: #927946;
   font-size: clamp(2.25rem, 10.5vw, 3.2rem);
@@ -253,19 +253,22 @@ button, a { font: inherit; }
   line-height: 1.25;
 }
 
-.names-cross {
+.ceremony-cross {
   display: inline-flex;
-  width: clamp(1.4rem, 5.5vw, 1.9rem);
+  width: clamp(2rem, 8.5vw, 2.65rem);
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  margin: 0 auto clamp(.7rem, 2.4svh, 1.2rem);
 }
 
-.names-cross-image {
+.ceremony-cross-image {
   display: block;
   width: 100%;
   height: auto;
   mix-blend-mode: screen;
+  filter: brightness(1.25) saturate(.45);
+  opacity: .48;
 }
 
 .arabic-couple-names:focus { outline: none; }
@@ -310,7 +313,7 @@ button, a { font: inherit; }
 @media (max-width: 350px) {
   .envelope-button { width: min(92vw, 292px); }
   .ceremony-content { padding-inline: 2.25rem; }
-  .arabic-couple-names { gap: 1rem; }
+  .arabic-couple-names { gap: 1.85rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
