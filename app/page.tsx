@@ -182,57 +182,51 @@ function CeremonyDetails() {
       transition={{ duration: reducedMotion ? 0.25 : 0.75, ease: [0.22, 1, 0.36, 1] }}
     >
       <article
-        className="paper-frame detail-card arabic-invitation mx-auto w-full max-w-[560px] px-6 py-9 text-center sm:px-12 sm:py-12"
+        className="paper-frame detail-card arabic-invitation mx-auto w-full text-center"
         dir="rtl"
         lang="ar"
       >
-        <div className="floral-corner floral-corner-top" aria-hidden="true" />
-        <div className="floral-corner floral-corner-bottom" aria-hidden="true" />
+        <div className="ceremony-content">
+          <p className="arabic-blessing">{arabic.blessing}</p>
 
-        <p className="arabic-blessing">{arabic.blessing}</p>
-
-        <div className="arabic-families">
-          <span>{arabic.groomFamily}</span>
-          <span>{arabic.brideFamily}</span>
-        </div>
-
-        <p className="arabic-invitation-line">{arabic.invitation}</p>
-        <div className="ceremony-cross" aria-hidden="true">✞</div>
-
-        <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
-          <span>{arabic.groomName}</span>
-          <span>{arabic.brideName}</span>
-        </h1>
-
-        <div className="arabic-date-grid" aria-label={`موعد الإكليل ${invitation.wedding.date}`}>
-          <div className="date-side"><span>{invitation.wedding.time}</span></div>
-          <div className="date-center">
-            <span>{arabic.month}</span>
-            <strong>{arabic.dateNumber}</strong>
-            <span>{arabic.year}</span>
+          <div className="arabic-families">
+            <span>{arabic.groomFamily}</span>
+            <span>{arabic.brideFamily}</span>
           </div>
-          <div className="date-side"><span>{arabic.day}</span></div>
+
+          <p className="arabic-invitation-line">{arabic.invitation}</p>
+
+          <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
+            <span>{arabic.groomName}</span>
+            <i aria-hidden="true">&amp;</i>
+            <span>{arabic.brideName}</span>
+          </h1>
+
+          <section className="ceremony-summary" aria-label={`موعد الإكليل ${invitation.wedding.date}`}>
+            <p>وذلك في تمام الساعة {invitation.wedding.time}</p>
+            <p>مساء يوم {arabic.day} الموافق {arabic.dateNumber} {arabic.month} {arabic.year}</p>
+            <address>
+              <strong>في {invitation.wedding.venue}</strong>
+              <span>{invitation.wedding.address}</span>
+            </address>
+          </section>
+
+          <p className="arabic-dress-code">اللباس: {invitation.wedding.dressCode}</p>
+          <p className="arabic-closing">{arabic.closing}</p>
+          <blockquote className="personal-message">{invitation.wedding.message}</blockquote>
+
+          <a
+            className="maps-button"
+            href={invitation.wedding.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="افتح موقع الإكليل على خرائط جوجل في نافذة جديدة"
+          >
+            افتح الموقع على الخريطة <span aria-hidden="true">↗</span>
+          </a>
+
+          <p className="arabic-congratulations">{arabic.congratulations}</p>
         </div>
-
-        <address className="arabic-venue">
-          <strong>{invitation.wedding.venue}</strong>
-          <span>{invitation.wedding.address}</span>
-        </address>
-
-        <a
-          className="maps-button"
-          href={invitation.wedding.mapUrl}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="افتح موقع الإكليل على خرائط جوجل في نافذة جديدة"
-        >
-          افتح الموقع على الخريطة <span aria-hidden="true">↗</span>
-        </a>
-
-        <p className="arabic-dress-code">اللباس: {invitation.wedding.dressCode}</p>
-        <p className="arabic-closing">{arabic.closing}</p>
-        <blockquote className="personal-message">{invitation.wedding.message}</blockquote>
-        <p className="arabic-congratulations">{arabic.congratulations}</p>
       </article>
     </motion.main>
   );

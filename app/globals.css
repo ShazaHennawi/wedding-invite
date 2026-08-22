@@ -34,6 +34,8 @@ button, a { font: inherit; }
     #ece6d9;
 }
 
+.details-shell { padding: 0 !important; }
+
 .opening-wash {
   position: fixed;
   z-index: 20;
@@ -218,146 +220,100 @@ button, a { font: inherit; }
   text-transform: uppercase;
 }
 
-.detail-card { overflow: hidden; }
-
-.detail-card::after {
-  position: absolute;
-  z-index: 0;
-  inset: 1.05rem;
-  border: 1px solid rgba(184, 139, 94, .18);
-  content: "";
-  pointer-events: none;
+.detail-card {
+  width: min(100%, 430px);
+  min-height: 100svh;
+  overflow: hidden;
 }
 
 .arabic-invitation {
   isolation: isolate;
-  color: #aa7d54;
+  border: 0;
+  color: #756548;
   font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(255,255,255,.9), transparent 34%),
-    repeating-radial-gradient(circle at 20% 30%, rgba(154,111,78,.026) 0 1px, transparent 1px 5px),
-    #fffdf9;
+  background: #f7f4ee url("/embossed-invitation-background.jpg") center / 100% 100% no-repeat;
+  box-shadow: 0 18px 60px rgba(73, 59, 45, .17);
 }
 
-.floral-corner {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("/arabic-style-reference.jpeg");
-  background-repeat: no-repeat;
-  background-size: 650px auto;
-  opacity: .4;
-  mix-blend-mode: multiply;
-}
+.arabic-invitation::before { display: none; }
 
-.floral-corner-top {
-  top: 0;
-  left: 0;
-  width: 124px;
-  height: 145px;
-  background-position: left top;
-}
-
-.floral-corner-bottom {
-  right: 0;
-  bottom: 0;
-  width: 122px;
-  height: 260px;
-  background-position: right bottom;
+.ceremony-content {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3.4rem, 10svh, 6rem) clamp(2.55rem, 10vw, 4.4rem) clamp(2.2rem, 7svh, 4rem);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .74);
 }
 
 .arabic-blessing {
-  max-width: 430px;
-  margin: .5rem auto 1.3rem;
-  color: #aa7d54;
-  font-size: clamp(1.32rem, 5vw, 2rem);
+  max-width: 330px;
+  margin: 0 auto clamp(2rem, 7svh, 4.2rem);
+  font-size: clamp(1.04rem, 4.3vw, 1.4rem);
   font-weight: 600;
-  line-height: 1.75;
+  line-height: 1.9;
   text-wrap: balance;
-  transform: rotate(-1.2deg);
 }
 
 .arabic-families {
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
-  gap: 1.1rem;
-  margin: 0 auto 1.2rem;
-  color: #a87951;
-  font-size: clamp(1.15rem, 4.5vw, 1.7rem);
-  font-weight: 600;
-  line-height: 1.45;
+  gap: .75rem;
+  margin: 0 auto clamp(2rem, 6svh, 3.6rem);
+  font-size: clamp(1.25rem, 5.4vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.55;
 }
 
 .arabic-invitation-line {
-  margin: 0 auto .8rem;
-  font-size: clamp(1.18rem, 4.7vw, 1.75rem);
+  margin: 0 auto clamp(1.6rem, 5svh, 3rem);
+  font-size: clamp(1.2rem, 5.1vw, 1.55rem);
   font-weight: 600;
-  line-height: 1.65;
-}
-
-.ceremony-cross {
-  margin: -.2rem auto -.05rem;
-  color: #c5a489;
-  font-family: Georgia, serif;
-  font-size: 4.3rem;
-  line-height: 1;
-  text-shadow: 0 2px 0 rgba(255,255,255,.8), 0 5px 10px rgba(105,75,51,.14);
+  line-height: 1.8;
 }
 
 .arabic-couple-names {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  margin: -.2rem auto .85rem;
-  color: #a16f48;
-  font-size: clamp(2.1rem, 8.5vw, 3.3rem);
-  font-weight: 600;
-  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.2rem, 6vw, 2.3rem);
+  margin: 0 auto clamp(1.8rem, 6svh, 3.8rem);
+  color: #927946;
+  font-size: clamp(2.25rem, 10.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.arabic-couple-names i {
+  font-family: Georgia, serif;
+  font-size: .9em;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .arabic-couple-names:focus { outline: none; }
 
-.arabic-date-grid {
-  direction: ltr;
-  display: grid;
-  grid-template-columns: 1fr 86px 1fr;
-  align-items: center;
-  gap: .8rem;
-  width: min(100%, 440px);
-  margin: 0 auto 1.15rem;
-  color: #a77952;
-}
-
-.date-side {
-  direction: rtl;
-  display: grid;
-  min-height: 72px;
-  place-items: center;
-  border-block: 1px solid rgba(177,127,82,.58);
-  font-size: clamp(1rem, 4.2vw, 1.35rem);
+.ceremony-summary {
+  max-width: 340px;
+  margin: 0 auto;
+  font-size: clamp(1.12rem, 4.8vw, 1.42rem);
   font-weight: 600;
+  line-height: 1.85;
 }
 
-.date-center {
-  direction: rtl;
-  display: grid;
-  line-height: 1.15;
-}
+.ceremony-summary p { margin: 0; }
 
-.date-center span { font-size: .95rem; }
-.date-center strong { font-family: Georgia, serif; font-size: 1.7rem; font-weight: 400; }
-
-.arabic-venue {
+.ceremony-summary address {
   display: grid;
   gap: .2rem;
-  max-width: 440px;
-  margin: 0 auto;
+  margin-top: .15rem;
   font-style: normal;
-  line-height: 1.65;
 }
 
-.arabic-venue strong { font-size: clamp(1.08rem, 4.4vw, 1.5rem); font-weight: 600; }
-.arabic-venue span { font-size: clamp(.95rem, 3.7vw, 1.18rem); }
+.ceremony-summary strong { font-weight: 700; }
+.ceremony-summary span { font-size: .9em; }
 
 .maps-button {
   display: inline-flex;
@@ -365,60 +321,60 @@ button, a { font: inherit; }
   align-items: center;
   justify-content: center;
   gap: .65rem;
-  margin-top: 1.45rem;
-  border: 1px solid var(--olive);
-  padding: .75rem 1.2rem;
-  color: var(--olive-dark);
-  font-size: 1rem;
+  margin-top: 1.15rem;
+  border: 1px solid rgba(117, 101, 72, .28);
+  border-radius: 999px;
+  padding: .72rem 1.15rem;
+  background: rgba(255, 253, 248, .8);
+  color: #66583f;
+  font-size: .95rem;
   letter-spacing: 0;
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color .2s ease, color .2s ease;
 }
 
-.maps-button:hover { background: var(--olive-dark); color: #fffdf8; }
+.maps-button:hover { background: #756548; color: #fffdf8; }
 
 .arabic-dress-code {
-  margin: 1rem auto 0;
-  color: #9f795b;
-  font-size: 1rem;
+  margin: 1.15rem auto 0;
+  font-size: .92rem;
 }
 
 .arabic-closing {
-  max-width: 420px;
-  margin: 1.35rem auto .7rem;
-  color: #a16f48;
-  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  max-width: 350px;
+  margin: clamp(1.7rem, 5svh, 3rem) auto .4rem;
+  font-size: clamp(1.2rem, 5vw, 1.5rem);
   font-weight: 600;
-  line-height: 1.65;
+  line-height: 1.8;
 }
 
 .personal-message {
-  max-width: 360px;
-  margin: .7rem auto;
-  color: #aa8464;
-  font-size: 1.05rem;
+  max-width: 320px;
+  margin: .3rem auto;
+  font-size: .95rem;
   font-style: normal;
   line-height: 1.65;
 }
 
 .arabic-congratulations {
   margin: .85rem 0 0;
-  color: #b28b6c;
-  font-size: .9rem;
+  font-size: .82rem;
 }
 
 @media (min-width: 640px) {
   .landing-card { min-height: 760px; justify-content: center; }
+  .details-shell { padding: 2rem 1.5rem !important; }
+  .detail-card { min-height: min(920px, calc(100svh - 4rem)); }
+  .ceremony-content { min-height: min(920px, calc(100svh - 4rem)); }
 }
 
 @media (max-width: 350px) {
   .landing-card { padding-inline: 1rem; }
   .portrait-frame { width: 174px; }
   .envelope-button { width: min(92vw, 292px); }
-  .detail-card { padding-inline: 1.4rem; }
-  .arabic-couple-names { gap: 1.4rem; }
-  .arabic-date-grid { grid-template-columns: 1fr 72px 1fr; gap: .55rem; }
+  .ceremony-content { padding-inline: 2.25rem; }
+  .arabic-couple-names { gap: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

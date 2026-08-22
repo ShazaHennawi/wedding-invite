@@ -55,7 +55,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /src="\/envelope-whole\.png"/);
   assert.match(css, /\.whole-envelope-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /Arabic Typesetting/);
-  assert.match(css, /arabic-style-reference\.jpeg/);
+  assert.match(css, /embossed-invitation-background\.jpg/);
+  assert.match(css, /background:[\s\S]*100% 100% no-repeat/);
   assert.match(css, /min-height:\s*46px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);
