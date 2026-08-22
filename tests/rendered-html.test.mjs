@@ -75,7 +75,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /aspect-ratio:\s*1890 \/ 2363/);
   assert.match(css, /--paper-texture:/);
   assert.match(css, /\.landing-image[\s\S]*mix-blend-mode:\s*multiply/);
-  assert.match(css, /background-size:\s*100% 100%/);
+  assert.match(css, /background-size:\s*auto 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
