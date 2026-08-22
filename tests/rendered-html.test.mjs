@@ -23,6 +23,8 @@ test("server-renders the closed wedding invitation", async () => {
   assert.match(html, /<title>Isaac &amp; Shaza — Wedding Invitation<\/title>/i);
   assert.match(html, /Isaac &amp; Shaza/);
   assert.match(html, /Together with our families/);
+  assert.match(html, /Elegant embossed bridal portrait artwork/);
+  assert.doesNotMatch(html, /class="eyebrow"/);
   assert.match(html, /aria-label="Open the wedding invitation"/);
   assert.match(html, /Tap to open/);
   assert.doesNotMatch(html, /Open in Maps/);
@@ -41,6 +43,7 @@ test("keeps content editable and interaction requirements wired", async () => {
 
   assert.match(config, /export const invitationConfig/);
   assert.match(config, /date: "17\.10\.2026"/);
+  assert.match(config, /poster: "\/landing-portrait-art\.png"/);
   assert.doesNotMatch(config, /mapUrl:/);
   assert.doesNotMatch(config, /message:/);
   assert.match(config, /arabicCeremony:/);
@@ -54,6 +57,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /arabic-dress-code/);
   assert.doesNotMatch(page, /personal-message/);
   assert.doesNotMatch(page, /maps-button/);
+  assert.doesNotMatch(page, /<header>/);
+  assert.doesNotMatch(page, /className="couple-names"/);
   assert.match(page, /useReducedMotion/);
   assert.match(page, /playsInline/);
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);

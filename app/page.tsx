@@ -40,11 +40,11 @@ function CoupleMedia() {
     <Image
       src={invitation.media.poster}
       alt={invitation.media.alt}
-      fill
+      width={1024}
+      height={1536}
       priority
-      sizes="(max-width: 480px) 65vw, 272px"
-      className="object-cover"
-      style={{ objectPosition: invitation.media.focalPosition }}
+      sizes="(max-width: 480px) 100vw, 430px"
+      className="landing-image"
     />
   );
 }
@@ -112,7 +112,7 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
   return (
     <motion.main
       key="landing"
-      className="invitation-shell min-h-[100svh] w-full px-3 py-4 sm:px-6 sm:py-8"
+      className="invitation-shell min-h-[100svh] w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: reducedMotion ? 1 : 0.985 }}
@@ -125,18 +125,12 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
         transition={{ duration: reducedMotion ? 0.25 : 1.05, delay: reducedMotion ? 0 : 1.05 }}
       />
 
-      <article className="paper-frame landing-card mx-auto flex w-full max-w-[430px] flex-col items-center px-5 pb-6 pt-7 text-center sm:px-9 sm:pb-8 sm:pt-9">
-        <header>
-          <p className="eyebrow">The wedding of</p>
-          <h1 className="couple-names">{invitation.couple.displayNames}</h1>
-        </header>
-
-        <figure className="portrait-frame mt-4">
-          <div className="portrait-beading" aria-hidden="true" />
+      <article className="landing-card mx-auto flex w-full max-w-[430px] flex-col items-center pb-6 text-center">
+        <figure className="landing-art">
           <CoupleMedia />
         </figure>
 
-        <p className="invitation-copy mt-4 max-w-[290px]">{invitation.copy.invitation}</p>
+        <p className="invitation-copy mt-4 max-w-[290px] px-4">{invitation.copy.invitation}</p>
 
         <motion.button
           className="envelope-button mt-3"
