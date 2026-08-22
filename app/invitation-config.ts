@@ -7,7 +7,7 @@ export const invitationConfig = {
   wedding: {
     date: "17.10.2026",
     time: "[موعد الإكليل]",
-    venue: "القديس جاورجيوس",
+    venue: "كنيسة القديس جاورجيوس",
   },
   arabicCeremony: {
     blessing: "«أيها الرب إلهنا بالمجد والكرامة كلّلهما»",

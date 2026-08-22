@@ -52,7 +52,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /brideFamily: "سامي حناوي وعائلته"/);
   assert.match(config, /groomName: "اسحق"/);
   assert.match(config, /brideName: "شذى"/);
-  assert.match(config, /venue: "القديس جاورجيوس"/);
+  assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
   assert.doesNotMatch(page, /wedding\.address/);
   assert.doesNotMatch(page, /arabic-dress-code/);
   assert.doesNotMatch(page, /personal-message/);
