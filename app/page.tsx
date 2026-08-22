@@ -164,18 +164,10 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
   );
 }
 
-function DetailRow({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="detail-row">
-      <dt>{label}</dt>
-      <dd>{children}</dd>
-    </div>
-  );
-}
-
 function CeremonyDetails() {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const arabic = invitation.arabicCeremony;
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
@@ -189,38 +181,58 @@ function CeremonyDetails() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reducedMotion ? 0.25 : 0.75, ease: [0.22, 1, 0.36, 1] }}
     >
-      <article className="paper-frame detail-card mx-auto w-full max-w-[560px] px-6 py-9 text-center sm:px-12 sm:py-12">
-        <div className="monogram" aria-hidden="true">
-          <span>I</span><i>&amp;</i><span>S</span>
+      <article
+        className="paper-frame detail-card arabic-invitation mx-auto w-full max-w-[560px] px-6 py-9 text-center sm:px-12 sm:py-12"
+        dir="rtl"
+        lang="ar"
+      >
+        <div className="floral-corner floral-corner-top" aria-hidden="true" />
+        <div className="floral-corner floral-corner-bottom" aria-hidden="true" />
+
+        <p className="arabic-blessing">{arabic.blessing}</p>
+
+        <div className="arabic-families">
+          <span>{arabic.groomFamily}</span>
+          <span>{arabic.brideFamily}</span>
         </div>
-        <p className="eyebrow">Together forever</p>
-        <h1 ref={headingRef} tabIndex={-1} className="detail-names">
-          {invitation.couple.displayNames}
+
+        <p className="arabic-invitation-line">{arabic.invitation}</p>
+        <div className="ceremony-cross" aria-hidden="true">✞</div>
+
+        <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
+          <span>{arabic.groomName}</span>
+          <span>{arabic.brideName}</span>
         </h1>
-        <p className="detail-intro">joyfully invite you to share in their wedding celebration</p>
 
-        <div className="ornament-rule" aria-hidden="true"><span>❦</span></div>
+        <div className="arabic-date-grid" aria-label={`موعد الإكليل ${invitation.wedding.date}`}>
+          <div className="date-side"><span>{invitation.wedding.time}</span></div>
+          <div className="date-center">
+            <span>{arabic.month}</span>
+            <strong>{arabic.dateNumber}</strong>
+            <span>{arabic.year}</span>
+          </div>
+          <div className="date-side"><span>{arabic.day}</span></div>
+        </div>
 
-        <dl className="details-list">
-          <DetailRow label="Date">{invitation.wedding.date}</DetailRow>
-          <DetailRow label="Ceremony">{invitation.wedding.time}</DetailRow>
-          <DetailRow label="Venue">{invitation.wedding.venue}</DetailRow>
-          <DetailRow label="Address">{invitation.wedding.address}</DetailRow>
-          <DetailRow label="Dress code">{invitation.wedding.dressCode}</DetailRow>
-        </dl>
+        <address className="arabic-venue">
+          <strong>{invitation.wedding.venue}</strong>
+          <span>{invitation.wedding.address}</span>
+        </address>
 
         <a
           className="maps-button"
           href={invitation.wedding.mapUrl}
           target="_blank"
           rel="noreferrer"
-          aria-label="Open the ceremony address in Google Maps (opens in a new tab)"
+          aria-label="افتح موقع الإكليل على خرائط جوجل في نافذة جديدة"
         >
-          Open in Maps <span aria-hidden="true">↗</span>
+          افتح الموقع على الخريطة <span aria-hidden="true">↗</span>
         </a>
 
-        <blockquote className="personal-message">“{invitation.wedding.message}”</blockquote>
-        <p className="closing-mark">With love</p>
+        <p className="arabic-dress-code">اللباس: {invitation.wedding.dressCode}</p>
+        <p className="arabic-closing">{arabic.closing}</p>
+        <blockquote className="personal-message">{invitation.wedding.message}</blockquote>
+        <p className="arabic-congratulations">{arabic.congratulations}</p>
       </article>
     </motion.main>
   );

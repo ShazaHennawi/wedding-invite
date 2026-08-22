@@ -218,70 +218,146 @@ button, a { font: inherit; }
   text-transform: uppercase;
 }
 
-.detail-card { overflow: visible; }
+.detail-card { overflow: hidden; }
 
 .detail-card::after {
   position: absolute;
   z-index: 0;
   inset: 1.05rem;
-  border: 1px solid rgba(164,138,99,.14);
+  border: 1px solid rgba(184, 139, 94, .18);
   content: "";
   pointer-events: none;
 }
 
-.monogram {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 1.35rem;
-  border: 1px solid rgba(115,119,96,.52);
-  border-radius: 50%;
-  color: var(--olive-dark);
-  font-size: 1.15rem;
-  letter-spacing: .03em;
-  line-height: 70px;
+.arabic-invitation {
+  isolation: isolate;
+  color: #aa7d54;
+  font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255,255,255,.9), transparent 34%),
+    repeating-radial-gradient(circle at 20% 30%, rgba(154,111,78,.026) 0 1px, transparent 1px 5px),
+    #fffdf9;
 }
 
-.monogram i { margin: 0 -.08rem; font-family: "Segoe Script", cursive; font-size: 1.55rem; font-weight: 400; }
-
-.detail-names {
-  margin: .4rem 0 .65rem;
-  color: var(--olive-dark);
-  font-size: clamp(2.5rem, 12vw, 4.4rem);
-  letter-spacing: -.055em;
-  line-height: 1.08;
+.floral-corner {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/arabic-style-reference.jpeg");
+  background-repeat: no-repeat;
+  background-size: 650px auto;
+  opacity: .4;
+  mix-blend-mode: multiply;
 }
 
-.detail-names:focus { outline: none; }
-
-.detail-intro {
-  max-width: 330px;
-  margin: 0 auto;
-  color: var(--ink-soft);
-  font-size: .88rem;
-  font-style: italic;
-  line-height: 1.6;
+.floral-corner-top {
+  top: 0;
+  left: 0;
+  width: 124px;
+  height: 145px;
+  background-position: left top;
 }
 
-.ornament-rule { display: flex; align-items: center; gap: .75rem; width: min(80%, 310px); margin: 1.45rem auto 1.2rem; color: var(--gold); }
-.ornament-rule::before, .ornament-rule::after { height: 1px; flex: 1; background: rgba(161,138,101,.42); content: ""; }
-.ornament-rule span { font-size: .9rem; }
+.floral-corner-bottom {
+  right: 0;
+  bottom: 0;
+  width: 122px;
+  height: 260px;
+  background-position: right bottom;
+}
 
-.details-list { width: min(100%, 390px); margin: 0 auto; }
+.arabic-blessing {
+  max-width: 430px;
+  margin: .5rem auto 1.3rem;
+  color: #aa7d54;
+  font-size: clamp(1.32rem, 5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.75;
+  text-wrap: balance;
+  transform: rotate(-1.2deg);
+}
 
-.detail-row {
+.arabic-families {
   display: grid;
-  grid-template-columns: 88px 1fr;
-  gap: .85rem;
-  padding: .7rem 0;
-  border-bottom: 1px solid rgba(161,138,101,.18);
-  text-align: left;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  margin: 0 auto 1.2rem;
+  color: #a87951;
+  font-size: clamp(1.15rem, 4.5vw, 1.7rem);
+  font-weight: 600;
+  line-height: 1.45;
 }
 
-.detail-row dt { color: var(--olive-dark); font-size: .59rem; letter-spacing: .15em; text-transform: uppercase; }
-.detail-row dd { margin: 0; color: var(--ink); font-size: .86rem; line-height: 1.45; }
+.arabic-invitation-line {
+  margin: 0 auto .8rem;
+  font-size: clamp(1.18rem, 4.7vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.ceremony-cross {
+  margin: -.2rem auto -.05rem;
+  color: #c5a489;
+  font-family: Georgia, serif;
+  font-size: 4.3rem;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(255,255,255,.8), 0 5px 10px rgba(105,75,51,.14);
+}
+
+.arabic-couple-names {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: -.2rem auto .85rem;
+  color: #a16f48;
+  font-size: clamp(2.1rem, 8.5vw, 3.3rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.arabic-couple-names:focus { outline: none; }
+
+.arabic-date-grid {
+  direction: ltr;
+  display: grid;
+  grid-template-columns: 1fr 86px 1fr;
+  align-items: center;
+  gap: .8rem;
+  width: min(100%, 440px);
+  margin: 0 auto 1.15rem;
+  color: #a77952;
+}
+
+.date-side {
+  direction: rtl;
+  display: grid;
+  min-height: 72px;
+  place-items: center;
+  border-block: 1px solid rgba(177,127,82,.58);
+  font-size: clamp(1rem, 4.2vw, 1.35rem);
+  font-weight: 600;
+}
+
+.date-center {
+  direction: rtl;
+  display: grid;
+  line-height: 1.15;
+}
+
+.date-center span { font-size: .95rem; }
+.date-center strong { font-family: Georgia, serif; font-size: 1.7rem; font-weight: 400; }
+
+.arabic-venue {
+  display: grid;
+  gap: .2rem;
+  max-width: 440px;
+  margin: 0 auto;
+  font-style: normal;
+  line-height: 1.65;
+}
+
+.arabic-venue strong { font-size: clamp(1.08rem, 4.4vw, 1.5rem); font-weight: 600; }
+.arabic-venue span { font-size: clamp(.95rem, 3.7vw, 1.18rem); }
 
 .maps-button {
   display: inline-flex;
@@ -293,8 +369,8 @@ button, a { font: inherit; }
   border: 1px solid var(--olive);
   padding: .75rem 1.2rem;
   color: var(--olive-dark);
-  font-size: .64rem;
-  letter-spacing: .17em;
+  font-size: 1rem;
+  letter-spacing: 0;
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color .2s ease, color .2s ease;
@@ -302,12 +378,38 @@ button, a { font: inherit; }
 
 .maps-button:hover { background: var(--olive-dark); color: #fffdf8; }
 
-.personal-message { max-width: 360px; margin: 1.65rem auto .85rem; color: var(--ink-soft); font-size: .9rem; font-style: italic; line-height: 1.65; }
-.closing-mark { margin: 0; color: var(--olive-dark); font-size: 1.35rem; }
+.arabic-dress-code {
+  margin: 1rem auto 0;
+  color: #9f795b;
+  font-size: 1rem;
+}
+
+.arabic-closing {
+  max-width: 420px;
+  margin: 1.35rem auto .7rem;
+  color: #a16f48;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.personal-message {
+  max-width: 360px;
+  margin: .7rem auto;
+  color: #aa8464;
+  font-size: 1.05rem;
+  font-style: normal;
+  line-height: 1.65;
+}
+
+.arabic-congratulations {
+  margin: .85rem 0 0;
+  color: #b28b6c;
+  font-size: .9rem;
+}
 
 @media (min-width: 640px) {
   .landing-card { min-height: 760px; justify-content: center; }
-  .detail-row { grid-template-columns: 105px 1fr; }
 }
 
 @media (max-width: 350px) {
@@ -315,6 +417,8 @@ button, a { font: inherit; }
   .portrait-frame { width: 174px; }
   .envelope-button { width: min(92vw, 292px); }
   .detail-card { padding-inline: 1.4rem; }
+  .arabic-couple-names { gap: 1.4rem; }
+  .arabic-date-grid { grid-template-columns: 1fr 72px 1fr; gap: .55rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
