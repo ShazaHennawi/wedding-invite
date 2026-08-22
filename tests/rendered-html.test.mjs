@@ -47,6 +47,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
   assert.match(page, /disabled=\{opening\}/);
   assert.match(page, /setState\("details"\)/);
+  assert.match(page, /src="\/envelope-whole\.png"/);
+  assert.match(css, /\.whole-envelope-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /min-height:\s*46px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);

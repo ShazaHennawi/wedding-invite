@@ -63,50 +63,43 @@ function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion:
       }
       transition={{ duration: 0.42, ease: gentleEase }}
     >
-      <span className="envelope-back" />
       <motion.span
         className="envelope-card"
         animate={
           opening
             ? reducedMotion
               ? { opacity: [0, 1] }
-              : { y: [0, -8, -92], opacity: [0, 1, 1] }
+              : { y: ["0%", "-18%", "-142%"], opacity: [0, 1, 1] }
             : { y: 0, opacity: 0 }
         }
         transition={
           reducedMotion
             ? { duration: 0.25 }
-            : { duration: 0.92, delay: 0.62, ease: gentleEase, times: [0, 0.2, 1] }
+            : { duration: 1.02, delay: 0.52, ease: gentleEase, times: [0, 0.2, 1] }
         }
       >
         <span className="card-monogram">I <i>&amp;</i> S</span>
         <span className="card-date">17 · 10 · 2026</span>
       </motion.span>
-      <span className="envelope-front" />
       <motion.span
-        className="envelope-flap"
+        className="whole-envelope-art"
         animate={
           opening && !reducedMotion
-            ? { rotateX: -174, zIndex: 1 }
-            : { rotateX: 0, zIndex: 5 }
+            ? { y: [0, -7, 5], rotateX: [0, -5, 0], scale: [1, 1.012, 0.992] }
+            : { y: 0, rotateX: 0, scale: 1 }
         }
-        transition={{ duration: 0.68, delay: 0.18, ease: gentleEase }}
+        transition={{ duration: 0.78, delay: 0.12, ease: gentleEase }}
       >
         <Image
-          src="/envelope-reference.png"
+          src="/envelope-whole.png"
           alt=""
-          fill
-          sizes="300px"
-          className="flap-ornament"
+          width={1366}
+          height={1708}
+          sizes="(max-width: 480px) 92vw, 360px"
+          className="whole-envelope-image"
           aria-hidden="true"
+          draggable={false}
         />
-      </motion.span>
-      <motion.span
-        className="wax-seal"
-        animate={opening ? { opacity: 0, scale: 0.72 } : { opacity: 1, scale: 1 }}
-        transition={{ duration: reducedMotion ? 0.15 : 0.28, delay: reducedMotion ? 0 : 0.08 }}
-      >
-        IS
       </motion.span>
     </motion.span>
   );

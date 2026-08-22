@@ -140,11 +140,11 @@ button, a { font: inherit; }
 
 .envelope-button {
   position: relative;
-  width: min(82vw, 284px);
-  min-height: 132px;
+  width: min(92vw, 360px);
+  min-height: 44px;
   cursor: pointer;
   border: 0;
-  padding: 6px;
+  padding: 0;
   background: transparent;
   perspective: 800px;
   touch-action: manipulation;
@@ -163,96 +163,50 @@ button, a { font: inherit; }
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 2430 / 3038;
   transform-style: preserve-3d;
-  filter: drop-shadow(0 12px 12px rgba(74,57,42,.16));
-}
-
-.envelope-back,
-.envelope-front,
-.envelope-flap,
-.envelope-card { position: absolute; left: 0; display: block; width: 100%; }
-
-.envelope-back {
-  z-index: 1;
-  inset-block: 0;
-  border: 1px solid #d2c4af;
-  border-radius: 2px;
-  background:
-    repeating-radial-gradient(circle at 60% 20%, rgba(96,73,48,.025) 0 1px, transparent 1px 4px),
-    #eee4d3;
 }
 
 .envelope-card {
-  z-index: 2;
-  left: 9%;
-  top: 8%;
-  width: 82%;
-  height: 80%;
-  padding-top: 1.15rem;
+  position: absolute;
+  z-index: 3;
+  top: 43%;
+  left: 17%;
+  display: block;
+  width: 66%;
+  height: 19%;
+  padding-top: clamp(.55rem, 2.2vw, .9rem);
   border: 1px solid #d8cbb7;
   background:
     repeating-radial-gradient(circle at 10% 20%, rgba(113,91,62,.02) 0 1px, transparent 1px 4px),
     #fffdf7;
   color: #8a7659;
   text-align: center;
-  box-shadow: 0 -5px 16px rgba(76,58,41,.09);
+  box-shadow: 0 -6px 18px rgba(76,58,41,.12);
 }
 
 .card-monogram { display: block; font-size: .78rem; letter-spacing: .2em; }
 .card-monogram i { font-family: "Segoe Script", cursive; font-size: 1.1rem; font-weight: 400; }
 .card-date { display: block; margin-top: .3rem; font-size: .43rem; letter-spacing: .18em; }
 
-.envelope-front {
-  z-index: 4;
-  bottom: 0;
-  height: 74%;
-  border: 1px solid #d2c4af;
-  border-top: 0;
-  background:
-    linear-gradient(33deg, transparent 49.6%, rgba(188,170,144,.3) 50%, transparent 50.4%),
-    linear-gradient(-33deg, transparent 49.6%, rgba(188,170,144,.28) 50%, transparent 50.4%),
-    #f3eadb;
-  clip-path: polygon(0 0, 50% 68%, 100% 0, 100% 100%, 0 100%);
-}
-
-.envelope-flap {
-  z-index: 5;
-  top: 0;
-  height: 62%;
-  overflow: hidden;
-  border-top: 1px solid #d2c4af;
-  background: linear-gradient(145deg, #faf4e8, #e8dcc9);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: 50% 0;
-  backface-visibility: visible;
-}
-
-.flap-ornament {
-  object-fit: cover;
-  object-position: center 51%;
-  opacity: .34;
-  filter: sepia(.24) contrast(.82) brightness(1.2);
-  mix-blend-mode: multiply;
-}
-
-.wax-seal {
+.whole-envelope-art {
   position: absolute;
-  z-index: 6;
-  left: 50%;
-  top: 49%;
-  display: grid;
-  width: 36px;
-  aspect-ratio: 1;
-  place-items: center;
-  translate: -50% -50%;
-  border: 1px solid #9a845f;
-  border-radius: 46% 54% 51% 49%;
-  background: #b7a079;
-  color: #fffaf0;
-  font-size: .53rem;
-  letter-spacing: .1em;
-  box-shadow: inset 0 0 0 3px rgba(255,255,255,.16), 0 2px 5px rgba(75,54,37,.2);
+  z-index: 2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 0;
+}
+
+.whole-envelope-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: multiply;
+  user-select: none;
 }
 
 .tap-prompt {
@@ -359,7 +313,7 @@ button, a { font: inherit; }
 @media (max-width: 350px) {
   .landing-card { padding-inline: 1rem; }
   .portrait-frame { width: 174px; }
-  .envelope-button { width: 260px; }
+  .envelope-button { width: min(92vw, 292px); }
   .detail-card { padding-inline: 1.4rem; }
 }
 
