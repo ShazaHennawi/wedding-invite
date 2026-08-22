@@ -207,11 +207,9 @@ function CeremonyDetails() {
             <p>مساء يوم {arabic.day} الموافق {arabic.dateNumber} {arabic.month} {arabic.year}</p>
             <address>
               <strong>في {invitation.wedding.venue}</strong>
-              <span>{invitation.wedding.address}</span>
             </address>
           </section>
 
-          <p className="arabic-dress-code">اللباس: {invitation.wedding.dressCode}</p>
           <p className="arabic-closing">{arabic.closing}</p>
           <blockquote className="personal-message">{invitation.wedding.message}</blockquote>
 

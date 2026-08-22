@@ -307,13 +307,11 @@ button, a { font: inherit; }
 
 .ceremony-summary address {
   display: grid;
-  gap: .2rem;
   margin-top: .15rem;
   font-style: normal;
 }
 
 .ceremony-summary strong { font-weight: 700; }
-.ceremony-summary span { font-size: .9em; }
 
 .maps-button {
   display: inline-flex;
@@ -335,11 +333,6 @@ button, a { font: inherit; }
 }
 
 .maps-button:hover { background: #756548; color: #fffdf8; }
-
-.arabic-dress-code {
-  margin: 1.15rem auto 0;
-  font-size: .92rem;
-}
 
 .arabic-closing {
   max-width: 350px;

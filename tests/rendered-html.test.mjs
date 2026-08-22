@@ -43,8 +43,14 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /date: "17\.10\.2026"/);
   assert.match(config, /mapUrl:/);
   assert.match(config, /arabicCeremony:/);
-  assert.match(config, /groomName: "إسحاق"/);
+  assert.match(config, /blessing: "«أيها الرب إلهنا بالمجد والكرامة كلّلهما»"/);
+  assert.match(config, /groomFamily: "سامر وسوف وعائلته"/);
+  assert.match(config, /brideFamily: "سامي حناوي وعائلته"/);
+  assert.match(config, /groomName: "اسحق"/);
   assert.match(config, /brideName: "شذى"/);
+  assert.match(config, /venue: "القديس جاورجيوس"/);
+  assert.doesNotMatch(page, /wedding\.address/);
+  assert.doesNotMatch(page, /arabic-dress-code/);
   assert.match(page, /useReducedMotion/);
   assert.match(page, /playsInline/);
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
