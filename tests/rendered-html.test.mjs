@@ -57,7 +57,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /english: "Ceremony"/);
   assert.match(config, /english: "Photos"/);
   assert.match(config, /english: "Lunch"/);
-  assert.match(config, /english: "Drinks"/);
+  assert.match(config, /icon: "car"[\s\S]*english: "Car"/);
   assert.doesNotMatch(config, /locationHeading:/);
   assert.doesNotMatch(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
   assert.doesNotMatch(page, /wedding\.address/);
@@ -68,6 +68,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /className="supporting-card timeline-card/);
   assert.match(page, /className="wedding-timeline"/);
   assert.match(page, /className="timeline-copy"/);
+  assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
   assert.doesNotMatch(page, /timeline-kicker/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
   assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);
@@ -103,9 +104,13 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
   assert.match(css, /\.timeline-card[\s\S]*background:\s*transparent/);
-  assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.05rem[\s\S]*width:\s*1px/);
-  assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 2\.1rem minmax\(0, 1fr\)/);
-  assert.match(css, /\.timeline-marker[\s\S]*border-radius:\s*50%/);
+  assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.575rem[\s\S]*width:\s*1px/);
+  assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 3\.7rem minmax\(0, 1fr\)/);
+  assert.match(css, /\.timeline-icon[\s\S]*wedding-timeline-icons\.png/);
+  assert.match(css, /\.timeline-icon-church[\s\S]*background-position:\s*0 100%/);
+  assert.match(css, /\.timeline-icon-camera[\s\S]*background-position:\s*100% 0/);
+  assert.match(css, /\.timeline-icon-table[\s\S]*background-position:\s*0 0/);
+  assert.match(css, /\.timeline-icon-car[\s\S]*background-position:\s*100% 100%/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
   assert.match(css, /min-height:\s*44px/);

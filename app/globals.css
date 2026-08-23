@@ -402,8 +402,8 @@ button, a { font: inherit; }
 
 .wedding-timeline::before {
   position: absolute;
-  top: 1.05rem;
-  bottom: 1.05rem;
+  top: 1.575rem;
+  bottom: 1.575rem;
   left: 50%;
   width: 1px;
   background: rgba(161, 138, 101, .48);
@@ -417,28 +417,27 @@ button, a { font: inherit; }
   display: grid;
   min-width: 0;
   min-height: 3.9rem;
-  grid-template-columns: minmax(0, 1fr) 2.1rem minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 3.7rem minmax(0, 1fr);
   column-gap: .78rem;
   align-items: center;
 }
 
-.timeline-marker {
-  display: grid;
-  width: 2.1rem;
-  height: 2.1rem;
-  place-items: center;
-  border: 1px solid rgba(161, 138, 101, .65);
-  border-radius: 50%;
-  background: #f4eee4;
-  color: #a18a65;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: .62rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-  box-shadow: 0 0 0 4px rgba(244, 238, 228, .72);
+.timeline-icon {
+  display: block;
+  width: 3.7rem;
+  height: 3.15rem;
+  background-image: url("/wedding-timeline-icons.png");
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
   grid-column: 2;
   grid-row: 1;
+  mix-blend-mode: multiply;
 }
+
+.timeline-icon-church { background-position: 0 100%; }
+.timeline-icon-camera { background-position: 100% 0; }
+.timeline-icon-table { background-position: 0 0; }
+.timeline-icon-car { background-position: 100% 100%; }
 
 .timeline-copy {
   display: flex;
@@ -488,9 +487,9 @@ button, a { font: inherit; }
   .arabic-couple-names { gap: 1rem; }
   .timeline-card-content { padding-inline: .8rem; }
   .wedding-timeline { width: min(100%, 260px); gap: .45rem; }
-  .timeline-marker { width: 1.85rem; height: 1.85rem; }
-  .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 1.85rem minmax(0, 1fr); column-gap: .6rem; }
-  .wedding-timeline::before { top: .925rem; bottom: .925rem; }
+  .timeline-icon { width: 3.25rem; height: 2.75rem; }
+  .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 3.25rem minmax(0, 1fr); column-gap: .5rem; }
+  .wedding-timeline::before { top: 1.35rem; bottom: 1.35rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

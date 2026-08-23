@@ -233,7 +233,7 @@ function CeremonyDetails() {
           <ol className="wedding-timeline" aria-label={arabic.timelineHeading}>
             {arabic.timeline.map((item) => (
               <li key={item.order}>
-                <span className="timeline-marker" aria-hidden="true">{item.order}</span>
+                <span className={`timeline-icon timeline-icon-${item.icon}`} aria-hidden="true" />
                 <span className="timeline-copy">
                   <span className="timeline-label">{item.label}</span>
                   <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>

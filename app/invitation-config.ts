@@ -23,10 +23,10 @@ export const invitationConfig = {
     closing: "فرحتنا تبدأ مع الرب وتكتمل بحضوركم",
     timelineHeading: "برنامج الزفاف",
     timeline: [
-      { order: "01", label: "الإكليل", english: "Ceremony" },
-      { order: "02", label: "الصور", english: "Photos" },
-      { order: "03", label: "الغداء", english: "Lunch" },
-      { order: "04", label: "المشروبات", english: "Drinks" },
+      { order: "01", icon: "church", label: "الإكليل", english: "Ceremony" },
+      { order: "02", icon: "camera", label: "الصور", english: "Photos" },
+      { order: "03", icon: "table", label: "الغداء", english: "Lunch" },
+      { order: "04", icon: "car", label: "السيارة", english: "Car" },
     ],
   },
   media: {
