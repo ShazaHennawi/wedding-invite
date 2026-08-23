@@ -11,8 +11,8 @@ export const invitationConfig = {
   },
   arabicCeremony: {
     blessing: "أيُّـــها الربّ إلهُنا بالمجدِ والكرامَة كلّلهُما",
-    groomFamily: "سامر وسوف وعائلته",
-    brideFamily: "سامي حناوي وعائلته",
+    groomFamily: "السيد سامر وسوف وعائلته",
+    brideFamily: "السيد سامي حناوي وعائلته",
     invitation: "يتشرفان بدعوتكم لحضور إكليل ولديهما",
     groomName: "اسحق",
     brideName: "شذى",

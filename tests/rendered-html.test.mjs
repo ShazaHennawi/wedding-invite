@@ -48,8 +48,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(config, /message:/);
   assert.match(config, /arabicCeremony:/);
   assert.match(config, /blessing: "أيُّـــها الربّ إلهُنا بالمجدِ والكرامَة كلّلهُما"/);
-  assert.match(config, /groomFamily: "سامر وسوف وعائلته"/);
-  assert.match(config, /brideFamily: "سامي حناوي وعائلته"/);
+  assert.match(config, /groomFamily: "السيد سامر وسوف وعائلته"/);
+  assert.match(config, /brideFamily: "السيد سامي حناوي وعائلته"/);
   assert.match(config, /groomName: "اسحق"/);
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
