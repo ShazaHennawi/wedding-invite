@@ -41,6 +41,10 @@ export const invitationConfig = {
       "Together with our families, we invite you to celebrate our wedding.",
     openPrompt: "Tap to open",
   },
+  music: {
+    youtubeVideoId: "6W3-rHzCqkY",
+    title: "Wedding music",
+  },
 } as const;
 
 export type InvitationConfig = typeof invitationConfig;

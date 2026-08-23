@@ -44,6 +44,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /export const invitationConfig/);
   assert.match(config, /date: "17\.10\.2026"/);
   assert.match(config, /poster: "\/landing-portrait-art\.png"/);
+  assert.match(config, /youtubeVideoId: "6W3-rHzCqkY"/);
   assert.doesNotMatch(config, /mapUrl:/);
   assert.doesNotMatch(config, /message:/);
   assert.match(config, /arabicCeremony:/);
@@ -112,6 +113,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /card-monogram|card-date/);
   assert.match(page, /className="envelope-opening-seam"/);
   assert.match(css, /\.envelope-opening-seam[\s\S]*linear-gradient/);
+  assert.match(page, /function CeremonyMusic/);
+  assert.match(page, /youtube-nocookie\.com\/embed/);
+  assert.match(page, /autoplay=1/);
+  assert.match(css, /\.ceremony-music[\s\S]*opacity:\s*0/);
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /\.blessing-arc-word:nth-child\(1\)[\s\S]*translateY\(\.92em\) rotate\(13deg\)/);
   assert.match(css, /\.blessing-arc-word:nth-child\(13\)[\s\S]*translateY\(\.92em\) rotate\(-13deg\)/);

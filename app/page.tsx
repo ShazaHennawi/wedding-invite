@@ -139,6 +139,25 @@ function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion:
   );
 }
 
+function CeremonyMusic({ active }: { active: boolean }) {
+  if (!active) return null;
+
+  const videoId = invitation.music.youtubeVideoId;
+  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
+
+  return (
+    <iframe
+      className="ceremony-music"
+      src={source}
+      title={invitation.music.title}
+      allow="autoplay; encrypted-media"
+      referrerPolicy="strict-origin-when-cross-origin"
+      aria-hidden="true"
+      tabIndex={-1}
+    />
+  );
+}
+
 function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void }) {
   const reducedMotion = Boolean(useReducedMotion());
   const opening = state === "opening";
@@ -349,6 +368,7 @@ export default function Home() {
 
   return (
     <AnimatePresence mode="wait">
+      <CeremonyMusic active={state !== "closed"} />
       {state === "details" ? (
         <CeremonyDetails />
       ) : (
