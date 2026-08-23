@@ -68,6 +68,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /className="supporting-card timeline-card/);
   assert.match(page, /className="wedding-timeline"/);
   assert.match(page, /className="timeline-copy"/);
+  assert.match(page, /className="timeline-node"/);
+  assert.match(page, /className="timeline-step-content"/);
   assert.match(page, /useScroll/);
   assert.match(page, /useTransform/);
   assert.match(page, /className="timeline-progress"/);
@@ -114,7 +116,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.timeline-card-content[\s\S]*position:\s*sticky[\s\S]*min-height:\s*100svh/);
   assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.575rem[\s\S]*width:\s*1px/);
   assert.match(css, /\.timeline-progress[\s\S]*width:\s*2px[\s\S]*transform-origin:\s*50% 0%/);
-  assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 4\.35rem minmax\(0, 1fr\)/);
+  assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 1px minmax\(0, 1fr\)/);
+  assert.match(css, /\.timeline-step-content[\s\S]*display:\s*flex/);
+  assert.match(css, /li:nth-child\(odd\) \.timeline-step-content[\s\S]*grid-column:\s*1/);
+  assert.match(css, /li:nth-child\(even\) \.timeline-step-content[\s\S]*grid-column:\s*3/);
   assert.match(css, /\.timeline-icon[\s\S]*wedding-timeline-icons-transparent\.png/);
   assert.match(css, /\.timeline-icon-church[\s\S]*background-position:\s*0 100%/);
   assert.match(css, /\.timeline-icon-camera[\s\S]*background-position:\s*100% 0/);

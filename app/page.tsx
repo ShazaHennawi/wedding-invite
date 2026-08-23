@@ -179,14 +179,17 @@ function TimelineStep({
 
   return (
     <motion.li style={reducedMotion ? undefined : { opacity, y }}>
-      <motion.span
-        className={`timeline-icon timeline-icon-${item.icon}`}
-        aria-hidden="true"
-        style={reducedMotion ? undefined : { scale: iconScale, rotate: iconRotate }}
-      />
-      <span className="timeline-copy">
-        <span className="timeline-label">{item.label}</span>
-        <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+      <span className="timeline-node" aria-hidden="true" />
+      <span className="timeline-step-content">
+        <motion.span
+          className={`timeline-icon timeline-icon-${item.icon}`}
+          aria-hidden="true"
+          style={reducedMotion ? undefined : { scale: iconScale, rotate: iconRotate }}
+        />
+        <span className="timeline-copy">
+          <span className="timeline-label">{item.label}</span>
+          <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+        </span>
       </span>
     </motion.li>
   );

@@ -440,9 +440,43 @@ button, a { font: inherit; }
   display: grid;
   min-width: 0;
   min-height: clamp(4.7rem, 14svh, 7.2rem);
-  grid-template-columns: minmax(0, 1fr) 4.35rem minmax(0, 1fr);
-  column-gap: .9rem;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  column-gap: clamp(.65rem, 3vw, 1.15rem);
   align-items: center;
+}
+
+.timeline-node {
+  position: relative;
+  z-index: 2;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(161, 138, 101, .72);
+  border-radius: 50%;
+  background: #f8f3e9;
+  box-shadow: 0 0 0 4px rgba(248, 243, 233, .72);
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.timeline-step-content {
+  display: flex;
+  min-width: 0;
+  grid-row: 1;
+  gap: clamp(.45rem, 2vw, .7rem);
+  align-items: center;
+}
+
+.wedding-timeline li:nth-child(odd) .timeline-step-content {
+  direction: rtl;
+  grid-column: 1;
+  justify-self: end;
+}
+
+.wedding-timeline li:nth-child(even) .timeline-step-content {
+  direction: ltr;
+  grid-column: 3;
+  justify-self: start;
 }
 
 .timeline-icon {
@@ -452,8 +486,7 @@ button, a { font: inherit; }
   background-image: url("/wedding-timeline-icons-transparent.png");
   background-repeat: no-repeat;
   background-size: 300% 200%;
-  grid-column: 2;
-  grid-row: 1;
+  flex: 0 0 auto;
   filter: drop-shadow(0 6px 8px rgba(103, 86, 59, .08));
 }
 
@@ -465,18 +498,15 @@ button, a { font: inherit; }
 .timeline-copy {
   display: flex;
   min-width: 0;
-  grid-row: 1;
   flex-direction: column;
 }
 
 .wedding-timeline li:nth-child(odd) .timeline-copy {
-  grid-column: 1;
   align-items: flex-end;
   text-align: right;
 }
 
 .wedding-timeline li:nth-child(even) .timeline-copy {
-  grid-column: 3;
   align-items: flex-start;
   text-align: left;
 }
@@ -511,7 +541,7 @@ button, a { font: inherit; }
   .timeline-card-content { padding-inline: .8rem; }
   .wedding-timeline { width: min(100%, 285px); gap: .35rem; }
   .timeline-icon { width: 3.8rem; height: 3.25rem; }
-  .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 3.8rem minmax(0, 1fr); column-gap: .55rem; }
+  .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr); column-gap: .45rem; }
   .wedding-timeline::before { top: 1.35rem; bottom: 1.35rem; }
   .timeline-progress { top: 1.35rem; bottom: 1.35rem; }
 }
