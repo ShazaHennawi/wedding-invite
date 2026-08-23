@@ -73,6 +73,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /setState\("details"\)/);
   assert.match(page, /dir="rtl"/);
   assert.match(page, /lang="ar"/);
+  assert.match(page, /className=\{`blessing-arc blessing-arc-\$\{index \+ 1\}`\}/);
   assert.match(page, /src="\/envelope-whole\.png"/);
   assert.match(page, /src="\/bible-cross-transparent\.png"/);
   assert.match(page, /className="blessing-cross"/);
@@ -84,6 +85,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.envelope[\s\S]*aspect-ratio:\s*1\.337 \/ 1[\s\S]*overflow:\s*hidden/);
   assert.match(css, /\.whole-envelope-art[\s\S]*width:\s*132\.4%/);
   assert.match(css, /Arabic Typesetting/);
+  assert.match(css, /\.blessing-arc-2[\s\S]*translateY\(-\.14em\)/);
   assert.match(css, /ceremony-background\.png/);
   assert.match(css, /aspect-ratio:\s*1890 \/ 2363/);
   assert.match(css, /--paper-texture:/);

@@ -162,6 +162,12 @@ function CeremonyDetails() {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
   const arabic = invitation.arabicCeremony;
+  const blessingWords = arabic.blessing.split(" ");
+  const blessingParts = [
+    blessingWords.slice(0, 6).join(" "),
+    blessingWords.slice(6, 11).join(" "),
+    blessingWords.slice(11).join(" "),
+  ];
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
@@ -181,7 +187,13 @@ function CeremonyDetails() {
         lang="ar"
       >
         <div className="ceremony-content">
-          <p className="arabic-blessing">{arabic.blessing}</p>
+          <p className="arabic-blessing" aria-label={arabic.blessing}>
+            {blessingParts.map((part, index) => (
+              <span className={`blessing-arc blessing-arc-${index + 1}`} aria-hidden="true" key={part}>
+                {part}
+              </span>
+            ))}
+          </p>
 
           <span className="blessing-cross" aria-hidden="true">
             <Image

@@ -218,14 +218,34 @@ button, a { font: inherit; }
 }
 
 .arabic-blessing {
-  max-width: 330px;
+  display: flex;
+  max-width: 360px;
   margin: 0 auto .15rem;
+  align-items: baseline;
+  justify-content: center;
+  gap: .18em;
   font-size: clamp(.92rem, 3.8vw, 1.12rem);
   font-weight: 400;
   font-style: italic;
   line-height: 1.75;
   text-wrap: balance;
-  transform: perspective(320px) rotateX(7deg) rotateZ(-1deg);
+}
+
+.blessing-arc {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.blessing-arc-1 {
+  transform: translateY(.18em) rotate(-2.2deg);
+}
+
+.blessing-arc-2 {
+  transform: translateY(-.14em);
+}
+
+.blessing-arc-3 {
+  transform: translateY(.18em) rotate(2.2deg);
 }
 
 .blessing-cross {
