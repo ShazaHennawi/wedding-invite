@@ -200,7 +200,7 @@ button, a { font: inherit; }
   background-image: url("/ceremony-background.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 150% 108%;
+  background-size: 100% 100%;
   background-blend-mode: normal;
   box-shadow: 0 18px 60px rgba(73, 59, 45, .17);
 }

@@ -85,7 +85,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /--paper-texture:/);
   assert.match(css, /\.landing-image[\s\S]*mix-blend-mode:\s*multiply/);
   assert.match(css, /\.names-cross-image[\s\S]*mix-blend-mode:\s*screen/);
-  assert.match(css, /background-size:\s*150% 108%/);
+  assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
   assert.match(css, /min-height:\s*44px/);
