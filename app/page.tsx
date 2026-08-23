@@ -227,7 +227,7 @@ function CeremonyDetails() {
         </div>
       </article>
 
-      <article className="paper-frame supporting-card timeline-card arabic-invitation w-full text-center" dir="rtl" lang="ar">
+      <article className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
           <p className="timeline-kicker">17 · 10 · 2026</p>
           <h2 id="timeline-heading">{arabic.timelineHeading}</h2>
@@ -235,8 +235,10 @@ function CeremonyDetails() {
             {arabic.timeline.map((item) => (
               <li key={item.order}>
                 <span className="timeline-marker" aria-hidden="true">{item.order}</span>
-                <span className="timeline-label">{item.label}</span>
-                <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+                <span className="timeline-copy">
+                  <span className="timeline-label">{item.label}</span>
+                  <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+                </span>
               </li>
             ))}
           </ol>

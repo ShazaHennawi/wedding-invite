@@ -372,6 +372,18 @@ button, a { font: inherit; }
   padding-inline: clamp(1rem, 4vw, 1.6rem);
 }
 
+.timeline-card {
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: #a18a65;
+  font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
+  box-shadow: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .74);
+}
+
+.timeline-card::before { display: none; }
+
 .timeline-kicker {
   color: #a18a65;
   font-family: Georgia, "Times New Roman", serif;
@@ -388,9 +400,9 @@ button, a { font: inherit; }
 .wedding-timeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: .25rem;
-  margin: 0;
+  width: min(100%, 290px);
+  gap: .65rem;
+  margin: 0 auto;
   padding: 0;
   list-style: none;
 }
@@ -398,19 +410,22 @@ button, a { font: inherit; }
 .wedding-timeline::before {
   position: absolute;
   top: 1.05rem;
-  right: 9%;
-  left: 9%;
-  height: 1px;
+  bottom: 1.05rem;
+  left: 50%;
+  width: 1px;
   background: rgba(161, 138, 101, .48);
   content: "";
+  transform: translateX(-50%);
 }
 
 .wedding-timeline li {
   position: relative;
   z-index: 1;
-  display: flex;
+  display: grid;
   min-width: 0;
-  flex-direction: column;
+  min-height: 3.9rem;
+  grid-template-columns: minmax(0, 1fr) 2.1rem minmax(0, 1fr);
+  column-gap: .78rem;
   align-items: center;
 }
 
@@ -428,10 +443,30 @@ button, a { font: inherit; }
   font-weight: 700;
   letter-spacing: .04em;
   box-shadow: 0 0 0 4px rgba(244, 238, 228, .72);
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.timeline-copy {
+  display: flex;
+  min-width: 0;
+  grid-row: 1;
+  flex-direction: column;
+}
+
+.wedding-timeline li:nth-child(odd) .timeline-copy {
+  grid-column: 1;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.wedding-timeline li:nth-child(even) .timeline-copy {
+  grid-column: 3;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .timeline-label {
-  margin-top: .72rem;
   color: #a18a65;
   font-size: clamp(.72rem, 3.1vw, .9rem);
   font-weight: 700;
@@ -459,9 +494,10 @@ button, a { font: inherit; }
   .ceremony-content { padding-inline: 2.25rem; }
   .arabic-couple-names { gap: 1rem; }
   .timeline-card-content { padding-inline: .8rem; }
-  .wedding-timeline { gap: .08rem; }
+  .wedding-timeline { width: min(100%, 260px); gap: .45rem; }
   .timeline-marker { width: 1.85rem; height: 1.85rem; }
-  .wedding-timeline::before { top: .925rem; }
+  .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 1.85rem minmax(0, 1fr); column-gap: .6rem; }
+  .wedding-timeline::before { top: .925rem; bottom: .925rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

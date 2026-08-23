@@ -65,8 +65,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /personal-message/);
   assert.doesNotMatch(page, /maps-button/);
   assert.doesNotMatch(page, /location-card|location-heading/);
-  assert.match(page, /className="paper-frame supporting-card timeline-card/);
+  assert.match(page, /className="supporting-card timeline-card/);
   assert.match(page, /className="wedding-timeline"/);
+  assert.match(page, /className="timeline-copy"/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
   assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);
   assert.doesNotMatch(page, /<header>/);
@@ -100,7 +101,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
-  assert.match(css, /\.wedding-timeline[\s\S]*grid-template-columns:\s*repeat\(4/);
+  assert.match(css, /\.timeline-card[\s\S]*background:\s*transparent/);
+  assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.05rem[\s\S]*width:\s*1px/);
+  assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 2\.1rem minmax\(0, 1fr\)/);
   assert.match(css, /\.timeline-marker[\s\S]*border-radius:\s*50%/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
