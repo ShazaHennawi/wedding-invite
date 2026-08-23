@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { invitationConfig as invitation } from "./invitation-config";
 
@@ -161,8 +161,18 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
 function CeremonyDetails() {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const timelineRef = useRef<HTMLOListElement>(null);
   const arabic = invitation.arabicCeremony;
   const blessingWords = arabic.blessing.split(" ");
+  const { scrollYProgress: timelineScrollProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 78%", "end 34%"],
+  });
+  const timelineProgress = useSpring(timelineScrollProgress, {
+    stiffness: 105,
+    damping: 24,
+    mass: 0.32,
+  });
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
@@ -230,15 +240,33 @@ function CeremonyDetails() {
       <article className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
           <h2 id="timeline-heading">{arabic.timelineHeading}</h2>
-          <ol className="wedding-timeline" aria-label={arabic.timelineHeading}>
-            {arabic.timeline.map((item) => (
-              <li key={item.order}>
-                <span className={`timeline-icon timeline-icon-${item.icon}`} aria-hidden="true" />
+          <ol ref={timelineRef} className="wedding-timeline" aria-label={arabic.timelineHeading}>
+            <motion.span
+              className="timeline-progress"
+              aria-hidden="true"
+              style={{ scaleY: reducedMotion ? 1 : timelineProgress }}
+            />
+            {arabic.timeline.map((item, index) => (
+              <motion.li
+                key={item.order}
+                initial={reducedMotion ? false : { opacity: 0.28, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.72 }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.52, delay: index * 0.035, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <motion.span
+                  className={`timeline-icon timeline-icon-${item.icon}`}
+                  aria-hidden="true"
+                  initial={reducedMotion ? false : { opacity: 0.35, scale: 0.58, rotate: -4 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  viewport={{ once: true, amount: 0.72 }}
+                  transition={{ type: "spring", stiffness: 285, damping: 17, delay: reducedMotion ? 0 : index * 0.035 }}
+                />
                 <span className="timeline-copy">
                   <span className="timeline-label">{item.label}</span>
                   <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
                 </span>
-              </li>
+              </motion.li>
             ))}
           </ol>
         </section>

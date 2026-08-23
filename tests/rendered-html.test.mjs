@@ -68,6 +68,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /className="supporting-card timeline-card/);
   assert.match(page, /className="wedding-timeline"/);
   assert.match(page, /className="timeline-copy"/);
+  assert.match(page, /useScroll/);
+  assert.match(page, /className="timeline-progress"/);
+  assert.match(page, /whileInView=\{\{ opacity: 1, scale: 1, rotate: 0 \}\}/);
+  assert.match(page, /viewport=\{\{ once: true, amount: 0\.72 \}\}/);
   assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
   assert.doesNotMatch(page, /timeline-kicker/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
@@ -106,6 +110,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
   assert.match(css, /\.timeline-card[\s\S]*background:\s*transparent/);
   assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.575rem[\s\S]*width:\s*1px/);
+  assert.match(css, /\.timeline-progress[\s\S]*width:\s*2px[\s\S]*transform-origin:\s*50% 0%/);
   assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 3\.7rem minmax\(0, 1fr\)/);
   assert.match(css, /\.timeline-icon[\s\S]*wedding-timeline-icons\.png/);
   assert.match(css, /\.timeline-icon-church[\s\S]*background-position:\s*0 100%/);

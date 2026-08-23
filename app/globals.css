@@ -411,6 +411,19 @@ button, a { font: inherit; }
   transform: translateX(-50%);
 }
 
+.timeline-progress {
+  position: absolute;
+  z-index: 0;
+  top: 1.575rem;
+  bottom: 1.575rem;
+  left: calc(50% - 1px);
+  width: 2px;
+  border-radius: 999px;
+  background: #a18a65;
+  box-shadow: 0 0 10px rgba(161, 138, 101, .28);
+  transform-origin: 50% 0%;
+}
+
 .wedding-timeline li {
   position: relative;
   z-index: 1;
@@ -490,6 +503,7 @@ button, a { font: inherit; }
   .timeline-icon { width: 3.25rem; height: 2.75rem; }
   .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 3.25rem minmax(0, 1fr); column-gap: .5rem; }
   .wedding-timeline::before { top: 1.35rem; bottom: 1.35rem; }
+  .timeline-progress { top: 1.35rem; bottom: 1.35rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -499,4 +513,6 @@ button, a { font: inherit; }
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
   }
+
+  .timeline-progress { transform: scaleY(1) !important; }
 }
