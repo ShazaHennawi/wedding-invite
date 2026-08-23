@@ -39,15 +39,29 @@ function CoupleMedia() {
   }
 
   return (
-    <Image
-      src={invitation.media.poster}
-      alt={invitation.media.alt}
-      width={1890}
-      height={2363}
-      priority
-      sizes="(max-width: 480px) 100vw, 430px"
-      className="landing-image"
-    />
+    <span className="framed-portrait">
+      <Image
+        src={invitation.media.poster}
+        alt=""
+        width={1890}
+        height={2363}
+        priority
+        sizes="(max-width: 480px) 100vw, 430px"
+        className="landing-image"
+        aria-hidden="true"
+      />
+      <span className="portrait-window">
+        <Image
+          src={invitation.media.src}
+          alt={invitation.media.alt}
+          fill
+          priority
+          sizes="(max-width: 480px) 42vw, 178px"
+          className="portrait-photo"
+          style={{ objectPosition: invitation.media.focalPosition }}
+        />
+      </span>
+    </span>
   );
 }
 

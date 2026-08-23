@@ -31,9 +31,9 @@ export const invitationConfig = {
   },
   media: {
     type: "image" as "image" | "video",
-    src: "/landing-portrait-art.png",
+    src: "/couple-photo.jpeg",
     poster: "/landing-portrait-art.png",
-    alt: "Elegant embossed bridal portrait artwork",
+    alt: "Isaac and Shaza together",
     focalPosition: "center center",
   },
   copy: {

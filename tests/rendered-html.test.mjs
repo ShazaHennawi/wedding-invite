@@ -23,7 +23,7 @@ test("server-renders the closed wedding invitation", async () => {
   assert.match(html, /<title>Isaac &amp; Shaza — Wedding Invitation<\/title>/i);
   assert.match(html, /Isaac &amp; Shaza/);
   assert.match(html, /Together with our families/);
-  assert.match(html, /Elegant embossed bridal portrait artwork/);
+  assert.match(html, /Isaac and Shaza together/);
   assert.doesNotMatch(html, /class="eyebrow"/);
   assert.match(html, /aria-label="Open the wedding invitation"/);
   assert.match(html, /Tap to open/);
@@ -54,6 +54,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
   assert.match(config, /timelineHeading: "برنامج الزفاف"/);
+  assert.match(config, /src: "\/couple-photo\.jpeg"/);
+  assert.match(config, /poster: "\/landing-portrait-art\.png"/);
   assert.match(config, /english: "Ceremony"/);
   assert.match(config, /english: "Photos"/);
   assert.match(config, /english: "Lunch"/);
@@ -93,6 +95,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /dir="rtl"/);
   assert.match(page, /lang="ar"/);
   assert.match(page, /className="blessing-arc-word"/);
+  assert.match(page, /className="framed-portrait"/);
+  assert.match(page, /className="portrait-window"/);
+  assert.match(page, /className="portrait-photo"/);
   assert.match(page, /src="\/envelope-whole\.png"/);
   assert.match(page, /src="\/bible-cross-cutout\.png"/);
   assert.match(page, /className="blessing-cross"/);
@@ -110,6 +115,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /aspect-ratio:\s*1890 \/ 2363/);
   assert.match(css, /--paper-texture:/);
   assert.match(css, /\.landing-image[\s\S]*mix-blend-mode:\s*multiply/);
+  assert.match(css, /\.portrait-window[\s\S]*top:\s*22\.1%[\s\S]*left:\s*30\.15%[\s\S]*border-radius:\s*50%/);
+  assert.match(css, /\.portrait-photo[\s\S]*object-fit:\s*cover/);
   assert.match(css, /\.blessing-cross[\s\S]*width:\s*clamp\(1\.45rem, 6vw, 2\.15rem\)/);
   assert.match(css, /\.blessing-cross-image[\s\S]*opacity:\s*\.9/);
   assert.match(css, /background-size:\s*100% 100%/);

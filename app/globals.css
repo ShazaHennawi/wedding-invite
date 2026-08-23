@@ -87,11 +87,34 @@ button, a { font: inherit; }
   overflow: hidden;
 }
 
+.framed-portrait {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .landing-image {
   display: block;
   width: 100%;
   height: auto;
   mix-blend-mode: multiply;
+}
+
+.portrait-window {
+  position: absolute;
+  z-index: 2;
+  top: 22.1%;
+  left: 30.15%;
+  width: 39.7%;
+  height: 57.2%;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45);
+}
+
+.portrait-photo {
+  object-fit: cover;
 }
 
 .media-fill { width: 100%; height: 100%; object-fit: contain; }
