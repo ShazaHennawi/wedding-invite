@@ -263,7 +263,7 @@ button, a { font: inherit; }
   display: block;
   width: 100%;
   height: auto;
-  opacity: .38;
+  opacity: .2;
   mix-blend-mode: multiply;
 }
 
