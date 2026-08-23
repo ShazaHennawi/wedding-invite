@@ -219,11 +219,27 @@ button, a { font: inherit; }
 
 .arabic-blessing {
   max-width: 330px;
-  margin: 0 auto clamp(2rem, 7svh, 4.2rem);
+  margin: 0 auto .15rem;
   font-size: clamp(.92rem, 3.8vw, 1.12rem);
   font-weight: 400;
   line-height: 1.75;
   text-wrap: balance;
+}
+
+.blessing-cross {
+  display: inline-flex;
+  width: clamp(1.7rem, 7vw, 2.5rem);
+  margin: 0 auto clamp(1.65rem, 5.5svh, 3.2rem);
+  align-items: center;
+  justify-content: center;
+}
+
+.blessing-cross-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: .74;
+  mix-blend-mode: multiply;
 }
 
 .arabic-families {
@@ -250,27 +266,12 @@ button, a { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(.9rem, 4.5vw, 1.7rem);
+  gap: clamp(1.35rem, 6vw, 2.2rem);
   margin: 0 auto clamp(1.55rem, 5svh, 3.2rem);
   color: #756548;
   font-size: clamp(2rem, 9vw, 2.65rem);
   font-weight: 700;
   line-height: 1.25;
-}
-
-.names-cross {
-  display: inline-flex;
-  width: clamp(1.4rem, 5.5vw, 1.9rem);
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-
-.names-cross-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  mix-blend-mode: screen;
 }
 
 .arabic-couple-names:focus { outline: none; }

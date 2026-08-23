@@ -74,8 +74,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /dir="rtl"/);
   assert.match(page, /lang="ar"/);
   assert.match(page, /src="\/envelope-whole\.png"/);
-  assert.match(page, /src="\/ornate-cross\.png"/);
-  assert.match(page, /className="names-cross"/);
+  assert.match(page, /src="\/bible-cross\.png"/);
+  assert.match(page, /className="blessing-cross"/);
+  assert.doesNotMatch(page, /className="names-cross"/);
   assert.doesNotMatch(page, /className="ceremony-cross"/);
   assert.doesNotMatch(page, /<i aria-hidden="true">&amp;<\/i>/);
   assert.match(css, /\.whole-envelope-image[\s\S]*object-fit:\s*contain/);
@@ -86,7 +87,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /aspect-ratio:\s*1890 \/ 2363/);
   assert.match(css, /--paper-texture:/);
   assert.match(css, /\.landing-image[\s\S]*mix-blend-mode:\s*multiply/);
-  assert.match(css, /\.names-cross-image[\s\S]*mix-blend-mode:\s*screen/);
+  assert.match(css, /\.blessing-cross-image[\s\S]*opacity:\s*\.74/);
   assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);

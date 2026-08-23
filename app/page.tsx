@@ -183,6 +183,18 @@ function CeremonyDetails() {
         <div className="ceremony-content">
           <p className="arabic-blessing">{arabic.blessing}</p>
 
+          <span className="blessing-cross" aria-hidden="true">
+            <Image
+              src="/bible-cross.png"
+              alt=""
+              width={1024}
+              height={1536}
+              sizes="42px"
+              className="blessing-cross-image"
+              draggable={false}
+            />
+          </span>
+
           <div className="arabic-families">
             <span>{arabic.groomFamily}</span>
             <span>{arabic.brideFamily}</span>
@@ -192,17 +204,6 @@ function CeremonyDetails() {
 
           <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
             <span>{arabic.groomName}</span>
-            <span className="names-cross" aria-hidden="true">
-              <Image
-                src="/ornate-cross.png"
-                alt=""
-                width={1024}
-                height={1536}
-                sizes="32px"
-                className="names-cross-image"
-                draggable={false}
-              />
-            </span>
             <span>{arabic.brideName}</span>
           </h1>
 
