@@ -301,6 +301,30 @@ button, a { font: inherit; }
   font-size: .82rem;
 }
 
+.gift-section {
+  width: min(100%, 340px);
+  margin: clamp(2rem, 6svh, 3.4rem) auto 0;
+  padding: clamp(1.1rem, 3.5svh, 1.6rem) .8rem 0;
+  border-top: 1px solid rgba(146, 121, 70, .28);
+  color: #786848;
+}
+
+.gift-section h2 {
+  margin: 0 0 .65rem;
+  color: #927946;
+  font-size: clamp(1.3rem, 5.6vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gift-section p {
+  margin: 0;
+  font-size: clamp(.95rem, 4vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.9;
+  text-wrap: balance;
+}
+
 @media (min-width: 640px) {
   .details-shell { padding: 2rem 1.5rem !important; }
   .detail-card { min-height: min(920px, calc(100svh - 4rem)); }

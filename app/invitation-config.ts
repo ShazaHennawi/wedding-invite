@@ -22,6 +22,9 @@ export const invitationConfig = {
     year: "2026",
     closing: "فرحتنا تبدأ مع الرب وتكتمل بحضوركم",
     congratulations: "تُقبل التهاني في الكنيسة",
+    giftHeading: "هديّة",
+    giftMessage:
+      "حضوركم هو الهدية الأجمل بالنسبة لنا؛ وإن أحببتم مشاركة فرحتنا بهدية، يمكنكم ذلك عبر الحسابات البنكية التالية، مع خالص الشكر والمحبة.",
   },
   media: {
     type: "image" as "image" | "video",

@@ -53,10 +53,13 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /groomName: "اسحق"/);
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
+  assert.match(config, /giftHeading: "هديّة"/);
+  assert.match(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
   assert.doesNotMatch(page, /wedding\.address/);
   assert.doesNotMatch(page, /arabic-dress-code/);
   assert.doesNotMatch(page, /personal-message/);
   assert.doesNotMatch(page, /maps-button/);
+  assert.match(page, /className="gift-section"/);
   assert.doesNotMatch(page, /<header>/);
   assert.doesNotMatch(page, /className="couple-names"/);
   assert.match(page, /useReducedMotion/);
@@ -82,6 +85,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.names-cross-image[\s\S]*mix-blend-mode:\s*screen/);
   assert.match(css, /background-size:\s*150% 108%/);
   assert.match(css, /background-blend-mode:\s*normal/);
+  assert.match(css, /\.gift-section[\s\S]*border-top:/);
   assert.match(css, /min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);

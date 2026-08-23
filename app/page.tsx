@@ -216,6 +216,11 @@ function CeremonyDetails() {
 
           <p className="arabic-closing">{arabic.closing}</p>
           <p className="arabic-congratulations">{arabic.congratulations}</p>
+
+          <section className="gift-section" aria-labelledby="gift-heading">
+            <h2 id="gift-heading">{arabic.giftHeading}</h2>
+            <p>{arabic.giftMessage}</p>
+          </section>
         </div>
       </article>
     </motion.main>
