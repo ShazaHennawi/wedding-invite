@@ -43,6 +43,7 @@ export const invitationConfig = {
   music: {
     youtubeVideoId: "6W3-rHzCqkY",
     title: "Wedding music",
+    volume: 22,
   },
 } as const;
 

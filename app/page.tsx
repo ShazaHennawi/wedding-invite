@@ -127,13 +127,36 @@ function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion:
 }
 
 function CeremonyMusic({ active }: { active: boolean }) {
+  const playerRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const lowerVolume = () => {
+      playerRef.current?.contentWindow?.postMessage(
+        JSON.stringify({
+          event: "command",
+          func: "setVolume",
+          args: [invitation.music.volume],
+        }),
+        "https://www.youtube-nocookie.com",
+      );
+    };
+
+    lowerVolume();
+    const retries = [300, 750, 1400].map((delay) => window.setTimeout(lowerVolume, delay));
+
+    return () => retries.forEach(window.clearTimeout);
+  }, [active]);
+
   if (!active) return null;
 
   const videoId = invitation.music.youtubeVideoId;
-  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
+  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
 
   return (
     <iframe
+      ref={playerRef}
       className="ceremony-music"
       src={source}
       title={invitation.music.title}

@@ -116,6 +116,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /function CeremonyMusic/);
   assert.match(page, /youtube-nocookie\.com\/embed/);
   assert.match(page, /autoplay=1/);
+  assert.match(page, /enablejsapi=1/);
+  assert.match(page, /func: "setVolume"/);
+  assert.match(config, /volume: 22/);
   assert.match(css, /\.ceremony-music[\s\S]*opacity:\s*0/);
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /\.blessing-arc-word:nth-child\(1\)[\s\S]*translateY\(\.92em\) rotate\(13deg\)/);
