@@ -194,7 +194,7 @@ button, a { font: inherit; }
 .arabic-invitation {
   isolation: isolate;
   border: 0;
-  color: #756548;
+  color: #a18a65;
   font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
   background-color: var(--paper);
   background-image: url("/ceremony-background.png");
@@ -270,7 +270,7 @@ button, a { font: inherit; }
   justify-content: center;
   gap: clamp(1.35rem, 6vw, 2.2rem);
   margin: 0 auto clamp(1.55rem, 5svh, 3.2rem);
-  color: #756548;
+  color: #a18a65;
   font-size: clamp(2rem, 9vw, 2.65rem);
   font-weight: 700;
   line-height: 1.25;
@@ -322,12 +322,12 @@ button, a { font: inherit; }
   width: min(100%, 340px);
   margin: 0 auto;
   padding: clamp(2.3rem, 7svh, 3.5rem) clamp(1.4rem, 6vw, 2.5rem);
-  color: #756548;
+  color: #a18a65;
 }
 
 .supporting-card h2 {
   margin: 0 0 .65rem;
-  color: #756548;
+  color: #a18a65;
   font-size: clamp(1.15rem, 4.8vw, 1.4rem);
   font-weight: 400;
   line-height: 1.2;
