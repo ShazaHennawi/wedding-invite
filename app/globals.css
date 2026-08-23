@@ -253,7 +253,7 @@ button, a { font: inherit; }
 
 .blessing-cross {
   display: inline-flex;
-  width: clamp(1.2rem, 5vw, 1.8rem);
+  width: clamp(1.45rem, 6vw, 2.15rem);
   margin: 0 auto clamp(.65rem, 2.4svh, 1.3rem);
   align-items: center;
   justify-content: center;
@@ -263,7 +263,7 @@ button, a { font: inherit; }
   display: block;
   width: 100%;
   height: auto;
-  opacity: .5;
+  opacity: .9;
   mix-blend-mode: multiply;
 }
 

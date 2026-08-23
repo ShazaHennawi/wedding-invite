@@ -196,7 +196,7 @@ function CeremonyDetails() {
               alt=""
               width={1024}
               height={1536}
-              sizes="42px"
+              sizes="52px"
               className="blessing-cross-image"
               draggable={false}
             />

@@ -99,7 +99,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /aspect-ratio:\s*1890 \/ 2363/);
   assert.match(css, /--paper-texture:/);
   assert.match(css, /\.landing-image[\s\S]*mix-blend-mode:\s*multiply/);
-  assert.match(css, /\.blessing-cross-image[\s\S]*opacity:\s*\.5/);
+  assert.match(css, /\.blessing-cross[\s\S]*width:\s*clamp\(1\.45rem, 6vw, 2\.15rem\)/);
+  assert.match(css, /\.blessing-cross-image[\s\S]*opacity:\s*\.9/);
   assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
