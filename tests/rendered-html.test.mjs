@@ -60,7 +60,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /english: "Ceremony"/);
   assert.match(config, /english: "Photos"/);
   assert.match(config, /english: "Lunch"/);
-  assert.match(config, /icon: "car"[\s\S]*english: "Car"/);
+  assert.doesNotMatch(config, /icon: "car"|english: "Car"|السيارة/);
   assert.doesNotMatch(config, /locationHeading:/);
   assert.doesNotMatch(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
   assert.doesNotMatch(page, /wedding\.address/);
@@ -142,7 +142,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.timeline-icon-church[\s\S]*background-position:\s*0 100%/);
   assert.match(css, /\.timeline-icon-camera[\s\S]*background-position:\s*100% 0/);
   assert.match(css, /\.timeline-icon-table[\s\S]*background-position:\s*0 0/);
-  assert.match(css, /\.timeline-icon-car[\s\S]*background-position:\s*100% 100%/);
+  assert.doesNotMatch(css, /\.timeline-icon-car/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
   assert.match(css, /min-height:\s*44px/);

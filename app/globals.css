@@ -504,7 +504,6 @@ button, a { font: inherit; }
 .timeline-icon-church { background-position: 0 100%; }
 .timeline-icon-camera { background-position: 100% 0; }
 .timeline-icon-table { background-position: 0 0; }
-.timeline-icon-car { background-position: 100% 100%; }
 
 .timeline-copy {
   display: flex;

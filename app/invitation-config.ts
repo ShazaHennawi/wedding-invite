@@ -26,7 +26,6 @@ export const invitationConfig = {
       { order: "01", icon: "church", label: "الإكليل", english: "Ceremony" },
       { order: "02", icon: "camera", label: "الصور", english: "Photos" },
       { order: "03", icon: "table", label: "الغداء", english: "Lunch" },
-      { order: "04", icon: "car", label: "السيارة", english: "Car" },
     ],
   },
   media: {
