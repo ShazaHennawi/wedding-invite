@@ -192,7 +192,7 @@ function CeremonyDetails() {
 
           <span className="blessing-cross" aria-hidden="true">
             <Image
-              src="/bible-cross-final.png"
+              src="/bible-cross-cutout.png"
               alt=""
               width={1024}
               height={1536}
