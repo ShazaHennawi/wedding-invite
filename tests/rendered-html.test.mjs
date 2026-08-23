@@ -54,13 +54,13 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
   assert.match(config, /giftHeading: "هديّة"/);
-  assert.match(config, /locationHeading: "الموقع"/);
+  assert.doesNotMatch(config, /locationHeading:/);
   assert.match(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
   assert.doesNotMatch(page, /wedding\.address/);
   assert.doesNotMatch(page, /arabic-dress-code/);
   assert.doesNotMatch(page, /personal-message/);
   assert.doesNotMatch(page, /maps-button/);
-  assert.match(page, /className="paper-frame supporting-card location-card/);
+  assert.doesNotMatch(page, /location-card|location-heading/);
   assert.match(page, /className="paper-frame supporting-card gift-card/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
   assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);

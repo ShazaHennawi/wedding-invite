@@ -219,13 +219,6 @@ function CeremonyDetails() {
         </div>
       </article>
 
-      <article className="paper-frame supporting-card location-card arabic-invitation w-full text-center" dir="rtl" lang="ar">
-        <section className="supporting-card-content" aria-labelledby="location-heading">
-          <h2 id="location-heading">{arabic.locationHeading}</h2>
-          <address>{invitation.wedding.venue}</address>
-        </section>
-      </article>
-
       <article className="paper-frame supporting-card gift-card arabic-invitation w-full text-center" dir="rtl" lang="ar">
         <section className="supporting-card-content" aria-labelledby="gift-heading">
           <h2 id="gift-heading">{arabic.giftHeading}</h2>
