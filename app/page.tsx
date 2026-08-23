@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { invitationConfig as invitation } from "./invitation-config";
 
 type ExperienceState = "closed" | "opening" | "details";
+type TimelineItem = (typeof invitation.arabicCeremony.timeline)[number];
 
 function CoupleMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -158,15 +160,47 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
   );
 }
 
+function TimelineStep({
+  item,
+  index,
+  progress,
+  reducedMotion,
+}: {
+  item: TimelineItem;
+  index: number;
+  progress: MotionValue<number>;
+  reducedMotion: boolean;
+}) {
+  const revealAt = 0.1 + index * 0.22;
+  const opacity = useTransform(progress, [revealAt - 0.07, revealAt + 0.07], [0.12, 1]);
+  const y = useTransform(progress, [revealAt - 0.07, revealAt + 0.07], [24, 0]);
+  const iconScale = useTransform(progress, [revealAt - 0.05, revealAt, revealAt + 0.075], [0.54, 1.16, 1]);
+  const iconRotate = useTransform(progress, [revealAt - 0.05, revealAt + 0.075], [-5, 0]);
+
+  return (
+    <motion.li style={reducedMotion ? undefined : { opacity, y }}>
+      <motion.span
+        className={`timeline-icon timeline-icon-${item.icon}`}
+        aria-hidden="true"
+        style={reducedMotion ? undefined : { scale: iconScale, rotate: iconRotate }}
+      />
+      <span className="timeline-copy">
+        <span className="timeline-label">{item.label}</span>
+        <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+      </span>
+    </motion.li>
+  );
+}
+
 function CeremonyDetails() {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const timelineRef = useRef<HTMLOListElement>(null);
+  const timelineSectionRef = useRef<HTMLElement>(null);
   const arabic = invitation.arabicCeremony;
   const blessingWords = arabic.blessing.split(" ");
   const { scrollYProgress: timelineScrollProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 78%", "end 34%"],
+    target: timelineSectionRef,
+    offset: ["start start", "end end"],
   });
   const timelineProgress = useSpring(timelineScrollProgress, {
     stiffness: 105,
@@ -237,36 +271,23 @@ function CeremonyDetails() {
         </div>
       </article>
 
-      <article className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
+      <article ref={timelineSectionRef} className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
           <h2 id="timeline-heading">{arabic.timelineHeading}</h2>
-          <ol ref={timelineRef} className="wedding-timeline" aria-label={arabic.timelineHeading}>
+          <ol className="wedding-timeline" aria-label={arabic.timelineHeading}>
             <motion.span
               className="timeline-progress"
               aria-hidden="true"
               style={{ scaleY: reducedMotion ? 1 : timelineProgress }}
             />
             {arabic.timeline.map((item, index) => (
-              <motion.li
+              <TimelineStep
                 key={item.order}
-                initial={reducedMotion ? false : { opacity: 0.28, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.72 }}
-                transition={{ duration: reducedMotion ? 0.01 : 0.52, delay: index * 0.035, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <motion.span
-                  className={`timeline-icon timeline-icon-${item.icon}`}
-                  aria-hidden="true"
-                  initial={reducedMotion ? false : { opacity: 0.35, scale: 0.58, rotate: -4 }}
-                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: true, amount: 0.72 }}
-                  transition={{ type: "spring", stiffness: 285, damping: 17, delay: reducedMotion ? 0 : index * 0.035 }}
-                />
-                <span className="timeline-copy">
-                  <span className="timeline-label">{item.label}</span>
-                  <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
-                </span>
-              </motion.li>
+                item={item}
+                index={index}
+                progress={timelineProgress}
+                reducedMotion={reducedMotion}
+              />
             ))}
           </ol>
         </section>
