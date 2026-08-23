@@ -222,8 +222,10 @@ button, a { font: inherit; }
   margin: 0 auto .15rem;
   font-size: clamp(.92rem, 3.8vw, 1.12rem);
   font-weight: 400;
+  font-style: italic;
   line-height: 1.75;
   text-wrap: balance;
+  transform: perspective(320px) rotateX(7deg) rotateZ(-1deg);
 }
 
 .blessing-cross {
