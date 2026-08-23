@@ -185,7 +185,7 @@ function CeremonyDetails() {
 
           <span className="blessing-cross" aria-hidden="true">
             <Image
-              src="/bible-cross.png"
+              src="/bible-cross-transparent.png"
               alt=""
               width={1024}
               height={1536}
@@ -204,6 +204,7 @@ function CeremonyDetails() {
 
           <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
             <span>{arabic.groomName}</span>
+            <span className="names-amp" aria-hidden="true">&amp;</span>
             <span>{arabic.brideName}</span>
           </h1>
 
