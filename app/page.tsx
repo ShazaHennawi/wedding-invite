@@ -222,7 +222,7 @@ function TimelineStep({
   progress: MotionValue<number>;
   reducedMotion: boolean;
 }) {
-  const revealAt = 0.02 + index * 0.16;
+  const revealAt = index * 0.15;
   const opacity = useTransform(progress, [revealAt - 0.04, revealAt + 0.04], [0.12, 1]);
   const y = useTransform(progress, [revealAt - 0.04, revealAt + 0.04], [20, 0]);
   const iconScale = useTransform(progress, [revealAt - 0.03, revealAt, revealAt + 0.05], [0.58, 1.18, 1]);
@@ -254,9 +254,9 @@ function CeremonyDetails() {
   const blessingWords = arabic.blessing.split(" ");
   const { scrollYProgress: timelineScrollProgress } = useScroll({
     target: timelineSectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start 85%", "end 15%"],
   });
-  const acceleratedTimelineProgress = useTransform(timelineScrollProgress, [0, 0.68], [0, 1], { clamp: true });
+  const acceleratedTimelineProgress = useTransform(timelineScrollProgress, [0, 0.78], [0, 1], { clamp: true });
   const timelineProgress = useSpring(acceleratedTimelineProgress, {
     stiffness: 240,
     damping: 26,

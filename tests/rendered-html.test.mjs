@@ -77,9 +77,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /useTransform/);
   assert.match(page, /className="timeline-progress"/);
   assert.match(page, /function TimelineStep/);
-  assert.match(page, /offset: \["start start", "end end"\]/);
-  assert.match(page, /0\.02 \+ index \* 0\.16/);
-  assert.match(page, /\[0, 0\.68\], \[0, 1\]/);
+  assert.match(page, /offset: \["start 85%", "end 15%"\]/);
+  assert.match(page, /index \* 0\.15/);
+  assert.match(page, /\[0, 0\.78\], \[0, 1\]/);
   assert.match(page, /stiffness: 240/);
   assert.match(page, /\[0\.58, 1\.18, 1\]/);
   assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
