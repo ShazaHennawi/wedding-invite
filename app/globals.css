@@ -48,14 +48,6 @@ button, a { font: inherit; }
   padding: clamp(.75rem, 2.5vw, 1.5rem) !important;
 }
 
-.opening-wash {
-  position: fixed;
-  z-index: 20;
-  inset: 0;
-  pointer-events: none;
-  background: rgba(244, 238, 228, .86);
-}
-
 .paper-frame {
   position: relative;
   overflow: hidden;
@@ -124,8 +116,6 @@ button, a { font: inherit; }
   touch-action: manipulation;
 }
 
-.envelope-button:disabled { cursor: default; }
-
 .envelope-button:focus-visible {
   border-radius: 8px;
   outline: 2px solid var(--olive-dark);
@@ -150,21 +140,6 @@ button, a { font: inherit; }
   width: 132.4%;
   height: auto;
   transform-origin: 50% 0;
-}
-
-.envelope-opening-seam {
-  position: absolute;
-  z-index: 4;
-  top: 43.5%;
-  left: 18%;
-  display: block;
-  width: 64%;
-  height: 1px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(151, 119, 77, .78), transparent);
-  box-shadow: 0 0 10px rgba(174, 137, 89, .32);
-  transform-origin: center;
-  pointer-events: none;
 }
 
 .whole-envelope-image {

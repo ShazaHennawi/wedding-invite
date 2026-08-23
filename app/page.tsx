@@ -6,7 +6,7 @@ import type { MotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { invitationConfig as invitation } from "./invitation-config";
 
-type ExperienceState = "closed" | "opening" | "details";
+type ExperienceState = "closed" | "details";
 type TimelineItem = (typeof invitation.arabicCeremony.timeline)[number];
 
 function CoupleMedia() {
@@ -52,50 +52,10 @@ function CoupleMedia() {
   );
 }
 
-function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion: boolean }) {
-  const gentleEase = [0.22, 1, 0.36, 1] as const;
-
+function Envelope() {
   return (
-    <motion.span
-      className="envelope"
-      aria-hidden="true"
-      animate={
-        opening
-          ? reducedMotion
-            ? { opacity: [1, 0.82, 1] }
-            : {
-                y: [0, -7, -18, -5],
-                rotate: [0, -0.5, 0.7, 0],
-                scale: [1, 0.985, 1.025, 1],
-              }
-          : { y: 0, rotate: 0, scale: 1, opacity: 1 }
-      }
-      transition={
-        reducedMotion
-          ? { duration: 0.28 }
-          : { duration: 1.18, ease: gentleEase, times: [0, 0.18, 0.58, 1] }
-      }
-    >
-      <motion.span
-        className="whole-envelope-art"
-        animate={
-          opening
-            ? reducedMotion
-              ? { opacity: [1, 0.78, 1] }
-              : {
-                  y: [0, -4, 4, 0],
-                  rotateX: [0, -7, -22, 0],
-                  scale: [1, 1.02, 0.99, 1],
-                  filter: ["brightness(1)", "brightness(1.04)", "brightness(1.09)", "brightness(1)"],
-                }
-            : { y: 0, rotateX: 0, scale: 1, filter: "brightness(1)", opacity: 1 }
-        }
-        transition={
-          reducedMotion
-            ? { duration: 0.28 }
-            : { duration: 1.05, delay: 0.08, ease: gentleEase, times: [0, 0.22, 0.62, 1] }
-        }
-      >
+    <span className="envelope" aria-hidden="true">
+      <span className="whole-envelope-art">
         <Image
           src="/envelope-whole.png"
           alt=""
@@ -106,23 +66,8 @@ function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion:
           aria-hidden="true"
           draggable={false}
         />
-      </motion.span>
-      <motion.span
-        className="envelope-opening-seam"
-        animate={
-          opening
-            ? reducedMotion
-              ? { opacity: [0, 0.35, 0] }
-              : { opacity: [0, 0.18, 0.75, 0], scaleX: [0.42, 0.62, 1.04, 1.12] }
-            : { opacity: 0, scaleX: 0.42 }
-        }
-        transition={
-          reducedMotion
-            ? { duration: 0.28 }
-            : { duration: 0.82, delay: 0.26, ease: gentleEase, times: [0, 0.25, 0.67, 1] }
-        }
-      />
-    </motion.span>
+      </span>
+    </span>
   );
 }
 
@@ -168,9 +113,8 @@ function CeremonyMusic({ active }: { active: boolean }) {
   );
 }
 
-function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void }) {
+function Landing({ onOpen }: { onOpen: () => void }) {
   const reducedMotion = Boolean(useReducedMotion());
-  const opening = state === "opening";
 
   return (
     <motion.main
@@ -181,13 +125,6 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
       exit={{ opacity: 0, scale: reducedMotion ? 1 : 0.985 }}
       transition={{ duration: reducedMotion ? 0.2 : 0.48 }}
     >
-      <motion.div
-        className="opening-wash"
-        aria-hidden="true"
-        animate={{ opacity: opening ? 1 : 0 }}
-        transition={{ duration: reducedMotion ? 0.25 : 1.05, delay: reducedMotion ? 0 : 1.05 }}
-      />
-
       <article className="landing-card mx-auto flex w-full max-w-[430px] flex-col items-center pb-6 text-center">
         <figure className="landing-art">
           <CoupleMedia />
@@ -205,17 +142,13 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
               onOpen();
             }
           }}
-          disabled={opening}
-          aria-label={opening ? "Opening the wedding invitation" : "Open the wedding invitation"}
-          aria-busy={opening}
-          whileHover={opening || reducedMotion ? undefined : { y: -3 }}
-          whileTap={opening || reducedMotion ? undefined : { scale: 0.965, y: 2 }}
+          aria-label="Open the wedding invitation"
+          whileHover={reducedMotion ? undefined : { y: -3 }}
+          whileTap={reducedMotion ? undefined : { scale: 0.965, y: 2 }}
         >
-          <Envelope opening={opening} reducedMotion={reducedMotion} />
+          <Envelope />
         </motion.button>
-        <p className="tap-prompt" aria-live="polite">
-          {opening ? "Opening…" : invitation.copy.openPrompt}
-        </p>
+        <p className="tap-prompt">{invitation.copy.openPrompt}</p>
       </article>
     </motion.main>
   );
@@ -362,18 +295,11 @@ function CeremonyDetails() {
 }
 
 export default function Home() {
-  const reducedMotion = Boolean(useReducedMotion());
   const [state, setState] = useState<ExperienceState>("closed");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-  }, []);
 
   const openInvitation = () => {
     if (state !== "closed") return;
-    setState("opening");
-    timerRef.current = setTimeout(() => setState("details"), reducedMotion ? 420 : 1650);
+    setState("details");
   };
 
   return (
@@ -382,7 +308,7 @@ export default function Home() {
       {state === "details" ? (
         <CeremonyDetails />
       ) : (
-        <Landing state={state} onOpen={openInvitation} />
+        <Landing onOpen={openInvitation} />
       )}
     </AnimatePresence>
   );

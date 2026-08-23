@@ -91,8 +91,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /useReducedMotion/);
   assert.match(page, /playsInline/);
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
-  assert.match(page, /disabled=\{opening\}/);
   assert.match(page, /setState\("details"\)/);
+  assert.doesNotMatch(page, /setState\("opening"\)|Opening…|aria-busy|disabled=\{opening\}/);
   assert.match(page, /dir="rtl"/);
   assert.match(page, /lang="ar"/);
   assert.match(page, /className="blessing-arc-word"/);
@@ -111,8 +111,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.whole-envelope-art[\s\S]*width:\s*132\.4%/);
   assert.doesNotMatch(page, /className="envelope-card"/);
   assert.doesNotMatch(page, /card-monogram|card-date/);
-  assert.match(page, /className="envelope-opening-seam"/);
-  assert.match(css, /\.envelope-opening-seam[\s\S]*linear-gradient/);
+  assert.doesNotMatch(page, /envelope-opening-seam|opening-wash/);
+  assert.doesNotMatch(css, /\.envelope-opening-seam|\.opening-wash/);
   assert.match(page, /function CeremonyMusic/);
   assert.match(page, /youtube-nocookie\.com\/embed/);
   assert.match(page, /autoplay=1/);
