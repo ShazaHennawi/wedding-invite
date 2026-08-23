@@ -27,6 +27,13 @@ export const invitationConfig = {
       { order: "02", icon: "camera", label: "الصور", english: "Photos" },
       { order: "03", icon: "table", label: "الغداء", english: "Lunch" },
     ],
+    gift: {
+      heading: "هديّة",
+      message:
+        "حضوركم هو الهدية الأجمل بالنسبة لنا؛ وإن أحببتم مشاركة فرحتنا بهدية، يمكنكم ذلك عبر الحسابات البنكية التالية، مع خالص الشكر والمحبة.",
+      iban: "DE11 1005 0000 1071 4190 79",
+      bic: "BELADEBEXXX",
+    },
   },
   media: {
     type: "image" as "image" | "video",

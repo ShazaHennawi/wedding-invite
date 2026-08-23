@@ -46,7 +46,6 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /poster: "\/landing-couple-frame\.png"/);
   assert.match(config, /youtubeVideoId: "6W3-rHzCqkY"/);
   assert.doesNotMatch(config, /mapUrl:/);
-  assert.doesNotMatch(config, /message:/);
   assert.match(config, /arabicCeremony:/);
   assert.match(config, /blessing: "إِذًا لَيْسَا بَعْدُ اثْنَيْنِ بَلْ جَسَدٌ وَاحِدٌ\. فَالَّذِي جَمَعَهُ اللهُ لَا يُفَرِّقُهُ إِنْسَانٌ"/);
   assert.match(config, /groomFamily: "السيد سامر وسوف وعائلته"/);
@@ -62,7 +61,6 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /english: "Lunch"/);
   assert.doesNotMatch(config, /icon: "car"|english: "Car"|السيارة/);
   assert.doesNotMatch(config, /locationHeading:/);
-  assert.doesNotMatch(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
   assert.doesNotMatch(page, /wedding\.address/);
   assert.doesNotMatch(page, /arabic-dress-code/);
   assert.doesNotMatch(page, /personal-message/);
@@ -84,6 +82,12 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /\[0\.58, 1\.18, 1\]/);
   assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
   assert.doesNotMatch(page, /timeline-kicker/);
+  assert.match(page, /className="supporting-card gift-card/);
+  assert.match(page, /className="gift-message"/);
+  assert.match(page, /className="gift-bank-details"/);
+  assert.match(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
+  assert.match(config, /DE11 1005 0000 1071 4190 79/);
+  assert.match(config, /BELADEBEXXX/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
   assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);
   assert.doesNotMatch(page, /<header>/);
@@ -146,6 +150,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.timeline-icon-camera[\s\S]*background-position:\s*100% 0/);
   assert.match(css, /\.timeline-icon-table[\s\S]*background-position:\s*0 0/);
   assert.doesNotMatch(css, /\.timeline-icon-car/);
+  assert.match(css, /\.gift-card[\s\S]*background-image:\s*var\(--paper-texture\)/);
+  assert.match(css, /\.gift-bank-details dd[\s\S]*overflow-wrap:\s*anywhere/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
   assert.match(css, /min-height:\s*44px/);

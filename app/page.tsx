@@ -290,6 +290,23 @@ function CeremonyDetails() {
           </ol>
         </section>
       </article>
+
+      <article className="supporting-card gift-card w-full text-center" dir="rtl" lang="ar">
+        <section className="supporting-card-content gift-card-content" aria-labelledby="gift-heading">
+          <h2 id="gift-heading">{arabic.gift.heading}</h2>
+          <p className="gift-message">{arabic.gift.message}</p>
+          <dl className="gift-bank-details">
+            <div>
+              <dt>IBAN</dt>
+              <dd dir="ltr">{arabic.gift.iban}</dd>
+            </div>
+            <div>
+              <dt>BIC</dt>
+              <dd dir="ltr">{arabic.gift.bic}</dd>
+            </div>
+          </dl>
+        </section>
+      </article>
     </motion.main>
   );
 }
