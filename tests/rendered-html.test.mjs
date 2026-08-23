@@ -43,7 +43,7 @@ test("keeps content editable and interaction requirements wired", async () => {
 
   assert.match(config, /export const invitationConfig/);
   assert.match(config, /date: "17\.10\.2026"/);
-  assert.match(config, /poster: "\/landing-couple-frame\.png"/);
+  assert.match(config, /poster: "\/landing-couple-frame-transparent\.png"/);
   assert.match(config, /youtubeVideoId: "6W3-rHzCqkY"/);
   assert.doesNotMatch(config, /mapUrl:/);
   assert.match(config, /arabicCeremony:/);
@@ -54,8 +54,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
   assert.match(config, /timelineHeading: "برنامج الزفاف"/);
-  assert.match(config, /src: "\/landing-couple-frame\.png"/);
-  assert.match(config, /poster: "\/landing-couple-frame\.png"/);
+  assert.match(config, /src: "\/landing-couple-frame-transparent\.png"/);
+  assert.match(config, /poster: "\/landing-couple-frame-transparent\.png"/);
   assert.match(config, /english: "Ceremony"/);
   assert.match(config, /english: "Photos"/);
   assert.match(config, /english: "Lunch"/);
