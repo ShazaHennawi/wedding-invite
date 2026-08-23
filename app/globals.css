@@ -240,7 +240,7 @@ button, a { font: inherit; }
   display: block;
   width: 100%;
   height: auto;
-  opacity: .74;
+  opacity: .38;
   mix-blend-mode: multiply;
 }
 
