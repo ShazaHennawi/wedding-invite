@@ -366,7 +366,7 @@ button, a { font: inherit; }
 .timeline-card {
   width: 100vw;
   max-width: none;
-  min-height: 180svh;
+  min-height: 150svh;
   margin-inline: calc(50% - 50vw);
   overflow: visible;
   border: 0;
@@ -381,16 +381,16 @@ button, a { font: inherit; }
 
 .timeline-card h2 {
   margin-top: 0;
-  margin-bottom: clamp(1.2rem, 3.5svh, 2rem);
+  margin-bottom: clamp(1.5rem, 4svh, 2.4rem);
   font-weight: 700;
-  font-size: clamp(1.45rem, 6vw, 1.8rem);
+  font-size: clamp(1.8rem, 8vw, 2.35rem);
 }
 
 .wedding-timeline {
   position: relative;
   display: grid;
-  width: min(100%, 370px);
-  gap: clamp(.45rem, 1.5svh, .8rem);
+  width: min(100%, 410px);
+  gap: clamp(.55rem, 1.8svh, 1rem);
   margin: 0 auto;
   padding: 0;
   list-style: none;
@@ -401,7 +401,7 @@ button, a { font: inherit; }
   top: 1.575rem;
   bottom: 1.575rem;
   left: 50%;
-  width: 1px;
+  width: 2px;
   background: rgba(161, 138, 101, .48);
   content: "";
   transform: translateX(-50%);
@@ -412,8 +412,8 @@ button, a { font: inherit; }
   z-index: 0;
   top: 1.575rem;
   bottom: 1.575rem;
-  left: calc(50% - 1px);
-  width: 2px;
+  left: calc(50% - 1.5px);
+  width: 3px;
   border-radius: 999px;
   background: #a18a65;
   box-shadow: 0 0 10px rgba(161, 138, 101, .28);
@@ -425,7 +425,7 @@ button, a { font: inherit; }
   z-index: 1;
   display: grid;
   min-width: 0;
-  min-height: clamp(5.4rem, 15.5svh, 8rem);
+  min-height: clamp(6.6rem, 18svh, 9.5rem);
   grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
   column-gap: clamp(.65rem, 3vw, 1.15rem);
   align-items: center;
@@ -434,8 +434,8 @@ button, a { font: inherit; }
 .timeline-node {
   position: relative;
   z-index: 2;
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border: 1px solid rgba(161, 138, 101, .72);
   border-radius: 50%;
   background: #f8f3e9;
@@ -467,8 +467,8 @@ button, a { font: inherit; }
 
 .timeline-icon {
   display: block;
-  width: 5.15rem;
-  height: 4.4rem;
+  width: 6.2rem;
+  height: 5.3rem;
   background-image: url("/wedding-timeline-icons-transparent.png");
   background-repeat: no-repeat;
   background-size: 300% 200%;
@@ -498,7 +498,7 @@ button, a { font: inherit; }
 
 .timeline-label {
   color: #a18a65;
-  font-size: clamp(.9rem, 3.8vw, 1.08rem);
+  font-size: clamp(1.05rem, 4.7vw, 1.3rem);
   font-weight: 700;
   line-height: 1.25;
   white-space: nowrap;
@@ -508,7 +508,7 @@ button, a { font: inherit; }
   margin-top: .12rem;
   color: #a18a65;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.62rem, 2.5vw, .76rem);
+  font-size: clamp(.74rem, 3.1vw, .9rem);
   font-style: italic;
   line-height: 1.2;
 }
@@ -524,8 +524,8 @@ button, a { font: inherit; }
   .ceremony-content { padding-inline: 2.25rem; }
   .arabic-couple-names { gap: 1rem; }
   .timeline-card-content { padding-inline: .8rem; }
-  .wedding-timeline { width: min(100%, 300px); gap: .3rem; }
-  .timeline-icon { width: 4.35rem; height: 3.7rem; }
+  .wedding-timeline { width: min(100%, 316px); gap: .35rem; }
+  .timeline-icon { width: 5.25rem; height: 4.5rem; }
   .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr); column-gap: .45rem; }
   .wedding-timeline::before { top: 1.35rem; bottom: 1.35rem; }
   .timeline-progress { top: 1.35rem; bottom: 1.35rem; }
