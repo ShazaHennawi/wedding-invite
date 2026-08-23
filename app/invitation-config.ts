@@ -21,9 +21,13 @@ export const invitationConfig = {
     dateNumber: "17",
     year: "2026",
     closing: "فرحتنا تبدأ مع الرب وتكتمل بحضوركم",
-    giftHeading: "هديّة",
-    giftMessage:
-      "حضوركم هو الهدية الأجمل بالنسبة لنا؛ وإن أحببتم مشاركة فرحتنا بهدية، يمكنكم ذلك عبر الحسابات البنكية التالية، مع خالص الشكر والمحبة.",
+    timelineHeading: "برنامج الزفاف",
+    timeline: [
+      { order: "01", label: "الإكليل", english: "Ceremony" },
+      { order: "02", label: "الصور", english: "Photos" },
+      { order: "03", label: "الغداء", english: "Lunch" },
+      { order: "04", label: "المشروبات", english: "Drinks" },
+    ],
   },
   media: {
     type: "image" as "image" | "video",

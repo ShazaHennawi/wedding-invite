@@ -367,6 +367,87 @@ button, a { font: inherit; }
 
 .supporting-card address { font-style: normal; }
 
+.timeline-card-content {
+  width: min(100%, 380px);
+  padding-inline: clamp(1rem, 4vw, 1.6rem);
+}
+
+.timeline-kicker {
+  color: #a18a65;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .63rem !important;
+  letter-spacing: .22em;
+}
+
+.timeline-card h2 {
+  margin-top: .45rem;
+  margin-bottom: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 700;
+}
+
+.wedding-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wedding-timeline::before {
+  position: absolute;
+  top: 1.05rem;
+  right: 9%;
+  left: 9%;
+  height: 1px;
+  background: rgba(161, 138, 101, .48);
+  content: "";
+}
+
+.wedding-timeline li {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-marker {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border: 1px solid rgba(161, 138, 101, .65);
+  border-radius: 50%;
+  background: #f4eee4;
+  color: #a18a65;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  box-shadow: 0 0 0 4px rgba(244, 238, 228, .72);
+}
+
+.timeline-label {
+  margin-top: .72rem;
+  color: #a18a65;
+  font-size: clamp(.72rem, 3.1vw, .9rem);
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.timeline-label-en {
+  margin-top: .12rem;
+  color: #a18a65;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.5rem, 2vw, .62rem);
+  font-style: italic;
+  line-height: 1.2;
+}
+
 @media (min-width: 640px) {
   .details-shell { padding: 2rem 1.5rem !important; }
   .detail-card { min-height: min(920px, calc(100svh - 4rem)); }
@@ -377,6 +458,10 @@ button, a { font: inherit; }
   .envelope-button { width: min(92vw, 292px); }
   .ceremony-content { padding-inline: 2.25rem; }
   .arabic-couple-names { gap: 1rem; }
+  .timeline-card-content { padding-inline: .8rem; }
+  .wedding-timeline { gap: .08rem; }
+  .timeline-marker { width: 1.85rem; height: 1.85rem; }
+  .wedding-timeline::before { top: .925rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
