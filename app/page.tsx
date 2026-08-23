@@ -73,38 +73,41 @@ function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion:
       className="envelope"
       aria-hidden="true"
       animate={
-        opening && !reducedMotion
-          ? { y: [0, -9, -5], rotate: [0, -0.6, 0] }
-          : { y: 0, rotate: 0 }
+        opening
+          ? reducedMotion
+            ? { opacity: [1, 0.82, 1] }
+            : {
+                y: [0, -7, -18, -5],
+                rotate: [0, -0.5, 0.7, 0],
+                scale: [1, 0.985, 1.025, 1],
+              }
+          : { y: 0, rotate: 0, scale: 1, opacity: 1 }
       }
-      transition={{ duration: 0.42, ease: gentleEase }}
+      transition={
+        reducedMotion
+          ? { duration: 0.28 }
+          : { duration: 1.18, ease: gentleEase, times: [0, 0.18, 0.58, 1] }
+      }
     >
-      <motion.span
-        className="envelope-card"
-        animate={
-          opening
-            ? reducedMotion
-              ? { opacity: [0, 1] }
-              : { y: ["0%", "-18%", "-142%"], opacity: [0, 1, 1] }
-            : { y: 0, opacity: 0 }
-        }
-        transition={
-          reducedMotion
-            ? { duration: 0.25 }
-            : { duration: 1.02, delay: 0.52, ease: gentleEase, times: [0, 0.2, 1] }
-        }
-      >
-        <span className="card-monogram">I <i>&amp;</i> S</span>
-        <span className="card-date">17 · 10 · 2026</span>
-      </motion.span>
       <motion.span
         className="whole-envelope-art"
         animate={
-          opening && !reducedMotion
-            ? { y: [0, -7, 5], rotateX: [0, -5, 0], scale: [1, 1.012, 0.992] }
-            : { y: 0, rotateX: 0, scale: 1 }
+          opening
+            ? reducedMotion
+              ? { opacity: [1, 0.78, 1] }
+              : {
+                  y: [0, -4, 4, 0],
+                  rotateX: [0, -7, -22, 0],
+                  scale: [1, 1.02, 0.99, 1],
+                  filter: ["brightness(1)", "brightness(1.04)", "brightness(1.09)", "brightness(1)"],
+                }
+            : { y: 0, rotateX: 0, scale: 1, filter: "brightness(1)", opacity: 1 }
         }
-        transition={{ duration: 0.78, delay: 0.12, ease: gentleEase }}
+        transition={
+          reducedMotion
+            ? { duration: 0.28 }
+            : { duration: 1.05, delay: 0.08, ease: gentleEase, times: [0, 0.22, 0.62, 1] }
+        }
       >
         <Image
           src="/envelope-whole.png"
@@ -117,6 +120,21 @@ function Envelope({ opening, reducedMotion }: { opening: boolean; reducedMotion:
           draggable={false}
         />
       </motion.span>
+      <motion.span
+        className="envelope-opening-seam"
+        animate={
+          opening
+            ? reducedMotion
+              ? { opacity: [0, 0.35, 0] }
+              : { opacity: [0, 0.18, 0.75, 0], scaleX: [0.42, 0.62, 1.04, 1.12] }
+            : { opacity: 0, scaleX: 0.42 }
+        }
+        transition={
+          reducedMotion
+            ? { duration: 0.28 }
+            : { duration: 0.82, delay: 0.26, ease: gentleEase, times: [0, 0.25, 0.67, 1] }
+        }
+      />
     </motion.span>
   );
 }
@@ -162,7 +180,7 @@ function Landing({ state, onOpen }: { state: ExperienceState; onOpen: () => void
           aria-label={opening ? "Opening the wedding invitation" : "Open the wedding invitation"}
           aria-busy={opening}
           whileHover={opening || reducedMotion ? undefined : { y: -3 }}
-          whileTap={opening || reducedMotion ? undefined : { scale: 0.985 }}
+          whileTap={opening || reducedMotion ? undefined : { scale: 0.965, y: 2 }}
         >
           <Envelope opening={opening} reducedMotion={reducedMotion} />
         </motion.button>
@@ -326,7 +344,7 @@ export default function Home() {
   const openInvitation = () => {
     if (state !== "closed") return;
     setState("opening");
-    timerRef.current = setTimeout(() => setState("details"), reducedMotion ? 560 : 2140);
+    timerRef.current = setTimeout(() => setState("details"), reducedMotion ? 420 : 1650);
   };
 
   return (

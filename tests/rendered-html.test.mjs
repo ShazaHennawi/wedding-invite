@@ -108,6 +108,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.whole-envelope-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.envelope[\s\S]*aspect-ratio:\s*1\.337 \/ 1[\s\S]*overflow:\s*hidden/);
   assert.match(css, /\.whole-envelope-art[\s\S]*width:\s*132\.4%/);
+  assert.doesNotMatch(page, /className="envelope-card"/);
+  assert.doesNotMatch(page, /card-monogram|card-date/);
+  assert.match(page, /className="envelope-opening-seam"/);
+  assert.match(css, /\.envelope-opening-seam[\s\S]*linear-gradient/);
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /\.blessing-arc-word:nth-child\(1\)[\s\S]*translateY\(\.92em\) rotate\(13deg\)/);
   assert.match(css, /\.blessing-arc-word:nth-child\(13\)[\s\S]*translateY\(\.92em\) rotate\(-13deg\)/);

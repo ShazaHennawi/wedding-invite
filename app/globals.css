@@ -156,28 +156,6 @@ button, a { font: inherit; }
   transform-style: preserve-3d;
 }
 
-.envelope-card {
-  position: absolute;
-  z-index: 3;
-  top: 34%;
-  left: 20%;
-  display: block;
-  width: 60%;
-  height: 35%;
-  padding-top: clamp(.55rem, 2.2vw, .9rem);
-  border: 1px solid #d8cbb7;
-  background:
-    repeating-radial-gradient(circle at 10% 20%, rgba(113,91,62,.02) 0 1px, transparent 1px 4px),
-    #fffdf7;
-  color: #8a7659;
-  text-align: center;
-  box-shadow: 0 -6px 18px rgba(76,58,41,.12);
-}
-
-.card-monogram { display: block; font-size: .78rem; letter-spacing: .2em; }
-.card-monogram i { font-family: "Segoe Script", cursive; font-size: 1.1rem; font-weight: 400; }
-.card-date { display: block; margin-top: .3rem; font-size: .43rem; letter-spacing: .18em; }
-
 .whole-envelope-art {
   position: absolute;
   z-index: 2;
@@ -187,6 +165,21 @@ button, a { font: inherit; }
   width: 132.4%;
   height: auto;
   transform-origin: 50% 0;
+}
+
+.envelope-opening-seam {
+  position: absolute;
+  z-index: 4;
+  top: 43.5%;
+  left: 18%;
+  display: block;
+  width: 64%;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(151, 119, 77, .78), transparent);
+  box-shadow: 0 0 10px rgba(174, 137, 89, .32);
+  transform-origin: center;
+  pointer-events: none;
 }
 
 .whole-envelope-image {
