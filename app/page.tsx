@@ -229,7 +229,6 @@ function CeremonyDetails() {
 
       <article className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
-          <p className="timeline-kicker">17 · 10 · 2026</p>
           <h2 id="timeline-heading">{arabic.timelineHeading}</h2>
           <ol className="wedding-timeline" aria-label={arabic.timelineHeading}>
             {arabic.timeline.map((item) => (

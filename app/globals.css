@@ -384,15 +384,8 @@ button, a { font: inherit; }
 
 .timeline-card::before { display: none; }
 
-.timeline-kicker {
-  color: #a18a65;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: .63rem !important;
-  letter-spacing: .22em;
-}
-
 .timeline-card h2 {
-  margin-top: .45rem;
+  margin-top: 0;
   margin-bottom: clamp(1.6rem, 5vw, 2.2rem);
   font-weight: 700;
 }

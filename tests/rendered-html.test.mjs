@@ -68,6 +68,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /className="supporting-card timeline-card/);
   assert.match(page, /className="wedding-timeline"/);
   assert.match(page, /className="timeline-copy"/);
+  assert.doesNotMatch(page, /timeline-kicker/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
   assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);
   assert.doesNotMatch(page, /<header>/);
