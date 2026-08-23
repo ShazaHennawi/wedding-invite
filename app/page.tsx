@@ -209,19 +209,25 @@ function CeremonyDetails() {
           <section className="ceremony-summary" aria-label={`موعد الإكليل ${invitation.wedding.date}`}>
             <p>وذلك في تمام الساعة {invitation.wedding.time}</p>
             <p>مساء يوم {arabic.day} الموافق {arabic.dateNumber} {arabic.month} {arabic.year}</p>
-            <address>
-              <strong>في {invitation.wedding.venue}</strong>
-            </address>
           </section>
 
           <p className="arabic-closing">{arabic.closing}</p>
           <p className="arabic-congratulations">{arabic.congratulations}</p>
-
-          <section className="gift-section" aria-labelledby="gift-heading">
-            <h2 id="gift-heading">{arabic.giftHeading}</h2>
-            <p>{arabic.giftMessage}</p>
-          </section>
         </div>
+      </article>
+
+      <article className="paper-frame supporting-card location-card arabic-invitation w-full text-center" dir="rtl" lang="ar">
+        <section className="supporting-card-content" aria-labelledby="location-heading">
+          <h2 id="location-heading">{arabic.locationHeading}</h2>
+          <address>{invitation.wedding.venue}</address>
+        </section>
+      </article>
+
+      <article className="paper-frame supporting-card gift-card arabic-invitation w-full text-center" dir="rtl" lang="ar">
+        <section className="supporting-card-content" aria-labelledby="gift-heading">
+          <h2 id="gift-heading">{arabic.giftHeading}</h2>
+          <p>{arabic.giftMessage}</p>
+        </section>
       </article>
     </motion.main>
   );
