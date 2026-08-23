@@ -219,34 +219,37 @@ button, a { font: inherit; }
 
 .arabic-blessing {
   display: flex;
-  max-width: 360px;
+  width: min(100%, 370px);
+  min-height: 2.8em;
   margin: 0 auto .15rem;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: center;
-  gap: .18em;
-  font-size: clamp(.92rem, 3.8vw, 1.12rem);
+  gap: .13em;
+  font-size: clamp(.78rem, 3.15vw, .98rem);
   font-weight: 400;
   font-style: italic;
-  line-height: 1.75;
-  text-wrap: balance;
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
-.blessing-arc {
+.blessing-arc-word {
   display: inline-block;
-  transform-origin: 50% 100%;
+  transform-origin: 50% 50%;
 }
 
-.blessing-arc-1 {
-  transform: translateY(.18em) rotate(-2.2deg);
-}
-
-.blessing-arc-2 {
-  transform: translateY(-.14em);
-}
-
-.blessing-arc-3 {
-  transform: translateY(.18em) rotate(2.2deg);
-}
+.blessing-arc-word:nth-child(1) { transform: translateY(.92em) rotate(13deg); }
+.blessing-arc-word:nth-child(2) { transform: translateY(.63em) rotate(10deg); }
+.blessing-arc-word:nth-child(3) { transform: translateY(.39em) rotate(7deg); }
+.blessing-arc-word:nth-child(4) { transform: translateY(.21em) rotate(5deg); }
+.blessing-arc-word:nth-child(5) { transform: translateY(.08em) rotate(3deg); }
+.blessing-arc-word:nth-child(6) { transform: translateY(.01em) rotate(1deg); }
+.blessing-arc-word:nth-child(7) { transform: translateY(0); }
+.blessing-arc-word:nth-child(8) { transform: translateY(.01em) rotate(-1deg); }
+.blessing-arc-word:nth-child(9) { transform: translateY(.08em) rotate(-3deg); }
+.blessing-arc-word:nth-child(10) { transform: translateY(.21em) rotate(-5deg); }
+.blessing-arc-word:nth-child(11) { transform: translateY(.39em) rotate(-7deg); }
+.blessing-arc-word:nth-child(12) { transform: translateY(.63em) rotate(-10deg); }
+.blessing-arc-word:nth-child(13) { transform: translateY(.92em) rotate(-13deg); }
 
 .blessing-cross {
   display: inline-flex;
