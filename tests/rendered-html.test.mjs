@@ -62,6 +62,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /maps-button/);
   assert.match(page, /className="paper-frame supporting-card location-card/);
   assert.match(page, /className="paper-frame supporting-card gift-card/);
+  assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
+  assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);
   assert.doesNotMatch(page, /<header>/);
   assert.doesNotMatch(page, /className="couple-names"/);
   assert.match(page, /useReducedMotion/);
@@ -88,6 +90,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
+  assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
+  assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
   assert.match(css, /min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);

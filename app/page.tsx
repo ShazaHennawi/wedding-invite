@@ -208,7 +208,10 @@ function CeremonyDetails() {
 
           <section className="ceremony-summary" aria-label={`موعد الإكليل ${invitation.wedding.date}`}>
             <p>وذلك في تمام الساعة {invitation.wedding.time}</p>
-            <p>مساء يوم {arabic.day} الموافق {arabic.dateNumber} {arabic.month} {arabic.year}</p>
+            <p>
+              مساء يوم {arabic.day} الموافق <strong>{arabic.dateNumber}</strong> {arabic.month}{" "}
+              <strong>{arabic.year}</strong>
+            </p>
           </section>
 
           <p className="arabic-closing">{arabic.closing}</p>

@@ -220,28 +220,30 @@ button, a { font: inherit; }
 .arabic-blessing {
   max-width: 330px;
   margin: 0 auto clamp(2rem, 7svh, 4.2rem);
-  font-size: clamp(1.04rem, 4.3vw, 1.4rem);
-  font-weight: 600;
-  line-height: 1.9;
+  font-size: clamp(.92rem, 3.8vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.75;
   text-wrap: balance;
 }
 
 .arabic-families {
-  display: grid;
+  display: flex;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
-  gap: .75rem;
-  margin: 0 auto clamp(2rem, 6svh, 3.6rem);
-  font-size: clamp(1.25rem, 5.4vw, 1.65rem);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(.55rem, 3vw, 1rem);
+  margin: 0 auto clamp(1.8rem, 5.5svh, 3.2rem);
+  font-size: clamp(.84rem, 3.7vw, 1.04rem);
   font-weight: 700;
-  line-height: 1.55;
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
 .arabic-invitation-line {
-  margin: 0 auto clamp(1.6rem, 5svh, 3rem);
-  font-size: clamp(1.2rem, 5.1vw, 1.55rem);
-  font-weight: 600;
-  line-height: 1.8;
+  margin: 0 auto clamp(1.35rem, 4.5svh, 2.6rem);
+  font-size: clamp(.96rem, 4.1vw, 1.18rem);
+  font-weight: 400;
+  line-height: 1.7;
 }
 
 .arabic-couple-names {
@@ -249,9 +251,9 @@ button, a { font: inherit; }
   align-items: center;
   justify-content: center;
   gap: clamp(.9rem, 4.5vw, 1.7rem);
-  margin: 0 auto clamp(1.8rem, 6svh, 3.8rem);
-  color: #927946;
-  font-size: clamp(2.25rem, 10.5vw, 3.2rem);
+  margin: 0 auto clamp(1.55rem, 5svh, 3.2rem);
+  color: #756548;
+  font-size: clamp(2rem, 9vw, 2.65rem);
   font-weight: 700;
   line-height: 1.25;
 }
@@ -276,9 +278,9 @@ button, a { font: inherit; }
 .ceremony-summary {
   max-width: 340px;
   margin: 0 auto;
-  font-size: clamp(1.12rem, 4.8vw, 1.42rem);
-  font-weight: 600;
-  line-height: 1.85;
+  font-size: clamp(.94rem, 4vw, 1.14rem);
+  font-weight: 400;
+  line-height: 1.75;
 }
 
 .ceremony-summary p { margin: 0; }
@@ -293,15 +295,16 @@ button, a { font: inherit; }
 
 .arabic-closing {
   max-width: 350px;
-  margin: clamp(1.7rem, 5svh, 3rem) auto .4rem;
-  font-size: clamp(1.2rem, 5vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.8;
+  margin: clamp(1.5rem, 4.8svh, 2.7rem) auto .4rem;
+  font-size: clamp(.96rem, 4vw, 1.16rem);
+  font-weight: 400;
+  line-height: 1.7;
 }
 
 .arabic-congratulations {
   margin: .85rem 0 0;
-  font-size: .82rem;
+  font-size: .72rem;
+  font-weight: 400;
 }
 
 .supporting-card {
@@ -315,23 +318,23 @@ button, a { font: inherit; }
   width: min(100%, 340px);
   margin: 0 auto;
   padding: clamp(2.3rem, 7svh, 3.5rem) clamp(1.4rem, 6vw, 2.5rem);
-  color: #786848;
+  color: #756548;
 }
 
 .supporting-card h2 {
   margin: 0 0 .65rem;
-  color: #927946;
-  font-size: clamp(1.3rem, 5.6vw, 1.65rem);
-  font-weight: 700;
+  color: #756548;
+  font-size: clamp(1.15rem, 4.8vw, 1.4rem);
+  font-weight: 400;
   line-height: 1.2;
 }
 
 .supporting-card p,
 .supporting-card address {
   margin: 0;
-  font-size: clamp(.95rem, 4vw, 1.15rem);
-  font-weight: 600;
-  line-height: 1.9;
+  font-size: clamp(.9rem, 3.8vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.75;
   text-wrap: balance;
 }
 
