@@ -171,11 +171,11 @@ function TimelineStep({
   progress: MotionValue<number>;
   reducedMotion: boolean;
 }) {
-  const revealAt = 0.1 + index * 0.22;
-  const opacity = useTransform(progress, [revealAt - 0.07, revealAt + 0.07], [0.12, 1]);
-  const y = useTransform(progress, [revealAt - 0.07, revealAt + 0.07], [24, 0]);
-  const iconScale = useTransform(progress, [revealAt - 0.05, revealAt, revealAt + 0.075], [0.54, 1.16, 1]);
-  const iconRotate = useTransform(progress, [revealAt - 0.05, revealAt + 0.075], [-5, 0]);
+  const revealAt = 0.02 + index * 0.16;
+  const opacity = useTransform(progress, [revealAt - 0.04, revealAt + 0.04], [0.12, 1]);
+  const y = useTransform(progress, [revealAt - 0.04, revealAt + 0.04], [20, 0]);
+  const iconScale = useTransform(progress, [revealAt - 0.03, revealAt, revealAt + 0.05], [0.58, 1.18, 1]);
+  const iconRotate = useTransform(progress, [revealAt - 0.03, revealAt + 0.05], [-4, 0]);
 
   return (
     <motion.li style={reducedMotion ? undefined : { opacity, y }}>
@@ -205,10 +205,11 @@ function CeremonyDetails() {
     target: timelineSectionRef,
     offset: ["start start", "end end"],
   });
-  const timelineProgress = useSpring(timelineScrollProgress, {
-    stiffness: 105,
-    damping: 24,
-    mass: 0.32,
+  const acceleratedTimelineProgress = useTransform(timelineScrollProgress, [0, 0.68], [0, 1], { clamp: true });
+  const timelineProgress = useSpring(acceleratedTimelineProgress, {
+    stiffness: 240,
+    damping: 26,
+    mass: 0.18,
   });
 
   useEffect(() => {

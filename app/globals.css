@@ -381,7 +381,7 @@ button, a { font: inherit; }
 .timeline-card {
   width: 100vw;
   max-width: none;
-  min-height: 210svh;
+  min-height: 180svh;
   margin-inline: calc(50% - 50vw);
   overflow: visible;
   border: 0;
@@ -398,12 +398,13 @@ button, a { font: inherit; }
   margin-top: 0;
   margin-bottom: clamp(1.2rem, 3.5svh, 2rem);
   font-weight: 700;
+  font-size: clamp(1.45rem, 6vw, 1.8rem);
 }
 
 .wedding-timeline {
   position: relative;
   display: grid;
-  width: min(100%, 330px);
+  width: min(100%, 370px);
   gap: clamp(.45rem, 1.5svh, .8rem);
   margin: 0 auto;
   padding: 0;
@@ -439,7 +440,7 @@ button, a { font: inherit; }
   z-index: 1;
   display: grid;
   min-width: 0;
-  min-height: clamp(4.7rem, 14svh, 7.2rem);
+  min-height: clamp(5.4rem, 15.5svh, 8rem);
   grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
   column-gap: clamp(.65rem, 3vw, 1.15rem);
   align-items: center;
@@ -481,8 +482,8 @@ button, a { font: inherit; }
 
 .timeline-icon {
   display: block;
-  width: 4.35rem;
-  height: 3.7rem;
+  width: 5.15rem;
+  height: 4.4rem;
   background-image: url("/wedding-timeline-icons-transparent.png");
   background-repeat: no-repeat;
   background-size: 300% 200%;
@@ -513,7 +514,7 @@ button, a { font: inherit; }
 
 .timeline-label {
   color: #a18a65;
-  font-size: clamp(.72rem, 3.1vw, .9rem);
+  font-size: clamp(.9rem, 3.8vw, 1.08rem);
   font-weight: 700;
   line-height: 1.25;
   white-space: nowrap;
@@ -523,7 +524,7 @@ button, a { font: inherit; }
   margin-top: .12rem;
   color: #a18a65;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.5rem, 2vw, .62rem);
+  font-size: clamp(.62rem, 2.5vw, .76rem);
   font-style: italic;
   line-height: 1.2;
 }
@@ -539,8 +540,8 @@ button, a { font: inherit; }
   .ceremony-content { padding-inline: 2.25rem; }
   .arabic-couple-names { gap: 1rem; }
   .timeline-card-content { padding-inline: .8rem; }
-  .wedding-timeline { width: min(100%, 285px); gap: .35rem; }
-  .timeline-icon { width: 3.8rem; height: 3.25rem; }
+  .wedding-timeline { width: min(100%, 300px); gap: .3rem; }
+  .timeline-icon { width: 4.35rem; height: 3.7rem; }
   .wedding-timeline li { grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr); column-gap: .45rem; }
   .wedding-timeline::before { top: 1.35rem; bottom: 1.35rem; }
   .timeline-progress { top: 1.35rem; bottom: 1.35rem; }

@@ -75,7 +75,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /className="timeline-progress"/);
   assert.match(page, /function TimelineStep/);
   assert.match(page, /offset: \["start start", "end end"\]/);
-  assert.match(page, /\[0\.54, 1\.16, 1\]/);
+  assert.match(page, /0\.02 \+ index \* 0\.16/);
+  assert.match(page, /\[0, 0\.68\], \[0, 1\]/);
+  assert.match(page, /stiffness: 240/);
+  assert.match(page, /\[0\.58, 1\.18, 1\]/);
   assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
   assert.doesNotMatch(page, /timeline-kicker/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
@@ -112,7 +115,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
-  assert.match(css, /\.timeline-card[\s\S]*min-height:\s*210svh[\s\S]*background:\s*transparent/);
+  assert.match(css, /\.timeline-card[\s\S]*min-height:\s*180svh[\s\S]*background:\s*transparent/);
   assert.match(css, /\.timeline-card-content[\s\S]*position:\s*sticky[\s\S]*min-height:\s*100svh/);
   assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.575rem[\s\S]*width:\s*1px/);
   assert.match(css, /\.timeline-progress[\s\S]*width:\s*2px[\s\S]*transform-origin:\s*50% 0%/);
@@ -121,6 +124,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /li:nth-child\(odd\) \.timeline-step-content[\s\S]*grid-column:\s*1/);
   assert.match(css, /li:nth-child\(even\) \.timeline-step-content[\s\S]*grid-column:\s*3/);
   assert.match(css, /\.timeline-icon[\s\S]*wedding-timeline-icons-transparent\.png/);
+  assert.match(css, /\.timeline-icon[\s\S]*width:\s*5\.15rem[\s\S]*height:\s*4\.4rem/);
   assert.match(css, /\.timeline-icon-church[\s\S]*background-position:\s*0 100%/);
   assert.match(css, /\.timeline-icon-camera[\s\S]*background-position:\s*100% 0/);
   assert.match(css, /\.timeline-icon-table[\s\S]*background-position:\s*0 0/);
