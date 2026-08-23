@@ -302,12 +302,6 @@ button, a { font: inherit; }
   line-height: 1.7;
 }
 
-.arabic-congratulations {
-  margin: .85rem 0 0;
-  font-size: .72rem;
-  font-weight: 400;
-}
-
 .supporting-card {
   width: min(100%, 430px);
   min-height: 0;

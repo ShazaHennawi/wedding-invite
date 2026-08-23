@@ -21,7 +21,6 @@ export const invitationConfig = {
     dateNumber: "17",
     year: "2026",
     closing: "فرحتنا تبدأ مع الرب وتكتمل بحضوركم",
-    congratulations: "تُقبل التهاني في الكنيسة",
     locationHeading: "الموقع",
     giftHeading: "هديّة",
     giftMessage:

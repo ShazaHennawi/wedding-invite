@@ -216,7 +216,6 @@ function CeremonyDetails() {
           </section>
 
           <p className="arabic-closing">{arabic.closing}</p>
-          <p className="arabic-congratulations">{arabic.congratulations}</p>
         </div>
       </article>
 
