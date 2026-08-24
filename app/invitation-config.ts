@@ -43,8 +43,8 @@ export const invitationConfig = {
     focalPosition: "center center",
   },
   copy: {
-    invitation:
-      "Together with our families, we invite you to celebrate our wedding.",
+    announcement: "We're Getting Married",
+    invitation: "You’re Invited",
     openPrompt: "Tap to open",
   },
   music: {

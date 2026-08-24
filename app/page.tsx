@@ -126,11 +126,13 @@ function Landing({ onOpen }: { onOpen: () => void }) {
       transition={{ duration: reducedMotion ? 0.2 : 0.48 }}
     >
       <article className="landing-card mx-auto flex w-full max-w-[430px] flex-col items-center pb-6 text-center">
+        <p className="wedding-announcement">{invitation.copy.announcement}</p>
+
         <figure className="landing-art">
           <CoupleMedia />
         </figure>
 
-        <p className="invitation-copy mt-4 max-w-[290px] px-4">{invitation.copy.invitation}</p>
+        <h1 className="invitation-copy">{invitation.copy.invitation}</h1>
 
         <motion.button
           className="envelope-button mt-3"

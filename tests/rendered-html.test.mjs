@@ -22,7 +22,8 @@ test("server-renders the closed wedding invitation", async () => {
   const html = await response.text();
   assert.match(html, /<title>Isaac &amp; Shaza — Wedding Invitation<\/title>/i);
   assert.match(html, /Isaac &amp; Shaza/);
-  assert.match(html, /Together with our families/);
+  assert.match(html, /We(?:&#x27;|')re Getting Married/);
+  assert.match(html, /You’re Invited/);
   assert.match(html, /Isaac and Shaza together/);
   assert.doesNotMatch(html, /class="eyebrow"/);
   assert.match(html, /aria-label="Open the wedding invitation"/);

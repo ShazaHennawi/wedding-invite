@@ -72,6 +72,17 @@ button, a { font: inherit; }
   background: transparent;
 }
 
+.wedding-announcement {
+  margin: clamp(1.35rem, 5svh, 2.4rem) 0 clamp(.5rem, 1.8svh, .9rem);
+  color: var(--gold);
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(.82rem, 3.7vw, 1rem);
+  font-weight: 600;
+  letter-spacing: .2em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .landing-art {
   width: 100%;
   aspect-ratio: 1890 / 2363;
@@ -97,11 +108,15 @@ button, a { font: inherit; }
 .media-fill { width: 100%; height: 100%; object-fit: contain; }
 
 .invitation-copy {
-  margin-bottom: 0;
-  color: var(--ink-soft);
-  font-size: .86rem;
+  margin: clamp(.7rem, 2.5svh, 1.15rem) 0 0;
+  padding: 0 1rem;
+  color: var(--gold);
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(2.25rem, 10.5vw, 3.2rem);
+  font-weight: 500;
   font-style: italic;
-  line-height: 1.52;
+  letter-spacing: -.025em;
+  line-height: 1.05;
 }
 
 .envelope-button {
