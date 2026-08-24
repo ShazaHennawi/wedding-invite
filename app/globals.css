@@ -381,7 +381,7 @@ button, a { font: inherit; }
 .timeline-card {
   width: 100vw;
   max-width: none;
-  min-height: 150svh;
+  min-height: 100svh;
   margin-inline: calc(50% - 50vw);
   overflow: visible;
   border: 0;

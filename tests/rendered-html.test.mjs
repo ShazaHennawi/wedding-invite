@@ -137,7 +137,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /background-size:\s*100% 100%/);
   assert.match(css, /background-blend-mode:\s*normal/);
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
-  assert.match(css, /\.timeline-card[\s\S]*min-height:\s*150svh[\s\S]*background:\s*transparent/);
+  assert.match(css, /\.timeline-card[\s\S]*min-height:\s*100svh[\s\S]*background:\s*transparent/);
   assert.match(css, /\.timeline-card-content[\s\S]*position:\s*sticky[\s\S]*min-height:\s*100svh/);
   assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.575rem[\s\S]*width:\s*2px/);
   assert.match(css, /\.timeline-progress[\s\S]*width:\s*3px[\s\S]*transform-origin:\s*50% 0%/);
