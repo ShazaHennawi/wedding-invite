@@ -46,6 +46,7 @@ button, a { font: inherit; }
 .details-shell {
   row-gap: clamp(.85rem, 2.5svh, 1.5rem);
   padding: clamp(.75rem, 2.5vw, 1.5rem) !important;
+  padding-bottom: max(3.5rem, calc(2.5rem + env(safe-area-inset-bottom))) !important;
 }
 
 .paper-frame {
