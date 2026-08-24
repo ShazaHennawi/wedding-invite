@@ -30,8 +30,18 @@ export const invitationConfig = {
     gift: {
       message:
         "حضوركم هو الهدية الأجمل بالنسبة لنا؛ وإن أحببتم مشاركة فرحتنا بهدية، يمكنكم ذلك عبر الحسابات البنكية التالية، مع خالص الشكر والمحبة.",
-      iban: "DE11 1005 0000 1071 4190 79",
-      bic: "BELADEBEXXX",
+      accounts: [
+        {
+          label: "الحساب الأول",
+          iban: "DE11 1005 0000 1071 4190 79",
+          bic: "BELADEBEXXX",
+        },
+        {
+          label: "الحساب الثاني",
+          iban: "[SECOND IBAN]",
+          bic: "[SECOND BIC]",
+        },
+      ],
     },
   },
   media: {

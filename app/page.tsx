@@ -298,23 +298,35 @@ function CeremonyDetails() {
           className="supporting-card-content gift-card-content"
           aria-label="معلومات الحسابات البنكية للهديّة"
         >
-          <span className="gift-crest" aria-hidden="true">
-            <img src="/envelope-whole.png" alt="" />
+          <span className="gift-monogram" aria-hidden="true">
+            <span>I</span>
+            <b>&amp;</b>
+            <span>S</span>
           </span>
           <span className="gift-divider" aria-hidden="true">
             <span>❦</span>
           </span>
           <p className="gift-message">{arabic.gift.message}</p>
-          <dl className="gift-bank-details">
-            <div>
-              <dt>IBAN</dt>
-              <dd dir="ltr">{arabic.gift.iban}</dd>
-            </div>
-            <div>
-              <dt>BIC</dt>
-              <dd dir="ltr">{arabic.gift.bic}</dd>
-            </div>
-          </dl>
+          <div className="gift-accounts">
+            {arabic.gift.accounts.map((account, index) => (
+              <section className="gift-account" aria-label={account.label} key={account.label}>
+                <span className="gift-account-number" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="gift-account-label">{account.label}</p>
+                <dl className="gift-bank-details">
+                  <div>
+                    <dt>IBAN</dt>
+                    <dd dir="ltr">{account.iban}</dd>
+                  </div>
+                  <div>
+                    <dt>BIC</dt>
+                    <dd dir="ltr">{account.bic}</dd>
+                  </div>
+                </dl>
+              </section>
+            ))}
+          </div>
         </section>
       </article>
     </motion.main>
