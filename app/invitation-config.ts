@@ -38,8 +38,8 @@ export const invitationConfig = {
   },
   media: {
     type: "image" as "image" | "video",
-    src: "/landing-couple-frame-mirror.png",
-    poster: "/landing-couple-frame-mirror.png",
+    src: "/landing-couple-frame-new.png",
+    poster: "/landing-couple-frame-new.png",
     alt: "Isaac and Shaza together",
     focalPosition: "center center",
   },
@@ -52,6 +52,8 @@ export const invitationConfig = {
     youtubeVideoId: "6W3-rHzCqkY",
     title: "Wedding music",
     volume: 22,
+    startTime: 20,
+    endTime: 66,
   },
 } as const;
 

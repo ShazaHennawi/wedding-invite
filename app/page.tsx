@@ -97,7 +97,7 @@ function CeremonyMusic({ active }: { active: boolean }) {
   if (!active) return null;
 
   const videoId = invitation.music.youtubeVideoId;
-  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
+  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&start=${invitation.music.startTime}&end=${invitation.music.endTime}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
 
   return (
     <iframe
