@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-static";
+
 import { useState } from "react";
 import { invitationConfig as invitation } from "../invitation-config";
 

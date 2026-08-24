@@ -245,7 +245,7 @@ button, a { font: inherit; }
   color: #a18a65;
   font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
   background-color: var(--paper);
-  background-image: url("/ceremony-background-ornate.png");
+  background-image: var(--ceremony-background-image);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -545,7 +545,7 @@ button, a { font: inherit; }
   display: block;
   width: 6.2rem;
   height: 5.3rem;
-  background-image: url("/wedding-timeline-icons-transparent.png");
+  background-image: var(--timeline-icons-image);
   background-repeat: no-repeat;
   background-size: 300% 200%;
   flex: 0 0 auto;

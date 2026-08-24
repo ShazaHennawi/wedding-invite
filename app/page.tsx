@@ -1,9 +1,12 @@
 "use client";
 
+export const dynamic = "force-static";
+
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { assetPath } from "./asset-path";
 import { invitationConfig as invitation } from "./invitation-config";
 
 type ExperienceState = "closed" | "details";
@@ -30,8 +33,8 @@ function CoupleMedia() {
       <video
         ref={videoRef}
         className="media-fill"
-        src={invitation.media.src}
-        poster={invitation.media.poster}
+        src={assetPath(invitation.media.src)}
+        poster={assetPath(invitation.media.poster)}
         autoPlay
         muted
         loop
@@ -46,7 +49,7 @@ function CoupleMedia() {
 
   return (
     <Image
-      src={invitation.media.type === "video" ? invitation.media.poster : invitation.media.src}
+      src={assetPath(invitation.media.type === "video" ? invitation.media.poster : invitation.media.src)}
       alt={invitation.media.alt}
       width={1620}
       height={2025}
@@ -63,7 +66,7 @@ function Envelope() {
     <span className="envelope" aria-hidden="true">
       <span className="whole-envelope-art">
         <Image
-          src="/envelope-whole.png"
+          src={assetPath("/envelope-whole.png")}
           alt=""
           width={1366}
           height={1708}
@@ -236,7 +239,7 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
 
           <span className="blessing-cross" aria-hidden="true">
             <Image
-              src="/bible-cross-cutout.png"
+              src={assetPath("/bible-cross-cutout.png")}
               alt=""
               width={1024}
               height={1536}
@@ -275,7 +278,7 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
           <div className="timeline-ornament" aria-hidden="true">
             <Image
-              src="/wedding-program-ornament-transparent.png"
+              src={assetPath("/wedding-program-ornament-transparent.png")}
               alt=""
               width={2172}
               height={724}
@@ -311,7 +314,7 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
       >
         <div className="gift-cover-art">
               <Image
-                src="/gift-cover-card-arabic-details.png"
+                src={assetPath("/gift-cover-card-arabic-details.png")}
                 alt="Gift details cover"
                 width={1480}
                 height={1480}
@@ -321,7 +324,7 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
               />
               <a
                 className="gift-cover-button"
-                href="/bank-details"
+                href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/bank-details.html`}
                 onClick={onOpenGift}
                 aria-label="التفاصيل"
               >
@@ -333,7 +336,7 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
       <article className="supporting-card rsvp-card w-full text-center">
         <div className="rsvp-card-art">
           <Image
-            src="/rsvp-confirm-attendance-final.png"
+            src={assetPath("/rsvp-confirm-attendance-final.png")}
             alt="الردّ على الدعوة — تأكيد الحضور"
             width={1536}
             height={1024}

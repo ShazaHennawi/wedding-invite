@@ -1,38 +1,46 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  const origin = `${protocol}://${host}`;
-  const imageUrl = new URL("/og.png", origin).toString();
-  const title = "Isaac & Shaza — Wedding Invitation";
-  const description = "You are invited to celebrate the wedding of Isaac and Shaza.";
+export const dynamic = "force-static";
 
-  return {
-    metadataBase: new URL(origin),
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const [repositoryOwner = "ShazaHennawi", repositoryName = "wedding-invite"] =
+  process.env.GITHUB_REPOSITORY?.split("/") ?? [];
+const siteUrl = isGitHubPages
+  ? `https://${repositoryOwner}.github.io/${repositoryName}/`
+  : process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaac-shaza-wedding.sasha149.chatgpt.site/";
+const imageUrl = new URL("og.png", siteUrl).toString();
+const title = "Isaac & Shaza — Wedding Invitation";
+const description = "You are invited to celebrate the wedding of Isaac and Shaza.";
+const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      images: [{ url: imageUrl, width: 1536, height: 1024, alt: "Isaac & Shaza — 17.10.2026" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [imageUrl],
-    },
-  };
-}
+    type: "website",
+    images: [{ url: imageUrl, width: 1536, height: 1024, alt: "Isaac & Shaza — 17.10.2026" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [imageUrl],
+  },
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        "--ceremony-background-image": `url("${assetBasePath}/ceremony-background-ornate.png")`,
+        "--timeline-icons-image": `url("${assetBasePath}/wedding-timeline-icons-transparent.png")`,
+      } as React.CSSProperties}
+    >
       <body>{children}</body>
     </html>
   );
