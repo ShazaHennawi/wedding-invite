@@ -12,6 +12,8 @@ type MusicController = {
   play: () => void;
   pause: () => void;
 };
+const RETURN_VIEW_KEY = "wedding-invitation-return-view";
+const RETURN_SCROLL_KEY = "wedding-invitation-return-scroll";
 
 function CoupleMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -189,7 +191,7 @@ function TimelineStep({
   );
 }
 
-function CeremonyDetails() {
+function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
   const timelineSectionRef = useRef<HTMLElement>(null);
@@ -320,6 +322,7 @@ function CeremonyDetails() {
               <a
                 className="gift-cover-button"
                 href="/bank-details"
+                onClick={onOpenGift}
                 aria-label="التفاصيل"
               >
                 <span className="sr-only">التفاصيل</span>
@@ -357,7 +360,29 @@ function CeremonyDetails() {
 export default function Home() {
   const [state, setState] = useState<ExperienceState>("closed");
   const [musicPlaying, setMusicPlaying] = useState(false);
+  const [returnScroll, setReturnScroll] = useState<number | null>(null);
   const musicRef = useRef<MusicController>(null);
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem(RETURN_VIEW_KEY) !== "details") return;
+
+    const savedScroll = Number(window.sessionStorage.getItem(RETURN_SCROLL_KEY));
+    window.sessionStorage.removeItem(RETURN_VIEW_KEY);
+    window.sessionStorage.removeItem(RETURN_SCROLL_KEY);
+    setReturnScroll(Number.isFinite(savedScroll) ? savedScroll : 0);
+    setState("details");
+  }, []);
+
+  useEffect(() => {
+    if (state !== "details" || returnScroll === null) return;
+
+    const restore = window.setTimeout(() => {
+      window.scrollTo({ top: returnScroll, behavior: "auto" });
+      setReturnScroll(null);
+    }, 80);
+
+    return () => window.clearTimeout(restore);
+  }, [returnScroll, state]);
 
   const openInvitation = () => {
     if (state !== "closed") return;
@@ -375,12 +400,17 @@ export default function Home() {
     setMusicPlaying((playing) => !playing);
   };
 
+  const rememberInvitationPosition = () => {
+    window.sessionStorage.setItem(RETURN_VIEW_KEY, "details");
+    window.sessionStorage.setItem(RETURN_SCROLL_KEY, String(window.scrollY));
+  };
+
   return (
     <>
       <CeremonyMusic ref={musicRef} />
       <AnimatePresence mode="wait">
         {state === "details" ? (
-          <CeremonyDetails />
+          <CeremonyDetails onOpenGift={rememberInvitationPosition} />
         ) : (
           <Landing onOpen={openInvitation} />
         )}
