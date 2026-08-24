@@ -83,7 +83,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /\[0\.58, 1\.18, 1\]/);
   assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
   assert.doesNotMatch(page, /timeline-kicker/);
-  assert.match(page, /className="supporting-card gift-card/);
+  assert.match(page, /className=\{`supporting-card gift-card/);
+  assert.match(page, /src="\/gift-cover\.png"/);
+  assert.match(page, /className="gift-cover-button"/);
   assert.match(page, /className="gift-message"/);
   assert.match(page, /className="gift-bank-details"/);
   assert.match(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);

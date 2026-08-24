@@ -193,6 +193,7 @@ function TimelineStep({
 
 function CeremonyDetails() {
   const reducedMotion = Boolean(useReducedMotion());
+  const [giftOpen, setGiftOpen] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const timelineSectionRef = useRef<HTMLElement>(null);
   const arabic = invitation.arabicCeremony;
@@ -293,11 +294,48 @@ function CeremonyDetails() {
         </section>
       </article>
 
-      <article className="supporting-card gift-card w-full text-center" dir="rtl" lang="ar">
-        <section
-          className="supporting-card-content gift-card-content"
-          aria-label="معلومات الحسابات البنكية للهديّة"
-        >
+      <article
+        className={`supporting-card gift-card w-full text-center ${giftOpen ? "gift-card-open" : "gift-card-cover"}`}
+        dir="rtl"
+        lang="ar"
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {!giftOpen ? (
+            <motion.div
+              className="gift-cover-art"
+              key="gift-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, scale: reducedMotion ? 1 : 0.985 }}
+              transition={{ duration: reducedMotion ? 0.15 : 0.42, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image
+                src="/gift-cover.png"
+                alt="Gift details cover"
+                width={1080}
+                height={1350}
+                sizes="(max-width: 430px) 100vw, 430px"
+                className="gift-cover-image"
+                draggable={false}
+              />
+              <button
+                type="button"
+                className="gift-cover-button"
+                onClick={() => setGiftOpen(true)}
+                aria-label="عرض تفاصيل الهدية والحسابات البنكية"
+              >
+                <span className="sr-only">عرض تفاصيل الهدية والحسابات البنكية</span>
+              </button>
+            </motion.div>
+          ) : (
+            <motion.section
+              className="supporting-card-content gift-card-content"
+              aria-label="معلومات الحسابات البنكية للهديّة"
+              key="gift-details"
+              initial={{ opacity: 0, y: reducedMotion ? 0 : 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reducedMotion ? 0.15 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+            >
           <span className="gift-monogram" aria-hidden="true">
             <span>I</span>
             <b>&amp;</b>
@@ -326,8 +364,10 @@ function CeremonyDetails() {
                 </dl>
               </section>
             ))}
-          </div>
-        </section>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
       </article>
     </motion.main>
   );
