@@ -294,8 +294,10 @@ function CeremonyDetails() {
       </article>
 
       <article className="supporting-card gift-card w-full text-center" dir="rtl" lang="ar">
-        <section className="supporting-card-content gift-card-content" aria-labelledby="gift-heading">
-          <h2 id="gift-heading">{arabic.gift.heading}</h2>
+        <section
+          className="supporting-card-content gift-card-content"
+          aria-label="معلومات الحسابات البنكية للهديّة"
+        >
           <p className="gift-message">{arabic.gift.message}</p>
           <dl className="gift-bank-details">
             <div>

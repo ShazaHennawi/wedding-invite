@@ -540,12 +540,6 @@ button, a { font: inherit; }
   padding: clamp(3rem, 9svh, 4.8rem) clamp(1.5rem, 7vw, 2.6rem);
 }
 
-.gift-card h2 {
-  margin-bottom: clamp(1rem, 3svh, 1.5rem);
-  font-size: clamp(1.55rem, 6.5vw, 1.95rem);
-  font-weight: 700;
-}
-
 .gift-message {
   color: #a18a65;
   font-size: clamp(1rem, 4.3vw, 1.22rem) !important;
