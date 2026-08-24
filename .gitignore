@@ -40,3 +40,7 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+
+# local publishing artifacts and unused design backups
+/.openai/deployment.tar.gz
+/public/rsvp-ornate-card.png
