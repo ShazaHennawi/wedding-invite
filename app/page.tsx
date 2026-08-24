@@ -332,7 +332,7 @@ function CeremonyDetails() {
       <article className="supporting-card rsvp-card w-full text-center">
         <div className="rsvp-card-art">
           <Image
-            src="/rsvp-confirm-attendance-arabic-wide.png"
+            src="/rsvp-confirm-attendance-final.png"
             alt="الردّ على الدعوة — تأكيد الحضور"
             width={1536}
             height={1024}

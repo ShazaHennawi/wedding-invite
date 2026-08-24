@@ -53,7 +53,7 @@ export const invitationConfig = {
     title: "Wedding music",
     volume: 22,
     startTime: 20,
-    endTime: 66,
+    endTime: 65,
   },
 } as const;
 
