@@ -1,14 +1,17 @@
 import type { NextConfig } from "next";
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
-const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1];
+const [repositoryOwner, repositoryName] = process.env.GITHUB_REPOSITORY?.split("/") ?? [];
 const basePath = isGitHubPages && repositoryName ? `/${repositoryName}` : "";
+const assetPrefix = isGitHubPages && repositoryOwner && repositoryName
+  ? `https://${repositoryOwner}.github.io/${repositoryName}`
+  : "";
 
 const nextConfig: NextConfig = {
   ...(isGitHubPages
     ? {
         output: "export",
-        assetPrefix: basePath,
+        assetPrefix,
         trailingSlash: false,
         images: { unoptimized: true },
       }
