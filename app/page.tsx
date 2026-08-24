@@ -298,6 +298,12 @@ function CeremonyDetails() {
           className="supporting-card-content gift-card-content"
           aria-label="معلومات الحسابات البنكية للهديّة"
         >
+          <span className="gift-crest" aria-hidden="true">
+            <img src="/envelope-whole.png" alt="" />
+          </span>
+          <span className="gift-divider" aria-hidden="true">
+            <span>❦</span>
+          </span>
           <p className="gift-message">{arabic.gift.message}</p>
           <dl className="gift-bank-details">
             <div>

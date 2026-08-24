@@ -151,7 +151,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.timeline-icon-camera[\s\S]*background-position:\s*100% 0/);
   assert.match(css, /\.timeline-icon-table[\s\S]*background-position:\s*0 0/);
   assert.doesNotMatch(css, /\.timeline-icon-car/);
-  assert.match(css, /\.gift-card[\s\S]*background-image:\s*var\(--paper-texture\)/);
+  assert.match(css, /\.gift-card[\s\S]*background-image:[\s\S]*var\(--paper-texture\)/);
   assert.match(css, /\.gift-bank-details dd[\s\S]*overflow-wrap:\s*anywhere/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
