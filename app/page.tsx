@@ -193,7 +193,6 @@ function TimelineStep({
 
 function CeremonyDetails() {
   const reducedMotion = Boolean(useReducedMotion());
-  const [giftOpen, setGiftOpen] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const timelineSectionRef = useRef<HTMLElement>(null);
   const arabic = invitation.arabicCeremony;
@@ -295,72 +294,53 @@ function CeremonyDetails() {
       </article>
 
       <article
-        className={`supporting-card gift-card w-full text-center ${giftOpen ? "gift-card-open" : "gift-card-cover"}`}
+        className="supporting-card gift-card gift-card-cover w-full text-center"
         dir="rtl"
         lang="ar"
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {!giftOpen ? (
-            <motion.div
-              className="gift-cover-art"
-              key="gift-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, scale: reducedMotion ? 1 : 0.985 }}
-              transition={{ duration: reducedMotion ? 0.15 : 0.42, ease: [0.22, 1, 0.36, 1] }}
-            >
+        <div className="gift-cover-art">
               <Image
-                src="/gift-cover.png"
+                src="/gift-cover-card-arabic-details.png"
                 alt="Gift details cover"
-                width={1080}
-                height={1350}
+                width={1480}
+                height={1480}
                 sizes="(max-width: 430px) 100vw, 430px"
                 className="gift-cover-image"
                 draggable={false}
               />
-              <p className="gift-cover-message">{arabic.gift.message}</p>
-              <button
-                type="button"
+              <a
                 className="gift-cover-button"
-                onClick={() => setGiftOpen(true)}
-                aria-label="عرض تفاصيل الهدية والحسابات البنكية"
+                href="/bank-details"
+                aria-label="التفاصيل"
               >
-                <span className="sr-only">عرض تفاصيل الهدية والحسابات البنكية</span>
-              </button>
-            </motion.div>
-          ) : (
-            <motion.section
-              className="gift-card-content"
-              aria-label="معلومات الحسابات البنكية للهديّة"
-              key="gift-details"
-              initial={{ opacity: 0, y: reducedMotion ? 0 : 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reducedMotion ? 0.15 : 0.48, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="gift-accounts">
-                {arabic.gift.accounts.map((account, index) => (
-                  <section className="gift-account" aria-label={account.label} key={account.label}>
-                    <span className="gift-account-number" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <p className="gift-account-label">{account.label}</p>
-                    <dl className="gift-bank-details">
-                      <div>
-                        <dt>IBAN</dt>
-                        <dd dir="ltr">{account.iban}</dd>
-                      </div>
-                      <div>
-                        <dt>BIC</dt>
-                        <dd dir="ltr">{account.bic}</dd>
-                      </div>
-                    </dl>
-                  </section>
-                ))}
-              </div>
-            </motion.section>
-          )}
-        </AnimatePresence>
+                <span className="sr-only">التفاصيل</span>
+              </a>
+        </div>
       </article>
+
+      <article className="supporting-card rsvp-card w-full text-center">
+        <div className="rsvp-card-art">
+          <Image
+            src="/rsvp-confirm-attendance-arabic.png"
+            alt="الردّ على الدعوة — تأكيد الحضور"
+            width={1256}
+            height={1256}
+            sizes="(max-width: 430px) 100vw, 430px"
+            className="rsvp-card-image"
+            draggable={false}
+          />
+          <a
+            className="rsvp-card-button"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="تأكيد الحضور"
+          >
+            <span className="sr-only">تأكيد الحضور</span>
+          </a>
+        </div>
+      </article>
+
     </motion.main>
   );
 }

@@ -197,7 +197,7 @@ button, a { font: inherit; }
   color: #a18a65;
   font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
   background-color: var(--paper);
-  background-image: url("/ceremony-background.png");
+  background-image: url("/ceremony-background-ornate.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -550,9 +550,9 @@ button, a { font: inherit; }
 .gift-card-cover {
   width: min(100%, 430px);
   min-height: 0;
-  aspect-ratio: 640 / 1138;
+  aspect-ratio: 1;
   border: 0;
-  background: transparent;
+  background: transparent var(--paper-texture);
   box-shadow: 0 16px 40px rgba(73, 59, 45, .11);
 }
 
@@ -567,45 +567,29 @@ button, a { font: inherit; }
 
 .gift-cover-image {
   position: absolute;
-  top: 53%;
-  left: 50%;
+  inset: 0;
   display: block;
-  width: 168.5%;
+  width: 100%;
   max-width: none;
-  height: auto;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
   user-select: none;
 }
 
 .gift-cover-button {
   position: absolute;
   z-index: 2;
-  top: 53.5%;
-  left: 26%;
-  width: 48%;
+  top: 66%;
+  left: 29%;
+  width: 42%;
   min-height: 44px;
-  height: 10.5%;
+  height: 13%;
   cursor: pointer;
   border: 0;
   border-radius: 999px;
   background: transparent;
   touch-action: manipulation;
-}
-
-.gift-cover-message {
-  position: absolute;
-  z-index: 1;
-  top: 31%;
-  left: 15%;
-  width: 70%;
-  margin: 0 !important;
-  color: #a18a65;
-  font-size: clamp(.72rem, 3.15vw, .92rem) !important;
-  font-weight: 500 !important;
-  line-height: 1.85 !important;
-  text-align: center;
-  text-wrap: balance;
-  pointer-events: none;
 }
 
 .gift-cover-button:focus-visible {
@@ -614,6 +598,60 @@ button, a { font: inherit; }
 }
 
 .gift-cover-button:hover {
+  background: rgba(255, 255, 255, .12);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .08);
+}
+
+.rsvp-card {
+  position: relative;
+  width: min(100%, 430px);
+  min-height: 0;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border: 0;
+  background: transparent var(--paper-texture);
+  box-shadow: 0 16px 40px rgba(73, 59, 45, .11);
+}
+
+.rsvp-card-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.rsvp-card-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  user-select: none;
+}
+
+.rsvp-card-button {
+  position: absolute;
+  z-index: 2;
+  top: 59%;
+  left: 28%;
+  width: 44%;
+  min-height: 44px;
+  height: 17%;
+  cursor: pointer;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  touch-action: manipulation;
+}
+
+.rsvp-card-button:focus-visible {
+  outline: 2px solid rgba(143, 118, 80, .78);
+  outline-offset: 4px;
+}
+
+.rsvp-card-button:hover {
   background: rgba(255, 255, 255, .12);
   box-shadow: 0 0 0 5px rgba(255, 255, 255, .08);
 }
@@ -713,71 +751,201 @@ button, a { font: inherit; }
   line-height: 2 !important;
 }
 
-.gift-accounts {
-  display: grid;
-  width: 100%;
-  margin: 0;
-  gap: 1rem;
-}
-
-.gift-account {
-  position: relative;
-  padding: 1.1rem 1rem 1rem;
-  border: 1px solid rgba(161, 138, 101, .24);
-  background: rgba(255, 252, 246, .35);
-  box-shadow: inset 0 0 0 5px rgba(255, 255, 255, .18);
-}
-
-.gift-account-number {
-  position: absolute;
-  top: .68rem;
-  left: .78rem;
-  color: rgba(161, 138, 101, .54);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: .62rem;
-  letter-spacing: .12em;
-}
-
-.gift-account-label {
-  margin: 0 0 .75rem !important;
+.gift-details-message {
+  max-width: 18rem;
+  margin: 0 auto !important;
   color: #a18a65;
-  font-size: clamp(.88rem, 3.6vw, 1rem) !important;
-  font-weight: 700 !important;
-  line-height: 1.35 !important;
+  font-size: clamp(1rem, 4.2vw, 1.2rem) !important;
+  line-height: 2 !important;
 }
 
-.gift-bank-details {
+.bank-details-shell {
   display: grid;
+  min-height: 100svh;
+  padding: clamp(.55rem, 2.5vw, 1.5rem);
+  place-items: center;
+  background-color: var(--paper);
+  background-image: var(--paper-texture);
+  color: #9b8665;
+}
+
+.bank-details-frame {
+  position: relative;
+  width: min(100%, 780px);
+  min-height: calc(100svh - clamp(1.1rem, 5vw, 3rem));
+  padding: clamp(5.6rem, 15vw, 7.8rem) clamp(1.15rem, 5vw, 4rem) clamp(2rem, 7vw, 4rem);
+  overflow: hidden;
+  border: 1px solid rgba(155, 134, 101, .42);
+  background-color: rgba(250, 247, 240, .8);
+  background-image:
+    radial-gradient(circle at 88% 79%, rgba(255, 255, 255, .74) 0 7%, transparent 7.5%),
+    radial-gradient(circle at 81% 86%, rgba(255, 255, 255, .54) 0 12%, transparent 12.5%),
+    var(--paper-texture);
+  box-shadow: 0 18px 55px rgba(73, 59, 45, .11);
+}
+
+.bank-details-frame::before {
+  position: absolute;
+  inset: clamp(.72rem, 2.6vw, 1.65rem);
+  border: 1px solid rgba(155, 134, 101, .42);
+  border-radius: 2.1rem .5rem 2.1rem .5rem;
+  content: "";
+  pointer-events: none;
+}
+
+.bank-details-frame > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bank-back-button {
+  position: absolute;
+  top: clamp(1.35rem, 4vw, 2.6rem);
+  left: clamp(1.35rem, 4vw, 2.6rem);
+  display: grid;
+  width: 48px;
+  min-height: 48px;
+  color: #a89473;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  font-size: 2.2rem;
+  line-height: 1;
+  place-items: center;
+  text-decoration: none;
+}
+
+.bank-back-button:focus-visible,
+.bank-copy-button:focus-visible {
+  outline: 2px solid #9b8665;
+  outline-offset: 4px;
+}
+
+.bank-details-header {
+  margin-bottom: clamp(1.8rem, 6vw, 3.2rem);
+  text-align: center;
+}
+
+.bank-details-header h1 {
   margin: 0;
-  gap: .55rem;
+  color: #a89473;
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(2.25rem, 10vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: clamp(.14em, 2.2vw, .28em);
+  line-height: 1.05;
 }
 
-.gift-bank-details div {
+.bank-account-list {
   display: grid;
-  grid-template-columns: 3.2rem minmax(0, 1fr);
-  padding: .55rem .75rem;
-  border-top: 1px solid rgba(161, 138, 101, .16);
-  gap: .65rem;
+  gap: clamp(1.15rem, 4vw, 2rem);
+}
+
+.bank-account-card {
+  padding: clamp(1.25rem, 5vw, 2.2rem);
+  border: 1px solid rgba(168, 148, 115, .42);
+  border-radius: 1.15rem;
+  background: rgba(255, 252, 247, .43);
+  box-shadow: 0 9px 22px rgba(73, 59, 45, .08), inset 0 0 0 5px rgba(255, 255, 255, .16);
+}
+
+.bank-account-card h2 {
+  margin: 0 0 1.15rem;
+  color: #8f7a5c;
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(1.45rem, 6vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: .06em;
+}
+
+.bank-detail-row {
+  display: grid;
+  min-height: 70px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
   align-items: center;
 }
 
-.gift-bank-details dt {
-  color: rgba(126, 104, 71, .8);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: .62rem;
-  letter-spacing: .13em;
-  text-align: left;
+.bank-detail-row + .bank-detail-row {
+  padding-top: .6rem;
+  border-top: 1px solid rgba(168, 148, 115, .18);
 }
 
-.gift-bank-details dd {
-  margin: 0;
-  color: #8f7650;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.72rem, 3.05vw, .9rem);
-  font-weight: 600;
-  letter-spacing: .025em;
+.bank-detail-row > div {
+  display: grid;
+  min-width: 0;
+  gap: .28rem;
+}
+
+.bank-detail-label {
+  color: #9b8665;
+  font-size: .84rem;
+  letter-spacing: .12em;
+}
+
+.bank-detail-row strong {
+  color: #8d795c;
+  font-size: clamp(.9rem, 3.8vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: .045em;
   overflow-wrap: anywhere;
-  text-align: right;
+}
+
+.bank-copy-button {
+  display: inline-flex;
+  min-width: 112px;
+  min-height: 48px;
+  padding: .65rem 1rem;
+  gap: .65rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(168, 148, 115, .5);
+  border-radius: 999px;
+  color: #9b8665;
+  background: rgba(255, 255, 255, .22);
+  font-size: .8rem;
+  letter-spacing: .12em;
+}
+
+.copy-icon {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 1px solid currentColor;
+}
+
+.copy-icon::before {
+  position: absolute;
+  top: -4px;
+  left: 4px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid currentColor;
+  background: rgba(250, 247, 240, .75);
+  content: "";
+}
+
+.copy-status {
+  min-height: 1.4rem;
+  margin: 1rem 0 0;
+  color: #8f7a5c;
+  font-size: .8rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .bank-details-shell { padding: 0; }
+  .bank-details-frame {
+    width: 100%;
+    min-height: 100svh;
+    padding-inline: 1.1rem;
+    border-inline: 0;
+  }
+  .bank-details-frame::before { inset: .65rem; }
+  .bank-details-header h1 { letter-spacing: .12em; }
+  .bank-detail-row { grid-template-columns: minmax(0, 1fr) 96px; gap: .65rem; }
+  .bank-copy-button { min-width: 96px; padding-inline: .7rem; }
 }
 
 @media (min-width: 640px) {
