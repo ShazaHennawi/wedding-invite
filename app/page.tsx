@@ -42,8 +42,8 @@ function CoupleMedia() {
     <Image
       src={invitation.media.type === "video" ? invitation.media.poster : invitation.media.src}
       alt={invitation.media.alt}
-      width={1122}
-      height={1400}
+      width={1620}
+      height={2025}
       priority
       sizes="(max-width: 480px) 100vw, 430px"
       className="landing-image"
@@ -273,6 +273,17 @@ function CeremonyDetails() {
 
       <article ref={timelineSectionRef} className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
+          <div className="timeline-ornament" aria-hidden="true">
+            <Image
+              src="/wedding-program-ornament-transparent.png"
+              alt=""
+              width={2172}
+              height={724}
+              sizes="240px"
+              className="timeline-ornament-image"
+              draggable={false}
+            />
+          </div>
           <h2 id="timeline-heading">{arabic.timelineHeading}</h2>
           <ol className="wedding-timeline" aria-label={arabic.timelineHeading}>
             <motion.span
@@ -321,10 +332,10 @@ function CeremonyDetails() {
       <article className="supporting-card rsvp-card w-full text-center">
         <div className="rsvp-card-art">
           <Image
-            src="/rsvp-confirm-attendance-arabic.png"
+            src="/rsvp-confirm-attendance-arabic-wide.png"
             alt="الردّ على الدعوة — تأكيد الحضور"
-            width={1256}
-            height={1256}
+            width={1536}
+            height={1024}
             sizes="(max-width: 430px) 100vw, 430px"
             className="rsvp-card-image"
             draggable={false}

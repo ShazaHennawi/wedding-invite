@@ -38,8 +38,8 @@ export const invitationConfig = {
   },
   media: {
     type: "image" as "image" | "video",
-    src: "/landing-couple-frame.png",
-    poster: "/landing-couple-frame.png",
+    src: "/landing-couple-frame-mirror.png",
+    poster: "/landing-couple-frame-mirror.png",
     alt: "Isaac and Shaza together",
     focalPosition: "center center",
   },

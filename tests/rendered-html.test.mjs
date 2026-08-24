@@ -45,7 +45,7 @@ test("keeps content editable and interaction requirements wired", async () => {
 
   assert.match(config, /export const invitationConfig/);
   assert.match(config, /date: "17\.10\.2026"/);
-  assert.match(config, /poster: "\/landing-couple-frame\.png"/);
+  assert.match(config, /poster: "\/landing-couple-frame-mirror\.png"/);
   assert.match(config, /youtubeVideoId: "6W3-rHzCqkY"/);
   assert.doesNotMatch(config, /mapUrl:/);
   assert.match(config, /arabicCeremony:/);
@@ -56,8 +56,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
   assert.match(config, /timelineHeading: "برنامج الزفاف"/);
-  assert.match(config, /src: "\/landing-couple-frame\.png"/);
-  assert.match(config, /poster: "\/landing-couple-frame\.png"/);
+  assert.match(config, /src: "\/landing-couple-frame-mirror\.png"/);
+  assert.match(config, /poster: "\/landing-couple-frame-mirror\.png"/);
   assert.match(config, /english: "Ceremony"/);
   assert.match(config, /english: "Photos"/);
   assert.match(config, /english: "Lunch"/);
@@ -69,6 +69,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /maps-button/);
   assert.doesNotMatch(page, /location-card|location-heading/);
   assert.match(page, /className="supporting-card timeline-card/);
+  assert.match(page, /src="\/wedding-program-ornament-transparent\.png"/);
+  assert.match(page, /className="timeline-ornament-image"/);
   assert.match(page, /className="wedding-timeline"/);
   assert.match(page, /className="timeline-copy"/);
   assert.match(page, /className="timeline-node"/);
@@ -93,7 +95,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /giftOpen|setGiftOpen|gift-details-message/);
   assert.doesNotMatch(page, /className="gift-message"/);
   assert.match(page, /className="supporting-card rsvp-card/);
-  assert.match(page, /src="\/rsvp-confirm-attendance-arabic\.png"/);
+  assert.match(page, /src="\/rsvp-confirm-attendance-arabic-wide\.png"/);
   assert.match(page, /className="rsvp-card-button"/);
   assert.match(page, /docs\.google\.com\/forms\/d\/e\/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg\/viewform\?usp=dialog/);
   assert.match(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
@@ -145,7 +147,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.blessing-arc-word:nth-child\(1\)[\s\S]*translateY\(\.92em\) rotate\(13deg\)/);
   assert.match(css, /\.blessing-arc-word:nth-child\(13\)[\s\S]*translateY\(\.92em\) rotate\(-13deg\)/);
   assert.match(css, /ceremony-background-ornate\.png/);
-  assert.match(css, /aspect-ratio:\s*1890 \/ 2363/);
+  assert.match(css, /aspect-ratio:\s*1620 \/ 2025/);
   assert.match(css, /--paper-texture:/);
   assert.match(css, /\.landing-image[\s\S]*object-fit:\s*contain[\s\S]*mix-blend-mode:\s*darken/);
   assert.match(css, /\.blessing-cross[\s\S]*width:\s*clamp\(1\.45rem, 6vw, 2\.15rem\)/);
@@ -155,6 +157,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.supporting-card[\s\S]*box-shadow:/);
   assert.match(css, /\.timeline-card[\s\S]*min-height:\s*100svh[\s\S]*background:\s*transparent/);
   assert.match(css, /\.timeline-card-content[\s\S]*position:\s*sticky[\s\S]*min-height:\s*100svh/);
+  assert.match(css, /\.timeline-ornament[\s\S]*aspect-ratio:\s*3 \/ 1/);
+  assert.match(css, /\.timeline-ornament-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.wedding-timeline::before[\s\S]*bottom:\s*1\.575rem[\s\S]*width:\s*2px/);
   assert.match(css, /\.timeline-progress[\s\S]*width:\s*3px[\s\S]*transform-origin:\s*50% 0%/);
   assert.match(css, /\.wedding-timeline li[\s\S]*grid-template-columns:\s*minmax\(0, 1fr\) 1px minmax\(0, 1fr\)/);
@@ -172,7 +176,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.gift-cover-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.bank-details-shell[\s\S]*min-height:\s*100svh/);
   assert.match(css, /\.bank-copy-button[\s\S]*min-height:\s*48px/);
-  assert.match(css, /\.rsvp-card[\s\S]*aspect-ratio:\s*1/);
+  assert.match(css, /\.rsvp-card[\s\S]*aspect-ratio:\s*3 \/ 2/);
   assert.match(css, /\.rsvp-card-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.rsvp-card-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);

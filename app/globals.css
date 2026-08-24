@@ -85,7 +85,7 @@ button, a { font: inherit; }
 
 .landing-art {
   width: 100%;
-  aspect-ratio: 1890 / 2363;
+  aspect-ratio: 1620 / 2025;
   margin: 0;
   overflow: hidden;
 }
@@ -394,6 +394,19 @@ button, a { font: inherit; }
 
 .timeline-card::before { display: none; }
 
+.timeline-ornament {
+  position: relative;
+  width: min(56vw, 240px);
+  aspect-ratio: 3 / 1;
+  margin: 0 auto clamp(.65rem, 1.8svh, 1rem);
+}
+
+.timeline-ornament-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .timeline-card h2 {
   margin-top: 0;
   margin-bottom: clamp(1.5rem, 4svh, 2.4rem);
@@ -607,7 +620,7 @@ button, a { font: inherit; }
   width: min(100%, 430px);
   min-height: 0;
   overflow: hidden;
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 2;
   border: 0;
   background: transparent var(--paper-texture);
   box-shadow: 0 16px 40px rgba(73, 59, 45, .11);
@@ -634,11 +647,11 @@ button, a { font: inherit; }
 .rsvp-card-button {
   position: absolute;
   z-index: 2;
-  top: 59%;
-  left: 28%;
-  width: 44%;
+  top: 50%;
+  left: 27%;
+  width: 46%;
   min-height: 44px;
-  height: 17%;
+  height: 24%;
   cursor: pointer;
   border: 0;
   border-radius: 999px;
