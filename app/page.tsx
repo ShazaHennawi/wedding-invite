@@ -329,41 +329,32 @@ function CeremonyDetails() {
             </motion.div>
           ) : (
             <motion.section
-              className="supporting-card-content gift-card-content"
+              className="gift-card-content"
               aria-label="معلومات الحسابات البنكية للهديّة"
               key="gift-details"
               initial={{ opacity: 0, y: reducedMotion ? 0 : 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reducedMotion ? 0.15 : 0.48, ease: [0.22, 1, 0.36, 1] }}
             >
-          <span className="gift-monogram" aria-hidden="true">
-            <span>I</span>
-            <b>&amp;</b>
-            <span>S</span>
-          </span>
-          <span className="gift-divider" aria-hidden="true">
-            <span>❦</span>
-          </span>
-          <p className="gift-message">{arabic.gift.message}</p>
-          <div className="gift-accounts">
-            {arabic.gift.accounts.map((account, index) => (
-              <section className="gift-account" aria-label={account.label} key={account.label}>
-                <span className="gift-account-number" aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="gift-account-label">{account.label}</p>
-                <dl className="gift-bank-details">
-                  <div>
-                    <dt>IBAN</dt>
-                    <dd dir="ltr">{account.iban}</dd>
-                  </div>
-                  <div>
-                    <dt>BIC</dt>
-                    <dd dir="ltr">{account.bic}</dd>
-                  </div>
-                </dl>
-              </section>
-            ))}
+              <div className="gift-accounts">
+                {arabic.gift.accounts.map((account, index) => (
+                  <section className="gift-account" aria-label={account.label} key={account.label}>
+                    <span className="gift-account-number" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="gift-account-label">{account.label}</p>
+                    <dl className="gift-bank-details">
+                      <div>
+                        <dt>IBAN</dt>
+                        <dd dir="ltr">{account.iban}</dd>
+                      </div>
+                      <div>
+                        <dt>BIC</dt>
+                        <dd dir="ltr">{account.bic}</dd>
+                      </div>
+                    </dl>
+                  </section>
+                ))}
               </div>
             </motion.section>
           )}

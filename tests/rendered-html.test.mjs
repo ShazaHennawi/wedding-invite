@@ -86,7 +86,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /className=\{`supporting-card gift-card/);
   assert.match(page, /src="\/gift-cover\.png"/);
   assert.match(page, /className="gift-cover-button"/);
-  assert.match(page, /className="gift-message"/);
+  assert.match(page, /className="gift-accounts"/);
+  assert.doesNotMatch(page, /className="gift-message"/);
   assert.match(page, /className="gift-bank-details"/);
   assert.match(config, /حضوركم هو الهدية الأجمل بالنسبة لنا/);
   assert.match(config, /DE11 1005 0000 1071 4190 79/);
