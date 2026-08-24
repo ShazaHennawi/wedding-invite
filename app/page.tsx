@@ -318,6 +318,7 @@ function CeremonyDetails() {
                 className="gift-cover-image"
                 draggable={false}
               />
+              <p className="gift-cover-message">{arabic.gift.message}</p>
               <button
                 type="button"
                 className="gift-cover-button"

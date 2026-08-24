@@ -592,6 +592,22 @@ button, a { font: inherit; }
   touch-action: manipulation;
 }
 
+.gift-cover-message {
+  position: absolute;
+  z-index: 1;
+  top: 31%;
+  left: 15%;
+  width: 70%;
+  margin: 0 !important;
+  color: #a18a65;
+  font-size: clamp(.72rem, 3.15vw, .92rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.85 !important;
+  text-align: center;
+  text-wrap: balance;
+  pointer-events: none;
+}
+
 .gift-cover-button:focus-visible {
   outline: 2px solid rgba(143, 118, 80, .78);
   outline-offset: 4px;
