@@ -185,6 +185,53 @@ button, a { font: inherit; }
   border: 0;
 }
 
+.music-toggle {
+  position: fixed;
+  z-index: 50;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: .5rem;
+  padding: .58rem .9rem;
+  cursor: pointer;
+  border: 1px solid rgba(161, 138, 101, .34);
+  border-radius: 999px;
+  color: var(--olive-dark);
+  background-color: rgba(248, 244, 236, .94);
+  background-image: var(--paper-texture);
+  box-shadow: 0 7px 22px rgba(73, 59, 45, .14);
+  font-family: "Arabic Typesetting", "Traditional Arabic", "Noto Naskh Arabic", Georgia, serif;
+  font-size: 1rem;
+  line-height: 1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.music-toggle:hover,
+.music-toggle.is-playing {
+  border-color: rgba(161, 138, 101, .52);
+  background-color: rgba(248, 244, 236, .98);
+}
+
+.music-toggle:focus-visible {
+  outline: 2px solid rgba(143, 118, 80, .82);
+  outline-offset: 3px;
+}
+
+.music-toggle-icon {
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--paper);
+  background: var(--gold);
+  font-family: Georgia, serif;
+  font-size: .95rem;
+}
+
 .detail-card {
   width: min(100%, 430px);
   min-height: 100svh;

@@ -3,11 +3,15 @@
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { invitationConfig as invitation } from "./invitation-config";
 
 type ExperienceState = "closed" | "details";
 type TimelineItem = (typeof invitation.arabicCeremony.timeline)[number];
+type MusicController = {
+  play: () => void;
+  pause: () => void;
+};
 
 function CoupleMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -71,33 +75,26 @@ function Envelope() {
   );
 }
 
-function CeremonyMusic({ active }: { active: boolean }) {
+const CeremonyMusic = forwardRef<MusicController>(function CeremonyMusic(_, ref) {
   const playerRef = useRef<HTMLIFrameElement>(null);
 
-  useEffect(() => {
-    if (!active) return;
+  const sendCommand = (func: string, args: Array<number> = []) => {
+    playerRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func, args }),
+      "https://www.youtube-nocookie.com",
+    );
+  };
 
-    const lowerVolume = () => {
-      playerRef.current?.contentWindow?.postMessage(
-        JSON.stringify({
-          event: "command",
-          func: "setVolume",
-          args: [invitation.music.volume],
-        }),
-        "https://www.youtube-nocookie.com",
-      );
-    };
-
-    lowerVolume();
-    const retries = [300, 750, 1400].map((delay) => window.setTimeout(lowerVolume, delay));
-
-    return () => retries.forEach(window.clearTimeout);
-  }, [active]);
-
-  if (!active) return null;
+  useImperativeHandle(ref, () => ({
+    play: () => {
+      sendCommand("setVolume", [invitation.music.volume]);
+      sendCommand("playVideo");
+    },
+    pause: () => sendCommand("pauseVideo"),
+  }));
 
   const videoId = invitation.music.youtubeVideoId;
-  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&start=${invitation.music.startTime}&end=${invitation.music.endTime}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
+  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&loop=1&playlist=${videoId}&start=${invitation.music.startTime}&end=${invitation.music.endTime}&playsinline=1&rel=0&modestbranding=1&controls=0&enablejsapi=1`;
 
   return (
     <iframe
@@ -109,9 +106,10 @@ function CeremonyMusic({ active }: { active: boolean }) {
       referrerPolicy="strict-origin-when-cross-origin"
       aria-hidden="true"
       tabIndex={-1}
+      onLoad={() => sendCommand("setVolume", [invitation.music.volume])}
     />
   );
-}
+});
 
 function Landing({ onOpen }: { onOpen: () => void }) {
   const reducedMotion = Boolean(useReducedMotion());
@@ -358,20 +356,48 @@ function CeremonyDetails() {
 
 export default function Home() {
   const [state, setState] = useState<ExperienceState>("closed");
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const musicRef = useRef<MusicController>(null);
 
   const openInvitation = () => {
     if (state !== "closed") return;
+    musicRef.current?.play();
+    setMusicPlaying(true);
     setState("details");
   };
 
+  const toggleMusic = () => {
+    if (musicPlaying) {
+      musicRef.current?.pause();
+    } else {
+      musicRef.current?.play();
+    }
+    setMusicPlaying((playing) => !playing);
+  };
+
   return (
-    <AnimatePresence mode="wait">
-      <CeremonyMusic active={state !== "closed"} />
+    <>
+      <CeremonyMusic ref={musicRef} />
+      <AnimatePresence mode="wait">
+        {state === "details" ? (
+          <CeremonyDetails />
+        ) : (
+          <Landing onOpen={openInvitation} />
+        )}
+      </AnimatePresence>
       {state === "details" ? (
-        <CeremonyDetails />
-      ) : (
-        <Landing onOpen={openInvitation} />
-      )}
-    </AnimatePresence>
+        <button
+          className={`music-toggle${musicPlaying ? " is-playing" : ""}`}
+          type="button"
+          onClick={toggleMusic}
+          aria-pressed={musicPlaying}
+          aria-label={musicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}
+          dir="rtl"
+        >
+          <span className="music-toggle-icon" aria-hidden="true">♪</span>
+          <span>{musicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}</span>
+        </button>
+      ) : null}
+    </>
   );
 }
