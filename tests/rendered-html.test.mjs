@@ -59,6 +59,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /blessing: "إِذًا لَيْسَا بَعْدُ اثْنَيْنِ بَلْ جَسَدٌ وَاحِدٌ\. فَالَّذِي جَمَعَهُ اللهُ لَا يُفَرِّقُهُ إِنْسَانٌ"/);
   assert.match(config, /groomFamily: "السيد سامر وسوف وعائلته"/);
   assert.match(config, /brideFamily: "السيد سامي حناوي وعائلته"/);
+  assert.match(config, /groomFamily: "Mr\. Samer Wassouf and his family"/);
+  assert.match(config, /brideFamily: "Mr\. Sami Hennawi and his family"/);
   assert.match(config, /groomName: "اسحق"/);
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);

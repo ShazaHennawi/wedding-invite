@@ -39,8 +39,8 @@ export const invitationConfig = {
   englishCeremony: {
     blessing:
       "So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate.",
-    groomFamily: "Mr. Samer Wassouf and Family",
-    brideFamily: "Mr. Sami Hennawi and Family",
+    groomFamily: "Mr. Samer Wassouf and his family",
+    brideFamily: "Mr. Sami Hennawi and his family",
     invitation: "Are honored to invite you to the wedding ceremony of their children",
     groomName: "Isaac",
     brideName: "Shaza",
