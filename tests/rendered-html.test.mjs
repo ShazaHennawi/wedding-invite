@@ -201,6 +201,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.language-toggle[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.english-invitation[\s\S]*font-family:\s*"Avenir Next"/);
   assert.match(css, /\.english-blessing[\s\S]*font-size:\s*clamp\(\.58rem, 2\.35vw, \.74rem\)/);
+  assert.match(css, /\.english-invitation \.arabic-couple-names[\s\S]*font-family:\s*"Snell Roundhand"/);
   assert.match(css, /\.translated-card-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
