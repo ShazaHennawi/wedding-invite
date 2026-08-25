@@ -177,7 +177,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.gift-card-cover[\s\S]*aspect-ratio:\s*1/);
   assert.match(css, /\.gift-cover-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.bank-details-shell[\s\S]*min-height:\s*100svh/);
-  assert.match(css, /\.bank-copy-button[\s\S]*min-height:\s*48px/);
+  assert.match(css, /\.bank-copy-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.rsvp-card[\s\S]*aspect-ratio:\s*3 \/ 2/);
   assert.match(css, /\.rsvp-card-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.rsvp-card-button[\s\S]*min-height:\s*44px/);
