@@ -424,7 +424,8 @@ button, a { font: inherit; }
 }
 
 .english-invitation {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
+  letter-spacing: .01em;
 }
 
 .english-invitation .ceremony-content {
@@ -433,40 +434,45 @@ button, a { font: inherit; }
 
 .english-blessing {
   display: block;
-  width: min(100%, 320px);
+  width: min(100%, 300px);
   min-height: 0;
-  margin-bottom: clamp(.8rem, 2.5svh, 1.3rem);
+  margin-bottom: clamp(.65rem, 2.1svh, 1.05rem);
   white-space: normal;
-  font-size: clamp(.68rem, 2.7vw, .85rem);
+  font-size: clamp(.58rem, 2.35vw, .74rem);
   font-style: italic;
-  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: .015em;
+  line-height: 1.55;
 }
 
 .english-invitation .arabic-families {
-  gap: clamp(.85rem, 3vw, 1.25rem);
-  font-size: clamp(.58rem, 2.5vw, .76rem);
-  font-weight: 600;
+  gap: clamp(1rem, 3.5vw, 1.4rem);
+  font-size: clamp(.5rem, 2.1vw, .66rem);
+  font-weight: 500;
+  letter-spacing: .015em;
 }
 
 .english-invitation .arabic-invitation-line {
-  max-width: 320px;
-  font-size: clamp(.75rem, 3.2vw, .94rem);
-  line-height: 1.55;
+  max-width: 290px;
+  font-size: clamp(.62rem, 2.7vw, .8rem);
+  line-height: 1.6;
 }
 
 .english-invitation .arabic-couple-names {
   font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
-  font-size: clamp(2rem, 8.7vw, 2.55rem);
+  font-size: clamp(1.75rem, 7.6vw, 2.25rem);
   font-weight: 500;
+  letter-spacing: .015em;
 }
 
 .english-invitation .ceremony-summary,
 .english-invitation .arabic-closing {
-  font-size: clamp(.72rem, 3vw, .9rem);
-  line-height: 1.65;
+  font-size: clamp(.61rem, 2.55vw, .77rem);
+  font-weight: 400;
+  line-height: 1.7;
 }
 
-.english-invitation .arabic-closing { max-width: 320px; }
+.english-invitation .arabic-closing { max-width: 295px; }
 
 .supporting-card {
   width: min(100%, 430px);
