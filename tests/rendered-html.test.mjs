@@ -90,6 +90,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /`timeline-icon timeline-icon-\$\{item\.icon\}`/);
   assert.doesNotMatch(page, /timeline-kicker/);
   assert.match(page, /className="supporting-card gift-card gift-card-cover/);
+  assert.match(css, /\.timeline-card \+ \.gift-card-cover[\s\S]*margin-top:\s*-\.35rem/);
   assert.match(page, /src=\{assetPath\("\/gift-cover-card-arabic-details\.png"\)\}/);
   assert.match(page, /aria-label="التفاصيل"/);
   assert.match(page, /className="gift-cover-button"/);
