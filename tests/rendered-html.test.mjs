@@ -110,6 +110,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(bankPage, /navigator\.clipboard\.writeText/);
   assert.match(bankPage, /className="bank-copy-button"/);
   assert.match(bankPage, /window\.history\.back\(\)/);
+  assert.match(css, /\.bank-detail-row strong[\s\S]*font-family:\s*"Avenir Next"[\s\S]*font-variant-numeric:\s*lining-nums tabular-nums/);
   assert.match(page, /<strong>\{arabic\.dateNumber\}<\/strong>/);
   assert.match(page, /<strong>\{arabic\.year\}<\/strong>/);
   assert.doesNotMatch(page, /<header>/);
