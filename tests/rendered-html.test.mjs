@@ -64,6 +64,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /groomName: "اسحق"/);
   assert.match(config, /brideName: "شذى"/);
   assert.match(config, /venue: "كنيسة القديس جاورجيوس"/);
+  assert.match(config, /venue: "في كنيسة القديس جاورجيوس في برلين"/);
+  assert.match(config, /venue: "Saint George Church in Berlin"/);
   assert.match(config, /timelineHeading: "برنامج الزفاف"/);
   assert.match(config, /src: "\/landing-couple-frame-new\.png"/);
   assert.match(config, /poster: "\/landing-couple-frame-new\.png"/);

@@ -305,6 +305,7 @@ function CeremonyDetails({
               <>
                 <p>{english.time}</p>
                 <p>{english.date}</p>
+                <p className="ceremony-venue">{english.venue}</p>
               </>
             ) : (
               <>
@@ -313,6 +314,7 @@ function CeremonyDetails({
                   مساء يوم {arabic.day} الموافق <strong>{arabic.dateNumber}</strong> {arabic.month}{" "}
                   <strong>{arabic.year}</strong>
                 </p>
+                <p className="ceremony-venue">{arabic.venue}</p>
               </>
             )}
           </section>

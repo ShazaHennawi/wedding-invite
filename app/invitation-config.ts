@@ -20,6 +20,7 @@ export const invitationConfig = {
     day: "السبت",
     dateNumber: "17",
     year: "2026",
+    venue: "في كنيسة القديس جاورجيوس في برلين",
     closing: "فرحتنا تبدأ مع الرب وتكتمل بحضوركم",
     timelineHeading: "برنامج الزفاف",
     timeline: [
@@ -46,6 +47,7 @@ export const invitationConfig = {
     brideName: "Shaza",
     time: "At two o’clock in the afternoon",
     date: "Saturday, 17 October 2026",
+    venue: "Saint George Church in Berlin",
     closing: "Our joy begins with God and is made complete by your presence.",
     timelineHeading: "Wedding Program",
     gift: {

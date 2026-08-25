@@ -407,6 +407,8 @@ button, a { font: inherit; }
 
 .ceremony-summary p { margin: 0; }
 
+.ceremony-summary .ceremony-venue { margin-top: .15rem; }
+
 .ceremony-summary address {
   display: grid;
   margin-top: .15rem;
