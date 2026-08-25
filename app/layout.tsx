@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Isaac & Shaza Wedding Invitation",
     type: "website",
-    images: [{ url: imageUrl, width: 1731, height: 909, alt: "Isaac & Shaza wedding invitation envelope with white flowers" }],
+    images: [{ url: imageUrl, width: 1080, height: 1350, alt: "Isaac & Shaza wedding invitation envelope with white flowers" }],
   },
   twitter: {
     card: "summary_large_image",
