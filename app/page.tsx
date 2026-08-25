@@ -10,6 +10,7 @@ import { assetPath } from "./asset-path";
 import { invitationConfig as invitation } from "./invitation-config";
 
 type ExperienceState = "closed" | "details";
+type InvitationLanguage = "ar" | "en";
 type TimelineItem = (typeof invitation.arabicCeremony.timeline)[number];
 type MusicController = {
   play: () => void;
@@ -17,6 +18,7 @@ type MusicController = {
 };
 const RETURN_VIEW_KEY = "wedding-invitation-return-view";
 const RETURN_SCROLL_KEY = "wedding-invitation-return-scroll";
+const LANGUAGE_KEY = "wedding-invitation-language";
 
 function CoupleMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -180,11 +182,13 @@ function TimelineStep({
   index,
   progress,
   reducedMotion,
+  language,
 }: {
   item: TimelineItem;
   index: number;
   progress: MotionValue<number>;
   reducedMotion: boolean;
+  language: InvitationLanguage;
 }) {
   const revealAt = index * 0.36;
   const opacity = useTransform(progress, [revealAt - 0.04, revealAt + 0.04], [0.12, 1]);
@@ -202,19 +206,29 @@ function TimelineStep({
           style={reducedMotion ? undefined : { scale: iconScale, rotate: iconRotate }}
         />
         <span className="timeline-copy">
-          <span className="timeline-label">{item.label}</span>
-          <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+          <span className="timeline-label">{language === "en" ? item.english : item.label}</span>
+          {language === "ar" ? (
+            <span className="timeline-label-en" dir="ltr" lang="en">{item.english}</span>
+          ) : null}
         </span>
       </span>
     </motion.li>
   );
 }
 
-function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
+function CeremonyDetails({
+  onOpenGift,
+  language,
+}: {
+  onOpenGift: () => void;
+  language: InvitationLanguage;
+}) {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
   const timelineSectionRef = useRef<HTMLElement>(null);
   const arabic = invitation.arabicCeremony;
+  const english = invitation.englishCeremony;
+  const isEnglish = language === "en";
   const blessingWords = arabic.blessing.split(" ");
   const { scrollYProgress: timelineScrollProgress } = useScroll({
     target: timelineSectionRef,
@@ -240,17 +254,22 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
       transition={{ duration: reducedMotion ? 0.25 : 0.75, ease: [0.22, 1, 0.36, 1] }}
     >
       <article
-        className="paper-frame detail-card arabic-invitation mx-auto w-full text-center"
-        dir="rtl"
-        lang="ar"
+        className={`paper-frame detail-card arabic-invitation mx-auto w-full text-center${isEnglish ? " english-invitation" : ""}`}
+        dir={isEnglish ? "ltr" : "rtl"}
+        lang={language}
       >
         <div className="ceremony-content">
-          <p className="arabic-blessing" aria-label={arabic.blessing}>
-            {blessingWords.map((word, index) => (
-              <span className="blessing-arc-word" aria-hidden="true" key={`${word}-${index}`}>
-                {word}
-              </span>
-            ))}
+          <p
+            className={`arabic-blessing${isEnglish ? " english-blessing" : ""}`}
+            aria-label={isEnglish ? english.blessing : arabic.blessing}
+          >
+            {isEnglish
+              ? english.blessing
+              : blessingWords.map((word, index) => (
+                  <span className="blessing-arc-word" aria-hidden="true" key={`${word}-${index}`}>
+                    {word}
+                  </span>
+                ))}
           </p>
 
           <span className="blessing-cross" aria-hidden="true">
@@ -266,31 +285,48 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
           </span>
 
           <div className="arabic-families">
-            <span>{arabic.groomFamily}</span>
-            <span>{arabic.brideFamily}</span>
+            <span>{isEnglish ? english.groomFamily : arabic.groomFamily}</span>
+            <span>{isEnglish ? english.brideFamily : arabic.brideFamily}</span>
           </div>
 
-          <p className="arabic-invitation-line">{arabic.invitation}</p>
+          <p className="arabic-invitation-line">{isEnglish ? english.invitation : arabic.invitation}</p>
 
           <h1 ref={headingRef} tabIndex={-1} className="arabic-couple-names">
-            <span>{arabic.groomName}</span>
+            <span>{isEnglish ? english.groomName : arabic.groomName}</span>
             <span className="names-amp" aria-hidden="true">&amp;</span>
-            <span>{arabic.brideName}</span>
+            <span>{isEnglish ? english.brideName : arabic.brideName}</span>
           </h1>
 
-          <section className="ceremony-summary" aria-label={`موعد الإكليل ${invitation.wedding.date}`}>
-            <p>وذلك في تمام الساعة {invitation.wedding.time}</p>
-            <p>
-              مساء يوم {arabic.day} الموافق <strong>{arabic.dateNumber}</strong> {arabic.month}{" "}
-              <strong>{arabic.year}</strong>
-            </p>
+          <section
+            className="ceremony-summary"
+            aria-label={isEnglish ? `Wedding ceremony ${invitation.wedding.date}` : `موعد الإكليل ${invitation.wedding.date}`}
+          >
+            {isEnglish ? (
+              <>
+                <p>{english.time}</p>
+                <p>{english.date}</p>
+              </>
+            ) : (
+              <>
+                <p>وذلك في تمام الساعة {invitation.wedding.time}</p>
+                <p>
+                  مساء يوم {arabic.day} الموافق <strong>{arabic.dateNumber}</strong> {arabic.month}{" "}
+                  <strong>{arabic.year}</strong>
+                </p>
+              </>
+            )}
           </section>
 
-          <p className="arabic-closing">{arabic.closing}</p>
+          <p className="arabic-closing">{isEnglish ? english.closing : arabic.closing}</p>
         </div>
       </article>
 
-      <article ref={timelineSectionRef} className="supporting-card timeline-card w-full text-center" dir="rtl" lang="ar">
+      <article
+        ref={timelineSectionRef}
+        className={`supporting-card timeline-card w-full text-center${isEnglish ? " english-timeline" : ""}`}
+        dir={isEnglish ? "ltr" : "rtl"}
+        lang={language}
+      >
         <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
           <div className="timeline-ornament" aria-hidden="true">
             <Image
@@ -303,8 +339,8 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
               draggable={false}
             />
           </div>
-          <h2 id="timeline-heading">{arabic.timelineHeading}</h2>
-          <ol className="wedding-timeline" aria-label={arabic.timelineHeading}>
+          <h2 id="timeline-heading">{isEnglish ? english.timelineHeading : arabic.timelineHeading}</h2>
+          <ol className="wedding-timeline" aria-label={isEnglish ? english.timelineHeading : arabic.timelineHeading}>
             <motion.span
               className="timeline-progress"
               aria-hidden="true"
@@ -317,6 +353,7 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
                 index={index}
                 progress={timelineProgress}
                 reducedMotion={reducedMotion}
+                language={language}
               />
             ))}
           </ol>
@@ -325,10 +362,27 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
 
       <article
         className="supporting-card gift-card gift-card-cover w-full text-center"
-        dir="rtl"
-        lang="ar"
+        dir={isEnglish ? "ltr" : "rtl"}
+        lang={language}
       >
-        <div className="gift-cover-art">
+        <div className={`gift-cover-art${isEnglish ? " translated-gift-card" : ""}`}>
+          {isEnglish ? (
+            <div className="translated-card-content">
+              <h2>{english.gift.heading}</h2>
+              <span className="translated-card-ornament" aria-hidden="true">✦</span>
+              <p>{english.gift.message}</p>
+              <a
+                className="translated-card-button"
+                href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/bank-details.html`}
+                onClick={onOpenGift}
+              >
+                <span aria-hidden="true">＋</span>
+                {english.gift.button}
+                <span aria-hidden="true">＋</span>
+              </a>
+            </div>
+          ) : (
+            <>
               <Image
                 src={assetPath("/gift-cover-card-arabic-details.png")}
                 alt="Gift details cover"
@@ -346,29 +400,51 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
               >
                 <span className="sr-only">التفاصيل</span>
               </a>
+            </>
+          )}
         </div>
       </article>
 
-      <article className="supporting-card rsvp-card w-full text-center">
-        <div className="rsvp-card-art">
-          <Image
-            src={assetPath("/rsvp-confirm-attendance-final.png")}
-            alt="الردّ على الدعوة — تأكيد الحضور"
-            width={1536}
-            height={1024}
-            sizes="(max-width: 430px) 100vw, 430px"
-            className="rsvp-card-image"
-            draggable={false}
-          />
-          <a
-            className="rsvp-card-button"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="تأكيد الحضور"
-          >
-            <span className="sr-only">تأكيد الحضور</span>
-          </a>
+      <article className="supporting-card rsvp-card w-full text-center" lang={language}>
+        <div className={`rsvp-card-art${isEnglish ? " translated-rsvp-card" : ""}`}>
+          {isEnglish ? (
+            <div className="translated-card-content">
+              <p className="translated-rsvp-kicker">{english.rsvp.message}</p>
+              <h2>{english.rsvp.heading}</h2>
+              <span className="translated-card-ornament" aria-hidden="true">✦</span>
+              <a
+                className="translated-card-button"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span aria-hidden="true">＋</span>
+                {english.rsvp.button}
+                <span aria-hidden="true">＋</span>
+              </a>
+            </div>
+          ) : (
+            <>
+              <Image
+                src={assetPath("/rsvp-confirm-attendance-final.png")}
+                alt="الردّ على الدعوة — تأكيد الحضور"
+                width={1536}
+                height={1024}
+                sizes="(max-width: 430px) 100vw, 430px"
+                className="rsvp-card-image"
+                draggable={false}
+              />
+              <a
+                className="rsvp-card-button"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="تأكيد الحضور"
+              >
+                <span className="sr-only">تأكيد الحضور</span>
+              </a>
+            </>
+          )}
         </div>
       </article>
 
@@ -378,11 +454,15 @@ function CeremonyDetails({ onOpenGift }: { onOpenGift: () => void }) {
 
 export default function Home() {
   const [state, setState] = useState<ExperienceState>("closed");
+  const [language, setLanguage] = useState<InvitationLanguage>("ar");
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [returnScroll, setReturnScroll] = useState<number | null>(null);
   const musicRef = useRef<MusicController>(null);
 
   useEffect(() => {
+    const savedLanguage = window.sessionStorage.getItem(LANGUAGE_KEY);
+    if (savedLanguage === "ar" || savedLanguage === "en") setLanguage(savedLanguage);
+
     if (window.sessionStorage.getItem(RETURN_VIEW_KEY) !== "details") return;
 
     const savedScroll = Number(window.sessionStorage.getItem(RETURN_SCROLL_KEY));
@@ -391,6 +471,12 @@ export default function Home() {
     setReturnScroll(Number.isFinite(savedScroll) ? savedScroll : 0);
     setState("details");
   }, []);
+
+  useEffect(() => {
+    if (state !== "details") return;
+    document.documentElement.lang = language;
+    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  }, [language, state]);
 
   useEffect(() => {
     if (state !== "details" || returnScroll === null) return;
@@ -419,6 +505,14 @@ export default function Home() {
     setMusicPlaying((playing) => !playing);
   };
 
+  const toggleLanguage = () => {
+    setLanguage((current) => {
+      const next = current === "ar" ? "en" : "ar";
+      window.sessionStorage.setItem(LANGUAGE_KEY, next);
+      return next;
+    });
+  };
+
   const rememberInvitationPosition = () => {
     window.sessionStorage.setItem(RETURN_VIEW_KEY, "details");
     window.sessionStorage.setItem(RETURN_SCROLL_KEY, String(window.scrollY));
@@ -429,23 +523,44 @@ export default function Home() {
       <CeremonyMusic ref={musicRef} onStop={() => setMusicPlaying(false)} />
       <AnimatePresence mode="wait">
         {state === "details" ? (
-          <CeremonyDetails onOpenGift={rememberInvitationPosition} />
+          <CeremonyDetails onOpenGift={rememberInvitationPosition} language={language} />
         ) : (
           <Landing onOpen={openInvitation} />
         )}
       </AnimatePresence>
       {state === "details" ? (
-        <button
-          className={`music-toggle${musicPlaying ? " is-playing" : ""}`}
-          type="button"
-          onClick={toggleMusic}
-          aria-pressed={musicPlaying}
-          aria-label={musicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}
-          dir="rtl"
-        >
-          <span className="music-toggle-icon" aria-hidden="true">♪</span>
-          <span>{musicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}</span>
-        </button>
+        <>
+          <button
+            className="language-toggle"
+            type="button"
+            onClick={toggleLanguage}
+            aria-label={language === "ar" ? "Translate invitation to English" : "ترجمة الدعوة إلى العربية"}
+            lang={language === "ar" ? "en" : "ar"}
+            dir={language === "ar" ? "ltr" : "rtl"}
+          >
+            <span className="language-toggle-icon" aria-hidden="true">A</span>
+            <span>{language === "ar" ? "English" : "العربية"}</span>
+          </button>
+          <button
+            className={`music-toggle${musicPlaying ? " is-playing" : ""}`}
+            type="button"
+            onClick={toggleMusic}
+            aria-pressed={musicPlaying}
+            aria-label={
+              language === "en"
+                ? musicPlaying ? "Pause music" : "Play music"
+                : musicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"
+            }
+            dir={language === "en" ? "ltr" : "rtl"}
+          >
+            <span className="music-toggle-icon" aria-hidden="true">♪</span>
+            <span>
+              {language === "en"
+                ? musicPlaying ? "Pause music" : "Play music"
+                : musicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}
+            </span>
+          </button>
+        </>
       ) : null}
     </>
   );

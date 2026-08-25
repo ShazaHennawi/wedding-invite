@@ -36,6 +36,30 @@ export const invitationConfig = {
       ],
     },
   },
+  englishCeremony: {
+    blessing:
+      "So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate.",
+    groomFamily: "Mr. Samer Wassouf and Family",
+    brideFamily: "Mr. Sami Hennawi and Family",
+    invitation: "Are honored to invite you to the wedding ceremony of their children",
+    groomName: "Isaac",
+    brideName: "Shaza",
+    time: "At two o’clock in the afternoon",
+    date: "Saturday, 17 October 2026",
+    closing: "Our joy begins with God and is made complete by your presence.",
+    timelineHeading: "Wedding Program",
+    gift: {
+      heading: "GIFTS",
+      message:
+        "Your presence is the most beautiful gift to us. If you would like to celebrate with a gift, you may use the bank details provided, with our sincere thanks and love.",
+      button: "DETAILS",
+    },
+    rsvp: {
+      heading: "RSVP",
+      message: "Reply to the invitation",
+      button: "CONFIRM ATTENDANCE",
+    },
+  },
   media: {
     type: "image" as "image" | "video",
     src: "/landing-couple-frame-new.png",

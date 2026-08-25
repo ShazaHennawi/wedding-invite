@@ -52,6 +52,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(config, /youtubeVideoId/);
   assert.doesNotMatch(config, /mapUrl:/);
   assert.match(config, /arabicCeremony:/);
+  assert.match(config, /englishCeremony:/);
+  assert.match(config, /So they are no longer two, but one flesh/);
+  assert.match(config, /timelineHeading: "Wedding Program"/);
+  assert.match(config, /button: "CONFIRM ATTENDANCE"/);
   assert.match(config, /blessing: "إِذًا لَيْسَا بَعْدُ اثْنَيْنِ بَلْ جَسَدٌ وَاحِدٌ\. فَالَّذِي جَمَعَهُ اللهُ لَا يُفَرِّقُهُ إِنْسَانٌ"/);
   assert.match(config, /groomFamily: "السيد سامر وسوف وعائلته"/);
   assert.match(config, /brideFamily: "السيد سامي حناوي وعائلته"/);
@@ -71,7 +75,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.doesNotMatch(page, /personal-message/);
   assert.doesNotMatch(page, /maps-button/);
   assert.doesNotMatch(page, /location-card|location-heading/);
-  assert.match(page, /className="supporting-card timeline-card/);
+  assert.match(page, /supporting-card timeline-card w-full text-center/);
   assert.match(page, /src=\{assetPath\("\/wedding-program-ornament-transparent\.png"\)\}/);
   assert.match(page, /className="timeline-ornament-image"/);
   assert.match(page, /className="wedding-timeline"/);
@@ -121,8 +125,13 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
   assert.match(page, /setState\("details"\)/);
   assert.doesNotMatch(page, /setState\("opening"\)|Opening…|aria-busy|disabled=\{opening\}/);
-  assert.match(page, /dir="rtl"/);
-  assert.match(page, /lang="ar"/);
+  assert.match(page, /type InvitationLanguage = "ar" \| "en"/);
+  assert.match(page, /language === "en" \? "ltr" : "rtl"/);
+  assert.match(page, /className="language-toggle"/);
+  assert.match(page, /Translate invitation to English/);
+  assert.match(page, /translated-gift-card/);
+  assert.match(page, /translated-rsvp-card/);
+  assert.match(page, /window\.sessionStorage\.setItem\(LANGUAGE_KEY, next\)/);
   assert.match(page, /className="blessing-arc-word"/);
   assert.doesNotMatch(page, /className="framed-portrait"/);
   assert.doesNotMatch(page, /className="portrait-window"/);
@@ -189,6 +198,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.rsvp-card[\s\S]*aspect-ratio:\s*3 \/ 2/);
   assert.match(css, /\.rsvp-card-image[\s\S]*object-fit:\s*contain/);
   assert.match(css, /\.rsvp-card-button[\s\S]*min-height:\s*44px/);
+  assert.match(css, /\.language-toggle[\s\S]*min-height:\s*44px/);
+  assert.match(css, /\.english-invitation[\s\S]*font-family:/);
+  assert.match(css, /\.translated-card-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.ceremony-summary strong[\s\S]*font-weight:\s*700/);
   assert.match(css, /min-height:\s*44px/);

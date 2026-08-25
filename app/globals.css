@@ -233,6 +233,47 @@ button, a { font: inherit; }
   font-size: .95rem;
 }
 
+.language-toggle {
+  position: fixed;
+  z-index: 50;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  left: max(1rem, env(safe-area-inset-left));
+  display: inline-flex;
+  min-height: 44px;
+  padding: .58rem .9rem;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  border: 1px solid rgba(161, 138, 101, .34);
+  border-radius: 999px;
+  color: var(--olive-dark);
+  background-color: rgba(248, 244, 236, .94);
+  background-image: var(--paper-texture);
+  box-shadow: 0 7px 22px rgba(73, 59, 45, .14);
+  backdrop-filter: blur(8px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .78rem;
+  line-height: 1;
+}
+
+.language-toggle:hover { border-color: rgba(161, 138, 101, .52); }
+
+.language-toggle:focus-visible {
+  outline: 2px solid rgba(143, 118, 80, .82);
+  outline-offset: 3px;
+}
+
+.language-toggle-icon {
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  place-items: center;
+  color: var(--paper);
+  background: var(--gold);
+  font-size: .78rem;
+}
+
 .detail-card {
   width: min(100%, 430px);
   min-height: 100svh;
@@ -382,6 +423,51 @@ button, a { font: inherit; }
   line-height: 1.7;
 }
 
+.english-invitation {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.english-invitation .ceremony-content {
+  padding-inline: clamp(2.7rem, 10.5vw, 4.5rem);
+}
+
+.english-blessing {
+  display: block;
+  width: min(100%, 320px);
+  min-height: 0;
+  margin-bottom: clamp(.8rem, 2.5svh, 1.3rem);
+  white-space: normal;
+  font-size: clamp(.68rem, 2.7vw, .85rem);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.english-invitation .arabic-families {
+  gap: clamp(.85rem, 3vw, 1.25rem);
+  font-size: clamp(.58rem, 2.5vw, .76rem);
+  font-weight: 600;
+}
+
+.english-invitation .arabic-invitation-line {
+  max-width: 320px;
+  font-size: clamp(.75rem, 3.2vw, .94rem);
+  line-height: 1.55;
+}
+
+.english-invitation .arabic-couple-names {
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(2rem, 8.7vw, 2.55rem);
+  font-weight: 500;
+}
+
+.english-invitation .ceremony-summary,
+.english-invitation .arabic-closing {
+  font-size: clamp(.72rem, 3vw, .9rem);
+  line-height: 1.65;
+}
+
+.english-invitation .arabic-closing { max-width: 320px; }
+
 .supporting-card {
   width: min(100%, 430px);
   min-height: 0;
@@ -441,6 +527,26 @@ button, a { font: inherit; }
 }
 
 .timeline-card::before { display: none; }
+
+.english-timeline {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.english-timeline .timeline-card-content > h2 {
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(1.65rem, 7vw, 2.15rem);
+  font-weight: 500;
+}
+
+.english-timeline .wedding-timeline li:nth-child(odd) .timeline-step-content {
+  direction: ltr;
+}
+
+.english-timeline .timeline-label {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.78rem, 3.25vw, .96rem);
+  font-weight: 500;
+}
 
 .timeline-ornament {
   position: relative;
@@ -642,6 +748,99 @@ button, a { font: inherit; }
   user-select: none;
 }
 
+.translated-gift-card,
+.translated-rsvp-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9b8665;
+  background-color: rgba(255, 253, 248, .94);
+  background-image: var(--paper-texture);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.translated-gift-card::before,
+.translated-rsvp-card::before {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  border: 1px solid rgba(168, 148, 115, .52);
+  border-radius: 1.3rem .4rem;
+  inset: clamp(.7rem, 3vw, 1.05rem);
+  box-shadow: inset 0 0 0 6px rgba(255, 255, 255, .35);
+}
+
+.translated-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(78%, 320px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.translated-card-content h2 {
+  margin: 0;
+  color: #a89473;
+  font-family: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  font-size: clamp(2.1rem, 10vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: .16em;
+  line-height: 1;
+}
+
+.translated-card-ornament {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: clamp(.8rem, 3vw, 1.15rem) 0;
+  color: rgba(168, 148, 115, .72);
+  font-size: .72rem;
+}
+
+.translated-card-ornament::before,
+.translated-card-ornament::after {
+  width: 2.6rem;
+  height: 1px;
+  background: rgba(168, 148, 115, .38);
+  content: "";
+}
+
+.translated-card-content p {
+  max-width: 290px;
+  margin: 0;
+  color: #8f7a5c;
+  font-size: clamp(.72rem, 3.1vw, .9rem);
+  line-height: 1.75;
+}
+
+.translated-card-button {
+  display: inline-flex;
+  min-height: 44px;
+  margin-top: clamp(1rem, 4vw, 1.45rem);
+  padding: .65rem 1.2rem;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  border: 1px solid rgba(168, 148, 115, .5);
+  border-radius: 999px;
+  color: #8f7a5c;
+  background: rgba(255, 255, 255, .32);
+  font-size: clamp(.68rem, 2.8vw, .8rem);
+  letter-spacing: .1em;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.translated-card-button:hover { background: rgba(255, 255, 255, .58); }
+
+.translated-card-button:focus-visible {
+  outline: 2px solid rgba(143, 118, 80, .78);
+  outline-offset: 4px;
+}
+
 .gift-cover-button {
   position: absolute;
   z-index: 2;
@@ -682,6 +881,27 @@ button, a { font: inherit; }
   position: absolute;
   inset: 0;
   overflow: hidden;
+}
+
+.translated-rsvp-card .translated-card-content h2 {
+  font-size: clamp(2rem, 9vw, 2.85rem);
+}
+
+.translated-rsvp-card .translated-card-ornament {
+  margin-block: .55rem;
+}
+
+.translated-rsvp-card .translated-card-button {
+  margin-top: .65rem;
+}
+
+.translated-rsvp-card .translated-rsvp-kicker {
+  margin: 0 0 .45rem;
+  color: #9b8665;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.68rem, 2.7vw, .82rem);
+  font-style: italic;
+  letter-spacing: .06em;
 }
 
 .rsvp-card-image {
