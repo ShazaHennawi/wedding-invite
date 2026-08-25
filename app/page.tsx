@@ -219,22 +219,12 @@ function TimelineStep({
   );
 }
 
-function CeremonyDetails({
-  onOpenGift,
-  language,
-  resetScrollOnMount,
-}: {
-  onOpenGift: () => void;
-  language: InvitationLanguage;
-  resetScrollOnMount: boolean;
-}) {
+function WeddingProgram({ language }: { language: InvitationLanguage }) {
   const reducedMotion = Boolean(useReducedMotion());
-  const headingRef = useRef<HTMLHeadingElement>(null);
   const timelineSectionRef = useRef<HTMLElement>(null);
   const arabic = invitation.arabicCeremony;
   const english = invitation.englishCeremony;
   const isEnglish = language === "en";
-  const blessingWords = arabic.blessing.split(" ");
   const { scrollYProgress: timelineScrollProgress } = useScroll({
     target: timelineSectionRef,
     offset: ["start 100%", "end 100%"],
@@ -245,6 +235,68 @@ function CeremonyDetails({
     damping: 30,
     mass: 0.12,
   });
+
+  return (
+    <article
+      ref={timelineSectionRef}
+      className={`supporting-card timeline-card w-full text-center${isEnglish ? " english-timeline" : ""}`}
+      dir={isEnglish ? "ltr" : "rtl"}
+      lang={language}
+    >
+      <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
+        <div className="timeline-ornament" aria-hidden="true">
+          <Image
+            src={assetPath("/wedding-program-ornament-transparent.png")}
+            alt=""
+            width={2172}
+            height={724}
+            sizes="240px"
+            className="timeline-ornament-image"
+            draggable={false}
+          />
+        </div>
+        <h2 id="timeline-heading">{isEnglish ? english.timelineHeading : arabic.timelineHeading}</h2>
+        <ol className="wedding-timeline" aria-label={isEnglish ? english.timelineHeading : arabic.timelineHeading}>
+          <motion.span
+            className="timeline-progress"
+            aria-hidden="true"
+            style={{ scaleY: reducedMotion ? 1 : timelineProgress }}
+          />
+          {arabic.timeline.map((item, index) => (
+            <TimelineStep
+              key={item.order}
+              item={item}
+              index={index}
+              progress={timelineProgress}
+              reducedMotion={reducedMotion}
+              language={language}
+            />
+          ))}
+        </ol>
+      </section>
+    </article>
+  );
+}
+
+function CeremonyDetails({
+  onOpenGift,
+  language,
+  resetScrollOnMount,
+  showProgram,
+  showRsvp,
+}: {
+  onOpenGift: () => void;
+  language: InvitationLanguage;
+  resetScrollOnMount: boolean;
+  showProgram: boolean;
+  showRsvp: boolean;
+}) {
+  const reducedMotion = Boolean(useReducedMotion());
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const arabic = invitation.arabicCeremony;
+  const english = invitation.englishCeremony;
+  const isEnglish = language === "en";
+  const blessingWords = arabic.blessing.split(" ");
 
   useLayoutEffect(() => {
     if (!resetScrollOnMount) return;
@@ -333,44 +385,7 @@ function CeremonyDetails({
         </div>
       </article>
 
-      <article
-        ref={timelineSectionRef}
-        className={`supporting-card timeline-card w-full text-center${isEnglish ? " english-timeline" : ""}`}
-        dir={isEnglish ? "ltr" : "rtl"}
-        lang={language}
-      >
-        <section className="supporting-card-content timeline-card-content" aria-labelledby="timeline-heading">
-          <div className="timeline-ornament" aria-hidden="true">
-            <Image
-              src={assetPath("/wedding-program-ornament-transparent.png")}
-              alt=""
-              width={2172}
-              height={724}
-              sizes="240px"
-              className="timeline-ornament-image"
-              draggable={false}
-            />
-          </div>
-          <h2 id="timeline-heading">{isEnglish ? english.timelineHeading : arabic.timelineHeading}</h2>
-          <ol className="wedding-timeline" aria-label={isEnglish ? english.timelineHeading : arabic.timelineHeading}>
-            <motion.span
-              className="timeline-progress"
-              aria-hidden="true"
-              style={{ scaleY: reducedMotion ? 1 : timelineProgress }}
-            />
-            {arabic.timeline.map((item, index) => (
-              <TimelineStep
-                key={item.order}
-                item={item}
-                index={index}
-                progress={timelineProgress}
-                reducedMotion={reducedMotion}
-                language={language}
-              />
-            ))}
-          </ol>
-        </section>
-      </article>
+      {showProgram ? <WeddingProgram language={language} /> : null}
 
       <article
         className="supporting-card gift-card gift-card-cover w-full text-center"
@@ -417,7 +432,7 @@ function CeremonyDetails({
         </div>
       </article>
 
-      <article className="supporting-card rsvp-card w-full text-center" lang={language}>
+      {showRsvp ? <article className="supporting-card rsvp-card w-full text-center" lang={language}>
         <div className={`rsvp-card-art${isEnglish ? " translated-rsvp-card" : ""}`}>
           {isEnglish ? (
             <div className="translated-card-content">
@@ -458,13 +473,19 @@ function CeremonyDetails({
             </>
           )}
         </div>
-      </article>
+      </article> : null}
 
     </motion.main>
   );
 }
 
-export default function Home() {
+export function WeddingInvitation({
+  showProgram = true,
+  showRsvp = true,
+}: {
+  showProgram?: boolean;
+  showRsvp?: boolean;
+}) {
   const [state, setState] = useState<ExperienceState>("closed");
   const [language, setLanguage] = useState<InvitationLanguage>("ar");
   const [musicPlaying, setMusicPlaying] = useState(false);
@@ -553,6 +574,8 @@ export default function Home() {
             onOpenGift={rememberInvitationPosition}
             language={language}
             resetScrollOnMount={resetDetailsScrollRef.current}
+            showProgram={showProgram}
+            showRsvp={showRsvp}
           />
         ) : (
           <Landing onOpen={openInvitation} />
@@ -602,4 +625,8 @@ export default function Home() {
       ) : null}
     </>
   );
+}
+
+export default function Home() {
+  return <WeddingInvitation />;
 }

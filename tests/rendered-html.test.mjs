@@ -42,9 +42,19 @@ test("server-renders the bank details route", async () => {
   assert.match(html, /Isaac Wassouf/);
 });
 
+test("server-renders the invitation-only route", async () => {
+  const response = await render("/invitation-only");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /aria-label="Open the wedding invitation"/);
+  assert.match(html, /Isaac &amp; Shaza/);
+});
+
 test("keeps content editable and interaction requirements wired", async () => {
-  const [page, bankPage, config, css, layout, packageJson] = await Promise.all([
+  const [page, invitationOnlyPage, bankPage, config, css, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/invitation-only/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/bank-details/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/invitation-config.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
@@ -53,6 +63,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   ]);
 
   assert.match(config, /export const invitationConfig/);
+  assert.match(invitationOnlyPage, /showProgram=\{false\}/);
+  assert.match(invitationOnlyPage, /showRsvp=\{false\}/);
+  assert.match(page, /showProgram = true/);
+  assert.match(page, /showRsvp = true/);
   assert.match(config, /date: "17\.10\.2026"/);
   assert.match(config, /poster: "\/landing-couple-frame-new\.png"/);
   assert.match(config, /src: "\/wedding-song\.mp3"/);
