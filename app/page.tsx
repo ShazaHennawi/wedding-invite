@@ -141,7 +141,7 @@ function Landing({ onOpen }: { onOpen: () => void }) {
     <motion.main
       key="landing"
       className="invitation-shell min-h-[100svh] w-full"
-      initial={{ opacity: 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: reducedMotion ? 1 : 0.985 }}
       transition={{ duration: reducedMotion ? 0.2 : 0.48 }}

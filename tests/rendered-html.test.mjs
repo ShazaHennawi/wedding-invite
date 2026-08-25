@@ -72,6 +72,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /english: "Ceremony"/);
   assert.match(config, /english: "Photos"/);
   assert.match(config, /english: "Lunch"/);
+  assert.match(page, /key="landing"[\s\S]*initial=\{false\}[\s\S]*animate=\{\{ opacity: 1 \}\}/);
   assert.doesNotMatch(config, /icon: "car"|english: "Car"|السيارة/);
   assert.doesNotMatch(config, /locationHeading:/);
   assert.doesNotMatch(page, /wedding\.address/);
