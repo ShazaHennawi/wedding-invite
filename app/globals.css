@@ -993,6 +993,12 @@ button, a { font: inherit; }
 }
 
 @media (max-width: 480px) {
+  .arabic-families {
+    flex-wrap: nowrap;
+    gap: clamp(1rem, 4.5vw, 1.35rem);
+    font-size: clamp(.7rem, 3vw, .9rem);
+  }
+
   .gift-card-cover,
   .rsvp-card {
     width: min(calc(100% - 2.25rem), 350px);
