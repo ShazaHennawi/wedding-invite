@@ -64,7 +64,8 @@ test("keeps content editable and interaction requirements wired", async () => {
 
   assert.match(config, /export const invitationConfig/);
   assert.match(invitationOnlyPage, /showProgram=\{false\}/);
-  assert.match(invitationOnlyPage, /showRsvp=\{false\}/);
+  assert.match(invitationOnlyPage, /showRsvp/);
+  assert.doesNotMatch(invitationOnlyPage, /showRsvp=\{false\}/);
   assert.match(page, /showProgram = true/);
   assert.match(page, /showRsvp = true/);
   assert.match(config, /date: "17\.10\.2026"/);
