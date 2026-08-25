@@ -80,38 +80,54 @@ function Envelope() {
   );
 }
 
-const CeremonyMusic = forwardRef<MusicController>(function CeremonyMusic(_, ref) {
-  const playerRef = useRef<HTMLIFrameElement>(null);
+const CeremonyMusic = forwardRef<MusicController, { onStop: () => void }>(function CeremonyMusic(
+  { onStop },
+  ref,
+) {
+  const playerRef = useRef<HTMLAudioElement>(null);
 
-  const sendCommand = (func: string, args: Array<number> = []) => {
-    playerRef.current?.contentWindow?.postMessage(
-      JSON.stringify({ event: "command", func, args }),
-      "https://www.youtube-nocookie.com",
-    );
+  const preparePlayback = () => {
+    const player = playerRef.current;
+    if (!player) return;
+
+    player.volume = invitation.music.volume / 100;
+    if (
+      player.currentTime < invitation.music.startTime ||
+      player.currentTime >= invitation.music.endTime
+    ) {
+      player.currentTime = invitation.music.startTime;
+    }
   };
 
   useImperativeHandle(ref, () => ({
     play: () => {
-      sendCommand("setVolume", [invitation.music.volume]);
-      sendCommand("playVideo");
+      const player = playerRef.current;
+      if (!player) return;
+      preparePlayback();
+      void player.play();
     },
-    pause: () => sendCommand("pauseVideo"),
+    pause: () => playerRef.current?.pause(),
   }));
 
-  const videoId = invitation.music.youtubeVideoId;
-  const source = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&loop=1&playlist=${videoId}&start=${invitation.music.startTime}&end=${invitation.music.endTime}&playsinline=1&rel=0&modestbranding=1&controls=0&enablejsapi=1`;
+  const stopAtEnd = () => {
+    const player = playerRef.current;
+    if (!player || player.currentTime < invitation.music.endTime) return;
+
+    player.pause();
+    player.currentTime = invitation.music.endTime;
+    onStop();
+  };
 
   return (
-    <iframe
+    <audio
       ref={playerRef}
       className="ceremony-music"
-      src={source}
+      src={assetPath(invitation.music.src)}
       title={invitation.music.title}
-      allow="autoplay; encrypted-media"
-      referrerPolicy="strict-origin-when-cross-origin"
+      preload="metadata"
       aria-hidden="true"
-      tabIndex={-1}
-      onLoad={() => sendCommand("setVolume", [invitation.music.volume])}
+      onLoadedMetadata={preparePlayback}
+      onTimeUpdate={stopAtEnd}
     />
   );
 });
@@ -410,7 +426,7 @@ export default function Home() {
 
   return (
     <>
-      <CeremonyMusic ref={musicRef} />
+      <CeremonyMusic ref={musicRef} onStop={() => setMusicPlaying(false)} />
       <AnimatePresence mode="wait">
         {state === "details" ? (
           <CeremonyDetails onOpenGift={rememberInvitationPosition} />

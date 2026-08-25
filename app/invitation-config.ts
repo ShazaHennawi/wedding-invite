@@ -49,7 +49,7 @@ export const invitationConfig = {
     openPrompt: "Tap to open",
   },
   music: {
-    youtubeVideoId: "6W3-rHzCqkY",
+    src: "/wedding-song.mp3",
     title: "Wedding music",
     volume: 22,
     startTime: 20,
