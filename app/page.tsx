@@ -515,6 +515,18 @@ export default function Home() {
     });
   };
 
+  const returnToCover = () => {
+    musicRef.current?.pause();
+    setMusicPlaying(false);
+    setReturnScroll(null);
+    window.sessionStorage.removeItem(RETURN_VIEW_KEY);
+    window.sessionStorage.removeItem(RETURN_SCROLL_KEY);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    setState("closed");
+  };
+
   const rememberInvitationPosition = () => {
     window.sessionStorage.setItem(RETURN_VIEW_KEY, "details");
     window.sessionStorage.setItem(RETURN_SCROLL_KEY, String(window.scrollY));
@@ -532,6 +544,14 @@ export default function Home() {
       </AnimatePresence>
       {state === "details" ? (
         <>
+          <button
+            className="details-back-button"
+            type="button"
+            onClick={returnToCover}
+            aria-label={language === "en" ? "Back to invitation cover" : "العودة إلى صفحة الدعوة الرئيسية"}
+          >
+            <span aria-hidden="true">←</span>
+          </button>
           <button
             className="language-toggle"
             type="button"
