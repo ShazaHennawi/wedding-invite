@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", { headers: { accept: "text/html" } }),
+    new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
     { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
     { waitUntil() {}, passThroughOnException() {} },
   );
@@ -31,6 +31,15 @@ test("server-renders the closed wedding invitation", async () => {
   assert.doesNotMatch(html, /Open in Maps/);
   assert.doesNotMatch(html, /\[Venue Name\]/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+});
+
+test("server-renders the bank details route", async () => {
+  const response = await render("/bank-details");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /BANK DETAILS/);
+  assert.match(html, /Isaac Wassouf/);
 });
 
 test("keeps content editable and interaction requirements wired", async () => {
@@ -103,7 +112,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /src=\{assetPath\("\/gift-cover-card-arabic-details\.png"\)\}/);
   assert.match(page, /aria-label="التفاصيل"/);
   assert.match(page, /className="gift-cover-button"/);
-  assert.match(page, /NEXT_PUBLIC_BASE_PATH[\s\S]*\/bank-details\.html/);
+  assert.match(page, /const BANK_DETAILS_HREF = process\.env\.NEXT_PUBLIC_BASE_PATH[\s\S]*\/bank-details\.html[\s\S]*"\/bank-details"/);
+  assert.equal((page.match(/href=\{BANK_DETAILS_HREF\}/g) ?? []).length, 2);
   assert.doesNotMatch(page, /className="gift-cover-message"/);
   assert.doesNotMatch(page, /giftOpen|setGiftOpen|gift-details-message/);
   assert.doesNotMatch(page, /className="gift-message"/);

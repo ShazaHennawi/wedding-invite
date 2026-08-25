@@ -19,6 +19,9 @@ type MusicController = {
 const RETURN_VIEW_KEY = "wedding-invitation-return-view";
 const RETURN_SCROLL_KEY = "wedding-invitation-return-scroll";
 const LANGUAGE_KEY = "wedding-invitation-language";
+const BANK_DETAILS_HREF = process.env.NEXT_PUBLIC_BASE_PATH
+  ? `${process.env.NEXT_PUBLIC_BASE_PATH}/bank-details.html`
+  : "/bank-details";
 
 function CoupleMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -375,7 +378,7 @@ function CeremonyDetails({
               <p>{english.gift.message}</p>
               <a
                 className="translated-card-button"
-                href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/bank-details.html`}
+                href={BANK_DETAILS_HREF}
                 onClick={onOpenGift}
               >
                 <span aria-hidden="true">＋</span>
@@ -396,7 +399,7 @@ function CeremonyDetails({
               />
               <a
                 className="gift-cover-button"
-                href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/bank-details.html`}
+                href={BANK_DETAILS_HREF}
                 onClick={onOpenGift}
                 aria-label="التفاصيل"
               >
