@@ -549,6 +549,14 @@ button, a { font: inherit; }
   direction: ltr;
 }
 
+.english-timeline .timeline-step-content {
+  gap: 0;
+}
+
+.english-timeline .timeline-copy {
+  margin-left: -.35rem;
+}
+
 .english-timeline .timeline-label {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(.78rem, 3.25vw, .96rem);
