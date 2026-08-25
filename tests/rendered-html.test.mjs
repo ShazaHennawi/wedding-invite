@@ -47,8 +47,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /date: "17\.10\.2026"/);
   assert.match(config, /poster: "\/landing-couple-frame-new\.png"/);
   assert.match(config, /src: "\/wedding-song\.mp3"/);
-  assert.match(config, /startTime: 20/);
-  assert.match(config, /endTime: 65/);
+  assert.match(config, /startTime: 170/);
+  assert.match(config, /endTime: 194/);
   assert.doesNotMatch(config, /youtubeVideoId/);
   assert.doesNotMatch(config, /mapUrl:/);
   assert.match(config, /arabicCeremony:/);
