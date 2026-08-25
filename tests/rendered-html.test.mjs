@@ -60,6 +60,17 @@ test("server-renders the ceremony-gifts route", async () => {
   assert.match(html, /Isaac &amp; Shaza/);
 });
 
+test("server-renders the renamed ceremony routes", async () => {
+  for (const path of ["/ceremony-invitation", "/ceremony.syria"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200);
+
+    const html = await response.text();
+    assert.match(html, /aria-label="Open the wedding invitation"/);
+    assert.match(html, /Isaac &amp; Shaza/);
+  }
+});
+
 test("keeps content editable and interaction requirements wired", async () => {
   const [page, invitationOnlyPage, ceremonyGiftsPage, bankPage, config, css, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
