@@ -65,9 +65,13 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(config, /export const invitationConfig/);
   assert.match(invitationOnlyPage, /showProgram=\{false\}/);
   assert.match(invitationOnlyPage, /showRsvp/);
+  assert.match(invitationOnlyPage, /rsvpBeforeGift/);
   assert.doesNotMatch(invitationOnlyPage, /showRsvp=\{false\}/);
   assert.match(page, /showProgram = true/);
   assert.match(page, /showRsvp = true/);
+  assert.match(page, /rsvpBeforeGift = false/);
+  assert.match(page, /showRsvp && rsvpBeforeGift \? <RsvpCard/);
+  assert.match(page, /showRsvp && !rsvpBeforeGift \? <RsvpCard/);
   assert.match(config, /date: "17\.10\.2026"/);
   assert.match(config, /poster: "\/landing-couple-frame-new\.png"/);
   assert.match(config, /src: "\/wedding-song\.mp3"/);

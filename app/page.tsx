@@ -278,18 +278,70 @@ function WeddingProgram({ language }: { language: InvitationLanguage }) {
   );
 }
 
+function RsvpCard({ language }: { language: InvitationLanguage }) {
+  const english = invitation.englishCeremony;
+  const isEnglish = language === "en";
+
+  return (
+    <article className="supporting-card rsvp-card w-full text-center" lang={language}>
+      <div className={`rsvp-card-art${isEnglish ? " translated-rsvp-card" : ""}`}>
+        {isEnglish ? (
+          <div className="translated-card-content">
+            <p className="translated-rsvp-kicker">{english.rsvp.message}</p>
+            <h2>{english.rsvp.heading}</h2>
+            <span className="translated-card-ornament" aria-hidden="true">✦</span>
+            <a
+              className="translated-card-button"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span aria-hidden="true">＋</span>
+              {english.rsvp.button}
+              <span aria-hidden="true">＋</span>
+            </a>
+          </div>
+        ) : (
+          <>
+            <Image
+              src={assetPath("/rsvp-confirm-attendance-final.png")}
+              alt="الردّ على الدعوة — تأكيد الحضور"
+              width={1536}
+              height={1024}
+              sizes="(max-width: 430px) 100vw, 430px"
+              className="rsvp-card-image"
+              draggable={false}
+            />
+            <a
+              className="rsvp-card-button"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تأكيد الحضور"
+            >
+              <span className="sr-only">تأكيد الحضور</span>
+            </a>
+          </>
+        )}
+      </div>
+    </article>
+  );
+}
+
 function CeremonyDetails({
   onOpenGift,
   language,
   resetScrollOnMount,
   showProgram,
   showRsvp,
+  rsvpBeforeGift,
 }: {
   onOpenGift: () => void;
   language: InvitationLanguage;
   resetScrollOnMount: boolean;
   showProgram: boolean;
   showRsvp: boolean;
+  rsvpBeforeGift: boolean;
 }) {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -387,6 +439,8 @@ function CeremonyDetails({
 
       {showProgram ? <WeddingProgram language={language} /> : null}
 
+      {showRsvp && rsvpBeforeGift ? <RsvpCard language={language} /> : null}
+
       <article
         className="supporting-card gift-card gift-card-cover w-full text-center"
         dir={isEnglish ? "ltr" : "rtl"}
@@ -432,48 +486,7 @@ function CeremonyDetails({
         </div>
       </article>
 
-      {showRsvp ? <article className="supporting-card rsvp-card w-full text-center" lang={language}>
-        <div className={`rsvp-card-art${isEnglish ? " translated-rsvp-card" : ""}`}>
-          {isEnglish ? (
-            <div className="translated-card-content">
-              <p className="translated-rsvp-kicker">{english.rsvp.message}</p>
-              <h2>{english.rsvp.heading}</h2>
-              <span className="translated-card-ornament" aria-hidden="true">✦</span>
-              <a
-                className="translated-card-button"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span aria-hidden="true">＋</span>
-                {english.rsvp.button}
-                <span aria-hidden="true">＋</span>
-              </a>
-            </div>
-          ) : (
-            <>
-              <Image
-                src={assetPath("/rsvp-confirm-attendance-final.png")}
-                alt="الردّ على الدعوة — تأكيد الحضور"
-                width={1536}
-                height={1024}
-                sizes="(max-width: 430px) 100vw, 430px"
-                className="rsvp-card-image"
-                draggable={false}
-              />
-              <a
-                className="rsvp-card-button"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSe2EGqsYW_jGXh6ofT957yQLLdh44orRyo9310oWnLksTYVWg/viewform?usp=dialog"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="تأكيد الحضور"
-              >
-                <span className="sr-only">تأكيد الحضور</span>
-              </a>
-            </>
-          )}
-        </div>
-      </article> : null}
+      {showRsvp && !rsvpBeforeGift ? <RsvpCard language={language} /> : null}
 
     </motion.main>
   );
@@ -482,9 +495,11 @@ function CeremonyDetails({
 export function WeddingInvitation({
   showProgram = true,
   showRsvp = true,
+  rsvpBeforeGift = false,
 }: {
   showProgram?: boolean;
   showRsvp?: boolean;
+  rsvpBeforeGift?: boolean;
 }) {
   const [state, setState] = useState<ExperienceState>("closed");
   const [language, setLanguage] = useState<InvitationLanguage>("ar");
@@ -576,6 +591,7 @@ export function WeddingInvitation({
             resetScrollOnMount={resetDetailsScrollRef.current}
             showProgram={showProgram}
             showRsvp={showRsvp}
+            rsvpBeforeGift={rsvpBeforeGift}
           />
         ) : (
           <Landing onOpen={openInvitation} />
