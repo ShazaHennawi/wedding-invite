@@ -51,10 +51,20 @@ test("server-renders the invitation-only route", async () => {
   assert.match(html, /Isaac &amp; Shaza/);
 });
 
+test("server-renders the ceremony-gifts route", async () => {
+  const response = await render("/ceremony-gifts");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /aria-label="Open the wedding invitation"/);
+  assert.match(html, /Isaac &amp; Shaza/);
+});
+
 test("keeps content editable and interaction requirements wired", async () => {
-  const [page, invitationOnlyPage, bankPage, config, css, layout, packageJson] = await Promise.all([
+  const [page, invitationOnlyPage, ceremonyGiftsPage, bankPage, config, css, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/invitation-only/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/ceremony-gifts/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/bank-details/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/invitation-config.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
@@ -67,6 +77,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(invitationOnlyPage, /showRsvp/);
   assert.match(invitationOnlyPage, /rsvpBeforeGift/);
   assert.doesNotMatch(invitationOnlyPage, /showRsvp=\{false\}/);
+  assert.match(ceremonyGiftsPage, /showProgram=\{false\}/);
+  assert.match(ceremonyGiftsPage, /showRsvp=\{false\}/);
   assert.match(page, /showProgram = true/);
   assert.match(page, /showRsvp = true/);
   assert.match(page, /rsvpBeforeGift = false/);
