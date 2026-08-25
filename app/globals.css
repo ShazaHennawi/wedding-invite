@@ -601,6 +601,10 @@ button, a { font: inherit; }
   margin-left: -.35rem;
 }
 
+.english-timeline .wedding-timeline li:nth-child(2) .timeline-copy {
+  margin-left: -.8rem;
+}
+
 .english-timeline .timeline-label {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(.78rem, 3.25vw, .96rem);
