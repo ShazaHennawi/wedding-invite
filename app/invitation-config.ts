@@ -6,7 +6,7 @@ export const invitationConfig = {
   },
   wedding: {
     date: "17.10.2026",
-    time: "2 PM",
+    time: "الثانية",
     venue: "كنيسة القديس جاورجيوس",
   },
   arabicCeremony: {
