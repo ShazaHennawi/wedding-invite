@@ -148,7 +148,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /player\.currentTime = invitation\.music\.endTime/);
   assert.match(page, /onTimeUpdate=\{stopAtEnd\}/);
   assert.doesNotMatch(page, /youtube-nocookie|enablejsapi|sendCommand/);
-  assert.match(config, /volume: 22/);
+  assert.match(config, /volume: 17/);
   assert.match(css, /\.ceremony-music[\s\S]*opacity:\s*0/);
   assert.match(css, /Arabic Typesetting/);
   assert.match(css, /\.blessing-arc-word:nth-child\(1\)[\s\S]*translateY\(\.92em\) rotate\(13deg\)/);

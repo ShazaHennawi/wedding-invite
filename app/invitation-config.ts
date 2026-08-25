@@ -51,7 +51,7 @@ export const invitationConfig = {
   music: {
     src: "/wedding-song.mp3",
     title: "Wedding music",
-    volume: 22,
+    volume: 17,
     startTime: 20,
     endTime: 65,
   },
