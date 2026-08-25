@@ -9,7 +9,7 @@ const [repositoryOwner = "ShazaHennawi", repositoryName = "wedding-invite"] =
 const siteUrl = isGitHubPages
   ? `https://${repositoryOwner}.github.io/${repositoryName}/`
   : process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaac-shaza-wedding.sasha149.chatgpt.site/";
-const imageUrl = new URL("invitation-preview-envelope.png", siteUrl).toString();
+const imageUrl = new URL("og.png", siteUrl).toString();
 const title = "Isaac & Shaza — Wedding Invitation";
 const description = "You are invited to celebrate the wedding of Isaac and Shaza.";
 const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Isaac & Shaza Wedding Invitation",
     type: "website",
-    images: [{ url: imageUrl, width: 1890, height: 2363, alt: "Isaac & Shaza wedding invitation envelope" }],
+    images: [{ url: imageUrl, width: 1731, height: 909, alt: "Isaac & Shaza wedding invitation envelope with white flowers" }],
   },
   twitter: {
     card: "summary_large_image",
