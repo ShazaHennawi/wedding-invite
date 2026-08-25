@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Niconne";
+  src: url("./fonts/Niconne-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --ink: #4c493d;
   --ink-soft: #747063;
@@ -461,11 +469,11 @@ button, a { font: inherit; }
 }
 
 .english-invitation .arabic-couple-names {
-  font-family: "Snell Roundhand", "Segoe Script", "Brush Script MT", "Lucida Handwriting", cursive;
+  font-family: "Niconne", "Snell Roundhand", "Segoe Script", cursive;
   font-size: clamp(1.9rem, 8vw, 2.4rem);
   font-weight: 400;
   letter-spacing: .005em;
-  line-height: 1.15;
+  line-height: 1.05;
 }
 
 .english-invitation .ceremony-summary,
