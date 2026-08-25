@@ -139,6 +139,8 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /playsInline/);
   assert.match(page, /event\.key === "Enter" \|\| event\.key === " "/);
   assert.match(page, /setState\("details"\)/);
+  assert.match(page, /resetDetailsScrollRef\.current = true/);
+  assert.match(page, /window\.scrollTo\(\{ top: 0, left: 0, behavior: "auto" \}\)/);
   assert.doesNotMatch(page, /setState\("opening"\)|Opening…|aria-busy|disabled=\{opening\}/);
   assert.match(page, /type InvitationLanguage = "ar" \| "en"/);
   assert.match(page, /language === "en" \? "ltr" : "rtl"/);

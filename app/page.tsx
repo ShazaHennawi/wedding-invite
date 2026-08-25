@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from "react";
 import { assetPath } from "./asset-path";
 import { invitationConfig as invitation } from "./invitation-config";
 
@@ -222,9 +222,11 @@ function TimelineStep({
 function CeremonyDetails({
   onOpenGift,
   language,
+  resetScrollOnMount,
 }: {
   onOpenGift: () => void;
   language: InvitationLanguage;
+  resetScrollOnMount: boolean;
 }) {
   const reducedMotion = Boolean(useReducedMotion());
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -243,6 +245,11 @@ function CeremonyDetails({
     damping: 30,
     mass: 0.12,
   });
+
+  useLayoutEffect(() => {
+    if (!resetScrollOnMount) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [resetScrollOnMount]);
 
   useEffect(() => {
     headingRef.current?.focus({ preventScroll: true });
@@ -463,6 +470,7 @@ export default function Home() {
   const [musicPlaying, setMusicPlaying] = useState(false);
   const [returnScroll, setReturnScroll] = useState<number | null>(null);
   const musicRef = useRef<MusicController>(null);
+  const resetDetailsScrollRef = useRef(false);
 
   useEffect(() => {
     const savedLanguage = window.sessionStorage.getItem(LANGUAGE_KEY);
@@ -496,6 +504,7 @@ export default function Home() {
 
   const openInvitation = () => {
     if (state !== "closed") return;
+    resetDetailsScrollRef.current = true;
     musicRef.current?.play();
     setMusicPlaying(true);
     setState("details");
@@ -540,7 +549,11 @@ export default function Home() {
       <CeremonyMusic ref={musicRef} onStop={() => setMusicPlaying(false)} />
       <AnimatePresence mode="wait">
         {state === "details" ? (
-          <CeremonyDetails onOpenGift={rememberInvitationPosition} language={language} />
+          <CeremonyDetails
+            onOpenGift={rememberInvitationPosition}
+            language={language}
+            resetScrollOnMount={resetDetailsScrollRef.current}
+          />
         ) : (
           <Landing onOpen={openInvitation} />
         )}
