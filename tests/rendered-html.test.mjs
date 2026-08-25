@@ -214,6 +214,9 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.english-timeline \.timeline-step-content[\s\S]*gap:\s*0/);
   assert.match(css, /\.english-timeline \.wedding-timeline li:nth-of-type\(1\) \.timeline-copy,[\s\S]*li:nth-of-type\(3\) \.timeline-copy[\s\S]*margin-left:\s*\.65rem/);
   assert.match(css, /\.english-timeline \.wedding-timeline li:nth-of-type\(2\) \.timeline-copy[\s\S]*margin-left:\s*-\.8rem/);
+  assert.match(css, /@media \(max-width:\s*480px\)[\s\S]*\.english-timeline \.timeline-step-content[\s\S]*gap:\s*\.4rem/);
+  assert.match(css, /@media \(max-width:\s*480px\)[\s\S]*\.english-timeline \.timeline-icon[\s\S]*width:\s*4\.85rem[\s\S]*height:\s*4\.15rem/);
+  assert.match(css, /@media \(max-width:\s*480px\)[\s\S]*\.english-timeline \.wedding-timeline li:nth-of-type\(1\) \.timeline-copy,[\s\S]*li:nth-of-type\(3\) \.timeline-copy[\s\S]*margin-left:\s*0/);
   assert.match(css, /@media \(max-width:\s*480px\)[\s\S]*\.timeline-card\[lang="ar"\][\s\S]*li:nth-of-type\(2\) \.timeline-step-content[\s\S]*gap:\s*\.15rem/);
   assert.match(css, /\.translated-card-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);
