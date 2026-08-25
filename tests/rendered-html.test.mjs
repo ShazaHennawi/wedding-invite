@@ -212,6 +212,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /@font-face[\s\S]*font-family:\s*"Niconne"[\s\S]*Niconne-Regular\.ttf/);
   assert.match(css, /\.english-invitation \.arabic-couple-names[\s\S]*font-family:\s*"Niconne"/);
   assert.match(css, /\.english-timeline \.timeline-step-content[\s\S]*gap:\s*0/);
+  assert.match(css, /\.english-timeline \.wedding-timeline li:nth-child\(1\) \.timeline-copy,[\s\S]*li:nth-child\(3\) \.timeline-copy[\s\S]*margin-left:\s*\.65rem/);
   assert.match(css, /\.english-timeline \.wedding-timeline li:nth-child\(2\) \.timeline-copy[\s\S]*margin-left:\s*-\.8rem/);
   assert.match(css, /\.translated-card-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.arabic-families[\s\S]*white-space:\s*nowrap/);

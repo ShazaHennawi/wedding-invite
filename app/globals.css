@@ -601,6 +601,11 @@ button, a { font: inherit; }
   margin-left: -.35rem;
 }
 
+.english-timeline .wedding-timeline li:nth-child(1) .timeline-copy,
+.english-timeline .wedding-timeline li:nth-child(3) .timeline-copy {
+  margin-left: .65rem;
+}
+
 .english-timeline .wedding-timeline li:nth-child(2) .timeline-copy {
   margin-left: -.8rem;
 }
