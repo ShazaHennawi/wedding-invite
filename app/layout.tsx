@@ -9,7 +9,7 @@ const [repositoryOwner = "ShazaHennawi", repositoryName = "wedding-invite"] =
 const siteUrl = isGitHubPages
   ? `https://${repositoryOwner}.github.io/${repositoryName}/`
   : process.env.NEXT_PUBLIC_SITE_URL ?? "https://isaac-shaza-wedding.sasha149.chatgpt.site/";
-const imageUrl = new URL("og.png", siteUrl).toString();
+const imageUrl = new URL("og-invitation-20260825.png", siteUrl).toString();
 const title = "Isaac & Shaza — Wedding Invitation";
 const description = "You are invited to celebrate the wedding of Isaac and Shaza.";
 const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";

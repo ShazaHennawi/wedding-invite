@@ -235,7 +235,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(layout, /openGraph:/);
-  assert.match(layout, /og\.png/);
+  assert.match(layout, /og-invitation-20260825\.png/);
   assert.match(layout, /width: 900, height: 472/);
   assert.match(layout, /card: "summary_large_image"/);
   assert.match(packageJson, /"framer-motion"/);
