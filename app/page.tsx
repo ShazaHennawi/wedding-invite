@@ -504,6 +504,7 @@ export function WeddingInvitation({
   const [state, setState] = useState<ExperienceState>("closed");
   const [language, setLanguage] = useState<InvitationLanguage>("ar");
   const [musicPlaying, setMusicPlaying] = useState(false);
+  const [showScrollHint, setShowScrollHint] = useState(false);
   const [returnScroll, setReturnScroll] = useState<number | null>(null);
   const musicRef = useRef<MusicController>(null);
   const resetDetailsScrollRef = useRef(false);
@@ -526,6 +527,19 @@ export function WeddingInvitation({
     document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
   }, [language, state]);
+
+  useEffect(() => {
+    if (state !== "details") {
+      setShowScrollHint(false);
+      return;
+    }
+
+    const updateScrollHint = () => setShowScrollHint(window.scrollY < 64);
+    updateScrollHint();
+    window.addEventListener("scroll", updateScrollHint, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrollHint);
+  }, [state]);
 
   useEffect(() => {
     if (state !== "details" || returnScroll === null) return;
@@ -580,6 +594,13 @@ export function WeddingInvitation({
     window.sessionStorage.setItem(RETURN_SCROLL_KEY, String(window.scrollY));
   };
 
+  const scrollToNextSection = () => {
+    document.querySelector<HTMLElement>(".details-shell .supporting-card")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <>
       <CeremonyMusic ref={musicRef} onStop={() => setMusicPlaying(false)} />
@@ -599,6 +620,16 @@ export function WeddingInvitation({
       </AnimatePresence>
       {state === "details" ? (
         <>
+          {showScrollHint ? (
+            <button
+              className="details-scroll-hint"
+              type="button"
+              onClick={scrollToNextSection}
+              aria-label={language === "en" ? "Scroll to the next section" : "الانتقال إلى القسم التالي"}
+            >
+              <span aria-hidden="true">↓</span>
+            </button>
+          ) : null}
           <button
             className="details-back-button"
             type="button"

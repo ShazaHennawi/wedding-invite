@@ -188,6 +188,10 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /language === "en" \? "ltr" : "rtl"/);
   assert.match(page, /className="language-toggle"/);
   assert.match(page, /className="details-back-button"/);
+  assert.match(page, /className="details-scroll-hint"/);
+  assert.match(page, /window\.scrollY < 64/);
+  assert.match(page, /\.details-shell \.supporting-card/);
+  assert.match(page, /scrollIntoView/);
   assert.match(page, /onClick=\{returnToCover\}/);
   assert.match(page, /setState\("closed"\)/);
   assert.match(page, /Translate invitation to English/);
@@ -262,6 +266,7 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(css, /\.rsvp-card-button[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.language-toggle[\s\S]*min-height:\s*44px/);
   assert.match(css, /\.details-back-button[\s\S]*min-height:\s*44px/);
+  assert.match(css, /\.details-scroll-hint[\s\S]*animation:\s*details-scroll-hint-bob/);
   assert.match(css, /\.english-invitation[\s\S]*font-family:\s*"Avenir Next"/);
   assert.match(css, /\.english-blessing[\s\S]*font-size:\s*clamp\(\.58rem, 2\.35vw, \.74rem\)/);
   assert.match(css, /@font-face[\s\S]*font-family:\s*"Niconne"[\s\S]*Niconne-Regular\.ttf/);
