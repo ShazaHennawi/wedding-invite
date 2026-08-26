@@ -23,6 +23,17 @@ const BANK_DETAILS_HREF = process.env.NEXT_PUBLIC_BASE_PATH
   ? `${process.env.NEXT_PUBLIC_BASE_PATH}/bank-details.html`
   : "/bank-details";
 
+function languageFromQuery(): InvitationLanguage | null {
+  const language = new URLSearchParams(window.location.search).get("lang");
+  return language === "ar" || language === "en" ? language : null;
+}
+
+function updateLanguageQuery(language: InvitationLanguage) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", language);
+  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
 function CoupleMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showFallback, setShowFallback] = useState(false);
@@ -516,8 +527,24 @@ export function WeddingInvitation({
   const resetDetailsScrollRef = useRef(false);
 
   useEffect(() => {
-    const savedLanguage = window.sessionStorage.getItem(LANGUAGE_KEY);
-    if (savedLanguage === "ar" || savedLanguage === "en") setLanguage(savedLanguage);
+    const syncLanguageFromUrl = () => {
+      const queryLanguage = languageFromQuery();
+      if (queryLanguage) {
+        window.sessionStorage.setItem(LANGUAGE_KEY, queryLanguage);
+        setLanguage(queryLanguage);
+        return;
+      }
+
+      const savedLanguage = window.sessionStorage.getItem(LANGUAGE_KEY);
+      if (savedLanguage === "ar" || savedLanguage === "en") setLanguage(savedLanguage);
+    };
+
+    syncLanguageFromUrl();
+    window.addEventListener("popstate", syncLanguageFromUrl);
+    return () => window.removeEventListener("popstate", syncLanguageFromUrl);
+  }, []);
+
+  useEffect(() => {
 
     if (window.sessionStorage.getItem(RETURN_VIEW_KEY) !== "details") return;
 
@@ -579,6 +606,7 @@ export function WeddingInvitation({
     setLanguage((current) => {
       const next = current === "ar" ? "en" : "ar";
       window.sessionStorage.setItem(LANGUAGE_KEY, next);
+      updateLanguageQuery(next);
       return next;
     });
   };

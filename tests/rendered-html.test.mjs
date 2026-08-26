@@ -202,6 +202,12 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(page, /translated-gift-card/);
   assert.match(page, /translated-rsvp-card/);
   assert.match(page, /window\.sessionStorage\.setItem\(LANGUAGE_KEY, next\)/);
+  assert.match(page, /new URLSearchParams\(window\.location\.search\)\.get\("lang"\)/);
+  assert.match(page, /language === "ar" \|\| language === "en"/);
+  assert.match(page, /window\.sessionStorage\.setItem\(LANGUAGE_KEY, queryLanguage\)/);
+  assert.match(page, /url\.searchParams\.set\("lang", language\)/);
+  assert.match(page, /window\.history\.replaceState/);
+  assert.match(page, /window\.addEventListener\("popstate", syncLanguageFromUrl\)/);
   assert.match(page, /className="blessing-arc-word"/);
   assert.doesNotMatch(page, /className="framed-portrait"/);
   assert.doesNotMatch(page, /className="portrait-window"/);
