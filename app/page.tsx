@@ -333,6 +333,7 @@ function CeremonyDetails({
   language,
   resetScrollOnMount,
   showProgram,
+  showGifts,
   showRsvp,
   rsvpBeforeGift,
 }: {
@@ -340,6 +341,7 @@ function CeremonyDetails({
   language: InvitationLanguage;
   resetScrollOnMount: boolean;
   showProgram: boolean;
+  showGifts: boolean;
   showRsvp: boolean;
   rsvpBeforeGift: boolean;
 }) {
@@ -441,50 +443,52 @@ function CeremonyDetails({
 
       {showRsvp && rsvpBeforeGift ? <RsvpCard language={language} /> : null}
 
-      <article
-        className="supporting-card gift-card gift-card-cover w-full text-center"
-        dir={isEnglish ? "ltr" : "rtl"}
-        lang={language}
-      >
-        <div className={`gift-cover-art${isEnglish ? " translated-gift-card" : ""}`}>
-          {isEnglish ? (
-            <div className="translated-card-content">
-              <h2>{english.gift.heading}</h2>
-              <span className="translated-card-ornament" aria-hidden="true">✦</span>
-              <p>{english.gift.message}</p>
-              <a
-                className="translated-card-button"
-                href={BANK_DETAILS_HREF}
-                onClick={onOpenGift}
-              >
-                <span aria-hidden="true">＋</span>
-                {english.gift.button}
-                <span aria-hidden="true">＋</span>
-              </a>
-            </div>
-          ) : (
-            <>
-              <Image
-                src={assetPath("/gift-cover-card-arabic-details.png")}
-                alt="Gift details cover"
-                width={1480}
-                height={1480}
-                sizes="(max-width: 430px) 100vw, 430px"
-                className="gift-cover-image"
-                draggable={false}
-              />
-              <a
-                className="gift-cover-button"
-                href={BANK_DETAILS_HREF}
-                onClick={onOpenGift}
-                aria-label="التفاصيل"
-              >
-                <span className="sr-only">التفاصيل</span>
-              </a>
-            </>
-          )}
-        </div>
-      </article>
+      {showGifts ? (
+        <article
+          className="supporting-card gift-card gift-card-cover w-full text-center"
+          dir={isEnglish ? "ltr" : "rtl"}
+          lang={language}
+        >
+          <div className={`gift-cover-art${isEnglish ? " translated-gift-card" : ""}`}>
+            {isEnglish ? (
+              <div className="translated-card-content">
+                <h2>{english.gift.heading}</h2>
+                <span className="translated-card-ornament" aria-hidden="true">✦</span>
+                <p>{english.gift.message}</p>
+                <a
+                  className="translated-card-button"
+                  href={BANK_DETAILS_HREF}
+                  onClick={onOpenGift}
+                >
+                  <span aria-hidden="true">＋</span>
+                  {english.gift.button}
+                  <span aria-hidden="true">＋</span>
+                </a>
+              </div>
+            ) : (
+              <>
+                <Image
+                  src={assetPath("/gift-cover-card-arabic-details.png")}
+                  alt="Gift details cover"
+                  width={1480}
+                  height={1480}
+                  sizes="(max-width: 430px) 100vw, 430px"
+                  className="gift-cover-image"
+                  draggable={false}
+                />
+                <a
+                  className="gift-cover-button"
+                  href={BANK_DETAILS_HREF}
+                  onClick={onOpenGift}
+                  aria-label="التفاصيل"
+                >
+                  <span className="sr-only">التفاصيل</span>
+                </a>
+              </>
+            )}
+          </div>
+        </article>
+      ) : null}
 
       {showRsvp && !rsvpBeforeGift ? <RsvpCard language={language} /> : null}
 
@@ -494,10 +498,12 @@ function CeremonyDetails({
 
 export function WeddingInvitation({
   showProgram = true,
+  showGifts = true,
   showRsvp = true,
   rsvpBeforeGift = false,
 }: {
   showProgram?: boolean;
+  showGifts?: boolean;
   showRsvp?: boolean;
   rsvpBeforeGift?: boolean;
 }) {
@@ -611,6 +617,7 @@ export function WeddingInvitation({
             language={language}
             resetScrollOnMount={resetDetailsScrollRef.current}
             showProgram={showProgram}
+            showGifts={showGifts}
             showRsvp={showRsvp}
             rsvpBeforeGift={rsvpBeforeGift}
           />

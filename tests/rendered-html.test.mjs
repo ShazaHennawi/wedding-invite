@@ -72,9 +72,10 @@ test("server-renders the renamed ceremony routes", async () => {
 });
 
 test("keeps content editable and interaction requirements wired", async () => {
-  const [page, invitationOnlyPage, ceremonyGiftsPage, bankPage, config, css, layout, packageJson] = await Promise.all([
+  const [page, invitationOnlyPage, ceremonyInvitationPage, ceremonyGiftsPage, bankPage, config, css, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/invitation-only/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/ceremony-invitation/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/ceremony-gifts/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/bank-details/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/invitation-config.ts", import.meta.url), "utf8"),
@@ -88,13 +89,16 @@ test("keeps content editable and interaction requirements wired", async () => {
   assert.match(invitationOnlyPage, /showRsvp/);
   assert.match(invitationOnlyPage, /rsvpBeforeGift/);
   assert.doesNotMatch(invitationOnlyPage, /showRsvp=\{false\}/);
+  assert.match(ceremonyInvitationPage, /showGifts=\{false\}/);
   assert.match(ceremonyGiftsPage, /showProgram=\{false\}/);
   assert.match(ceremonyGiftsPage, /showRsvp=\{false\}/);
   assert.match(page, /showProgram = true/);
+  assert.match(page, /showGifts = true/);
   assert.match(page, /showRsvp = true/);
   assert.match(page, /rsvpBeforeGift = false/);
   assert.match(page, /showRsvp && rsvpBeforeGift \? <RsvpCard/);
   assert.match(page, /showRsvp && !rsvpBeforeGift \? <RsvpCard/);
+  assert.match(page, /showGifts \? \(/);
   assert.match(config, /date: "17\.10\.2026"/);
   assert.match(config, /poster: "\/landing-couple-frame-new\.png"/);
   assert.match(config, /src: "\/wedding-song\.mp3"/);
